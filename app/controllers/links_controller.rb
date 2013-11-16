@@ -10,6 +10,7 @@ class LinksController < ApplicationController
 
   	   @link = Link.new(link_params)
   	   @link.user_id = current_user.id if current_user
+       @link.username = current_user.username if current_user
 
     respond_to do |format|
       if @link.save
