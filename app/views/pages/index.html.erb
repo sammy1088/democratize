@@ -1,0 +1,28 @@
+<p>
+<%= link_to "Add a link", new_link_path %>
+<%= current_user.username %>
+</p>
+
+  <% @links.each do |link| %>
+   
+  <ul>
+
+    <%= link_to link.url %>
+    <%= link_to link.title %>
+
+    by
+
+    <%= link.user_id %>
+   
+    
+<%= link.username %>
+    
+
+    
+    </ul>
+ 
+    <% end %>
+
+  
+
+
