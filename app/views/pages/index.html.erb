@@ -1,6 +1,8 @@
 <p>
+	<% if user_signed_in? %>
 <%= link_to "Add a link", new_link_path %>
-<%= current_user.username %>
+
+<% end %>
 </p>
 
   <% @links.each do |link| %>
@@ -12,7 +14,7 @@
 
     by
 
-    <%= link.user_id %>
+    
    
     
 <%= link.username %>

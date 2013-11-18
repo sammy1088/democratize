@@ -19,6 +19,11 @@
     <%= link_to 'Sign In', new_user_session_path %> |
     <%= link_to 'Register Now!', new_user_registration_path %>
   <% end %>
+  <p>
+  <% if user_signed_in? %>
+<%= current_user.username %>
+<% end %>
+</p>
 
 <%= yield %>
 

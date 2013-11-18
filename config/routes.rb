@@ -1,4 +1,5 @@
 Sawit::Application.routes.draw do
+   devise_for :users
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -7,11 +8,11 @@ Sawit::Application.routes.draw do
   # root 'welcome#index'
   resources :pages
   resources :links
-  resources :users
+  
 
   root :to => "pages#index"
 
-  devise_for :users, :path_names => { :sign_up => "register" }
+ 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
