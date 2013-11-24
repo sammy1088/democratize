@@ -5,26 +5,25 @@
 <% end %>
 </p>
 
-  <% @links.each do |link| %>
+  
+   <% @links.each do |link| %>
+  <div id="links">
+  	
+  <li>
+<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
+  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
+
+   <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %>
+
+  	<ul><%= image_tag link.photo.url(:small) %></ul>
+
    
-  <ul>
-
-  	<%= image_tag link.photo.url(:small) %>
-
-    <%= link_to link.url %>
-    <%= link_to link.title %>
-
+   <ul> <%= link_to link.title %></ul>
+   <ul>
     by
-
-    
-   
-    
-<%= link.username %>
-    
-
-    
-    </ul>
- 
+	<%= link.username %></ul>
+    </li>
+    </div>
     <% end %>
 
   

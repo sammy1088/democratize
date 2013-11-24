@@ -8,6 +8,7 @@ Sawit::Application.routes.draw do
   # root 'welcome#index'
   resources :pages
   resources :links
+  resources :votes
   
 
   root :to => "pages#index"

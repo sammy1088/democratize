@@ -1,9 +1,10 @@
 class LinksController < ApplicationController
-  def show
-  end
+
+
 
   def new
   	@link = Link.new
+    @vote = Vote.new
   end
 
    def create

@@ -1,5 +1,6 @@
 class Link < ActiveRecord::Base
 	belongs_to :user
+	 has_many :votes
 
 has_attached_file :photo, :styles => { :small => "150x150>" },
                   :url  => "/assets/products/:id/:style/:basename.:extension",
