@@ -8,8 +8,13 @@
 </head>
 <body>
 
-	<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+ 
+
+  <div id="header">
+
+<h1>Sawit</h1>
+</div>
+
 
   <%# user is logged in, show log out link %>
   <% if current_user.present? %>
@@ -21,10 +26,15 @@
   <% end %>
   <p>
   <% if user_signed_in? %>
-<%= current_user.username %>
+<%= link_to current_user.username, current_user %>
+<%= image_tag current_user.avatar.url(:small) %>
 <% end %>
 </p>
 
+
+<% if alert %>
+  <p class="alert-message warning"><%= alert %></p>
+<% end %>
 <%= yield %>
 
 </body>

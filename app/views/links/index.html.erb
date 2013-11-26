@@ -9,7 +9,7 @@
    <% @links.each do |link| %>
 
   
-
+<div class="row">
   <div id="links">
   	
   <li>
@@ -27,11 +27,11 @@
    <ul> <%= link_to link.title %></ul>
    <ul>
     by
-	<%= link.username %></ul>
+	<%= link_to link.username, link.user %></ul>
+  <%= image_tag link.user.avatar.url(:small) %>
     </li>
     </div>
+  </div>
     <% end %>
 
   
-
-

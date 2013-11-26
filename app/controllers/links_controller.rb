@@ -1,6 +1,10 @@
 class LinksController < ApplicationController
 
+def index
+  @link = Link.new
+@links = Link.sort_by_score
 
+end
 
   def new
   	@link = Link.new

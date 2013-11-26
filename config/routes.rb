@@ -9,9 +9,10 @@ Sawit::Application.routes.draw do
   resources :pages
   resources :links
   resources :votes
+  resources :users
   
 
-  root :to => "pages#index"
+  root :to => "links#index"
 
  
 

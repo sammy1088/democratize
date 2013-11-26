@@ -9,6 +9,15 @@
     <div><%= f.label :username %><br />
   <%= f.text_field :username, :autofocus => true %></div>
 
+   <div>
+    <%= f.label :bio %><br />
+    <%= f.text_field :bio, :autofocus => true %>
+  </div>
+
+    <p>
+   <%= f.file_field :avatar %>
+</p>
+
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
 
