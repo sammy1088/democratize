@@ -10,6 +10,7 @@ Sawit::Application.routes.draw do
   resources :links
   resources :votes
   resources :users
+  resources :states
   
 
   root :to => "links#index"

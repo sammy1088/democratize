@@ -6,6 +6,8 @@ def index
 
 end
 
+
+
   def new
   	@link = Link.new
     @vote = Vote.new

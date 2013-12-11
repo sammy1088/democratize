@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sawit</title>
+  <title>Democratize</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
- 
+ <div class="row">
+  
+     <div id="header">
 
-  <div id="header">
+<h1>Democratize</h1>
 
-<h1>Sawit</h1>
 </div>
 
-
+  
+  
+<div id="profile">
   <%# user is logged in, show log out link %>
   <% if current_user.present? %>
     <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
@@ -27,9 +30,19 @@
   <p>
   <% if user_signed_in? %>
 <%= link_to current_user.username, current_user %>
-<%= image_tag current_user.avatar.url(:small) %>
+
 <% end %>
 </p>
+  
+
+  </div>
+</div>
+
+
+ 
+
+
+
 
 
 <% if alert %>

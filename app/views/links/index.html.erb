@@ -1,37 +1,77 @@
+
+<p><center>
+<h1>Tulsa, Oklahoma</h1>
+<h1>District 2</h1>
+  </center>
+</p>
 <p>
-	<% if user_signed_in? %>
+<center>
+
+
+<%= link_to "|District|", '#' %>
+
+<%= link_to "|City|", '#' %>
+
+<%= link_to "|State|", states_path %>
+
+ </center>
+ </p> 
+ <br>
+
+
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <br>
+      <div id="sidebar"
+        <ul>
+           <li>   Upcoming Events....</li>
+           <li>   Ads...</li> 
+
+        </ul>
+      </div>
+    </div>
+    <div class="span10">
+      <div id="addlink">
+      <p>
+  <% if user_signed_in? %>
 <%= link_to "Add a link", new_link_path %>
 
 <% end %>
 </p>
-
-  
-   <% @links.each do |link| %>
+</div>
+         <% @links.each do |link| %>
 
   
 <div class="row">
   <div id="links">
-  	
+    <ul>
+
   <li>
-
-
-
-<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
-  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
 
    <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %>
 
-  	<ul><%= image_tag link.photo.url(:small) %></ul>
+<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
+
+  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
+
+
+    
 
    
-   <ul> <%= link_to link.title %></ul>
-   <ul>
+   <%= link_to link.title %>
+   
     by
-	<%= link_to link.username, link.user %></ul>
-  <%= image_tag link.user.avatar.url(:small) %>
+  <%= link_to link.username, link.user %>
+  
     </li>
+    </ul>
+
     </div>
   </div>
     <% end %>
-
+    </div>
+  </div>
+</div>
   
