@@ -1,32 +1,8 @@
 states index
 
-   <% @links.each do |link| %>
+  <p>
+  <% if user_signed_in? %>
+<%= link_to "Add a link", new_states_link_path %>
 
-  
-<div class="row">
-  <div id="links">
-  	<ul>
-
-  <li>
-
-   <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %>
-
-<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
-
-  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
-
-
-  	<%= image_tag link.photo.url(:small) %>
-
-   
-   <%= link_to link.title %>
-   
-    by
-	
-  
-    </li>
-    </ul>
-
-    </div>
-  </div>
-    <% end %>
+<% end %>
+</p>

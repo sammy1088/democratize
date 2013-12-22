@@ -1,7 +1,7 @@
+index
+<% @users.all do |link| %>
+
+  
 <%= @user.username %>, <%= @user.email %>, <%= @user.bio %>,
  <%= image_tag @user.avatar.url(:small) %>
-
- <% @links.each do |link| %>
-
- <%= link_to link.title %>
- <% end %>
+    <% end %>

@@ -12,8 +12,13 @@ Sawit::Application.routes.draw do
   resources :users
   resources :states
   
+  
 
   root :to => "links#index"
+
+    namespace :states do
+  resources :links
+end
 
  
 

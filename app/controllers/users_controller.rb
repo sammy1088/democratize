@@ -3,8 +3,14 @@ def create
 	
 end
 
+def index
+  @user = User.new
+
+	end
+
 def show
 	@user = User.find(params[:id])
+	@links = @user.links
 	
 	end
 
