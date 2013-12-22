@@ -1,8 +1,6 @@
-states index
-
-  <p>
-  <% if user_signed_in? %>
-<%= link_to "Add a link", new_states_link_path %>
-
-<% end %>
-</p>
+--index--
+<% @states.each do |state| %>
+<p>
+	 <%= state.title %>
+	</p>
+	 <% end %>

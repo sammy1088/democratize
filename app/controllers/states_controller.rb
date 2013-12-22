@@ -1,22 +1,22 @@
 class StatesController < ApplicationController
-
-def new
-  @link = Link.new
-end
-
-def show
+	def new
+	end
+	def create
+		 @state = State.new(state_params)
+  @state.save
+  redirect_to @state
+	end
+	def show
+  @state = State.find(params[:id])
+  
 end
 
 def index
-	@link = Link.new
-end
+	@states = State.all
+	end
 
-  def create
-    @link = Link.new
-    
-  end
-
+	private
   def state_params
-  params.require(:states).permit(:links)
-end
+    params.require(:state).permit(:title)
+  end
 end

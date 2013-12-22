@@ -1,5 +1,6 @@
 class Link < ActiveRecord::Base
 	belongs_to :user
+  belongs_to :states
   
 	 has_many :votes 
 

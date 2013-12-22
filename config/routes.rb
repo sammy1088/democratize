@@ -16,8 +16,10 @@ Sawit::Application.routes.draw do
 
   root :to => "links#index"
 
-    namespace :states do
+scope shallow_path: "sekret" do
+    resources :states   do
   resources :links
+end
 end
 
  

@@ -1,36 +1,4 @@
-<p>
-	<% if user_signed_in? %>
-<%= link_to "Add a link", new_link_path %>
-
-<% end %>
-</p>
-
-  
-   <% @links.each do |link| %>
-
-  
-
-  <div id="links">
-  	
-  <li>
-
-
-
-<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
-  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
-
-   <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %>
-
-  	<ul><%= image_tag link.photo.url(:small) %></ul>
-
-   
-   <ul> <%= link_to link.title %></ul>
-   <ul>
-    by
-	<%= link.username %></ul>
-    </li>
-    </div>
-    <% end %>
+SHow all states
 
   
 

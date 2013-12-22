@@ -1,2 +1,11 @@
-show for OK
+<p>
+  <strong>Title:</strong>
+  <%= @state.title %>
+</p>
 
+
+
+ <% if user_signed_in? %>
+<%= link_to "Add a link", new_state_link %>
+
+<% end %>
