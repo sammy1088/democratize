@@ -8,11 +8,13 @@ class StatesController < ApplicationController
 	end
 	def show
   @state = State.find(params[:id])
+  @links = @state.links
   
 end
 
 def index
 	@states = State.all
+	@links = Link.all
 	end
 
 	private

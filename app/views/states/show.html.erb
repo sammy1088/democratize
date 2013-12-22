@@ -4,8 +4,12 @@
 </p>
 
 
-
  <% if user_signed_in? %>
-<%= link_to "Add a link", new_state_link %>
+<%= link_to "Add a link", new_state_link_path(params[:id]) %>
 
 <% end %>
+
+<% @links.each do |link| %>
+
+ <%= link_to link.title %>
+ <% end %>
