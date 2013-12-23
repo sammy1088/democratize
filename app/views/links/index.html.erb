@@ -1,6 +1,6 @@
 
 <p><center>
-<h1>Tulsa, Oklahoma</h1>
+<h1>Oklahoma - Tulsa</h1>
 <h1>District 2</h1>
   </center>
 </p>
@@ -15,7 +15,7 @@
 <%= link_to "|State|", states_path %>
 </p>
 <p>
-|Opinions| |Polls| |Events|
+|General| |Polls| |Events| |Upcoming Votes|
   </p>
  </center>
  </p> 
@@ -29,10 +29,10 @@
       <br>
       <div id="sidebar"
         <ul>
-           <li>   Upcoming Events....</li>
+           <li>   My Events....</li>
            <li>   My Groups...</li>
-           <li>   Ads...</li> 
-           <li>   Job Board...</li>
+          
+          
 
         </ul>
       </div>
@@ -68,7 +68,9 @@
 
    
    <%= link_to link.title %>
-   
+   <p>
+   <%= link.text %>
+ </p>  
     by
   <%= link_to link.username, link.user %>
   

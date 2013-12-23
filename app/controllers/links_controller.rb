@@ -29,7 +29,7 @@ end
     end
   end
   def link_params
-  params.require(:link).permit(:user_id, :url, :title, :username, :photo)
+  params.require(:link).permit(:user_id, :title, :username, :text)
 end
 
 end
