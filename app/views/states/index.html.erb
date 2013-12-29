@@ -1,6 +1,5 @@
---index--
 <% @states.each do |state| %>
 <p>
-	 <%= state.title %>
+	 <%= link_to state.title, state %>
 	</p>
 	 <% end %>

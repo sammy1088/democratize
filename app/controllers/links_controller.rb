@@ -1,22 +1,23 @@
 class LinksController < ApplicationController
+  before_filter :find_state, only: [:new, :create]
 
-def index
-  @link = Link.new
-@links = Link.sort_by_score
-
-
-end
-
-
+  def index
+    if params[:state_id]
+      find_state
+      @links = @state.links
+    else
+      @links = Link.all
+    end
+  end
 
   def new
   	@link = Link.new
-    @vote = Vote.new
+  #  @vote = Vote.new 
   end
 
-   def create
-  	   @link = Link.new(link_params)
-       @link.user = current_user if current_user
+  def create
+    @link = @state.links.new(link_params)
+     @link.user = current_user if current_user
 
     respond_to do |format|
       if @link.save
@@ -32,4 +33,8 @@ end
   params.require(:link).permit(:user_id, :title, :username, :text)
 end
 
+  private
+  def find_state
+    @state = State.find(params[:state_id])
+  end
 end
