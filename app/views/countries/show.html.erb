@@ -1,0 +1,7 @@
+<p>
+  <strong>Title:</strong>
+  <%= @country.title %>
+</p>
+<% @links.each do |link| %>
+<%= link_to link.title %>
+	<% end %>

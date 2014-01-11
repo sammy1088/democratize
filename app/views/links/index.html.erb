@@ -1,18 +1,5 @@
 
-<p><center>
-<h1>US</h1>
-  </center>
-</p>
-<p>
-<center>
 
-
-<p>
-|General| |Polls| |Events| |Upcoming Votes|
-  </p>
- </center>
- </p> 
- <br>
 
 
 
@@ -22,8 +9,10 @@
       <br>
       <div id="sidebar"
         <ul>
-           <li>   My Events....</li>
-           <li>   My Groups...</li>
+           <li>City Info...</li>
+           <li>My Groups...</li>
+           <li>My Reps...</li>
+           <li>Ads...</li>
           
           
 
@@ -34,14 +23,13 @@
       <div id="addlink">
       <p>
   <% if user_signed_in? %>
-<%= link_to "Add a link", new_link_path %>
-
-<% end %>
+    <%= link_to_for_parent(@parent) %>
+  <% end %>
 </p>
 </div>
 
 |hot| |new|
-         <% @links.each do |link| %>
+  <% @links.each do |link| %>
 
   
 <div class="row">
@@ -50,7 +38,7 @@
 
   <li>
 
-   <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %>
+   <%= link.score %>
 
 <%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
 

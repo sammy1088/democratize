@@ -1,4 +1,5 @@
 Sawit::Application.routes.draw do
+
    devise_for :users
  
   # The priority is based upon order of creation: first created -> highest priority.
@@ -7,19 +8,35 @@ Sawit::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   resources :pages
-  resources :links
   resources :votes
   resources :users
-  resources :states
+  resources :links, only: :index
+
+  root :to => "pages#home"
+
+  resources :states   do
+    resources :links
+  end
+
+  resources :countries do
+    resources :links
+  end
+
+  resources :reps do
+    resources :links
+  end
+
+  resources :cities do
+    resources :links
+  end
+
+  resources :cities do
+    resources :districts do
+      resources :links
+    end
+  end
+
   
-  
-
-  root :to => "links#index"
-
-
-resources :states   do
-  resources :links
-end
 
  
 

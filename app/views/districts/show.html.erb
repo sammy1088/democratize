@@ -1,0 +1,14 @@
+<p>
+  <strong>Title:</strong>
+  <%= @district.title %>
+</p>
+<% @links.each do |link| %>
+
+   <%= link.score %>
+
+<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
+
+  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
+
+<%= link_to link.title %>
+	<% end %>

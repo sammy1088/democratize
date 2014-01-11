@@ -1,0 +1,30 @@
+<div id="sidebar"
+        <ul>
+           <li>City Info...</li>
+           <li>My Groups...</li>
+           <li>My Reps...</li>
+           <% @districts.each do |district| %>
+<%= district.title %>
+           <% end %>
+           <li>Ads...</li>
+          
+          
+
+        </ul>
+      </div>
+    </div>
+
+<p>
+  <strong>Title:</strong>
+  <%= @city.title %>
+</p>
+<% @links.each do |link| %>
+
+   <%= link.score %>
+
+<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
+
+  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
+
+<%= link_to link.title %>
+	<% end %>

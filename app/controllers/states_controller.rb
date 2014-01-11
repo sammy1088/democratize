@@ -1,4 +1,10 @@
 class StatesController < ApplicationController
+  
+  def index
+    @states = State.all
+    @links = Link.all
+  end
+
   def new
   end
 	 
@@ -14,14 +20,6 @@ class StatesController < ApplicationController
     @state = State.find(params[:id])
     @links = @state.links
   end
-
-
-  def index
-	  @states = State.all
-	  @links = Link.all
-  end
-
-
   private
    def state_params
     params.require(:state).permit(:title)

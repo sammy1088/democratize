@@ -1,8 +1,11 @@
 class Link < ActiveRecord::Base
 	belongs_to :user
   belongs_to :state
+  belongs_to :city
+  belongs_to :district
+  belongs_to :rep
   
-	 has_many :votes 
+	has_many :votes 
 
 
 

@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131229010137) do
+ActiveRecord::Schema.define(version: 20140111164558) do
+
+  create_table "cities", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "districts", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "city_id"
+  end
 
   create_table "links", force: true do |t|
     t.integer  "user_id"
@@ -26,6 +45,16 @@ ActiveRecord::Schema.define(version: 20131229010137) do
     t.datetime "photo_updated_at"
     t.text     "text"
     t.integer  "state_id"
+    t.integer  "city_id"
+    t.integer  "district_id"
+    t.integer  "rep_id"
+    t.integer  "country_id"
+  end
+
+  create_table "reps", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "states", force: true do |t|
