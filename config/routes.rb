@@ -7,15 +7,47 @@ Sawit::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  resources :pages
-  resources :votes
-  resources :users
-  resources :links, only: :index
+  resources :groups do
+    member do
+      get :follow
+    end
+  end
 
-  root :to => "pages#home"
+  resources :users do
+    member do
+      get :following
+    end
+  end
+
+  resources :pages
+  resources :users
+
+   resources :relationships, only: [:create, :destroy]
+  
+  resources :links do
+    resources :comments
+    resources :votes
+  end
+
+  resources :jobs do
+    resources :comments
+    resources :votes
+  end
+
+  resources :comments do
+    resources :comments
+    resources :votes
+  end
+
+  
+
+  root :to => "pages#index"
 
   resources :states   do
     resources :links
+    resources :groups
+    resources :jobs
+    resources :resources
   end
 
   resources :countries do
@@ -26,15 +58,27 @@ Sawit::Application.routes.draw do
     resources :links
   end
 
-  resources :cities do
-    resources :links
-  end
+resources :districts do
+  resources :links
+end
 
-  resources :cities do
-    resources :districts do
-      resources :links
-    end
-  end
+resources :resources
+
+resources :groups do
+  resources :links
+end
+
+resources :cities do
+  resources :links
+  resources :groups
+  resources :jobs
+  resources :districts  
+  resources :resources
+end
+
+
+  
+
 
   
 

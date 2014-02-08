@@ -1,0 +1,97 @@
+
+  
+
+
+<center>
+  <p>
+  <strong>
+  <p><%= @group.title %></p>
+  <p><%= link_to "Follow", follow_group_path(@group), class: "btn btn-large btn-primary" %></p>
+  </strong>
+</p>
+</center>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <br>
+      <div id="sidebar"
+        <ul>
+           
+           
+Back to <%= link_to @city.title, [@city] %>
+           
+             <% @districts.each do |district| %>
+<ul><%= link_to district.title, [@city, district] %></ul>
+           <% end %>
+           <li><%= @city.title %> Groups</li>
+            <% @groups.each do |group| %>
+<ul><%= link_to group.title, [@city, group] %></ul>
+           <% end %>
+           
+          
+           <li><%= @city.title %> Resources</li>
+           <% @resources.each do |resource| %>
+<%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
+
+<% end %>
+
+
+           <li><%= @city.title %> Jobs</li>
+           <li>Group Follows</li>
+           <li><% @users.each do |u| %>
+<%= u.email %>
+
+<% end %></li>
+          
+          
+
+        </ul>
+      </div>
+    </div>
+    <div class="span10">
+      <div id="addlink">
+      <p>
+  
+</p>
+</div>
+<% if user_signed_in? %>
+    <%= link_to "Add a link", new_group_link_path(@group) %>
+  <% end %>
+<%= link_to "hot", city_group_path(@city, @group, sort_by: "hot") %>
+<%= link_to "new", city_group_path(@city, @group, sort_by: "new") %>
+  <% @links.each do |link| %>
+
+  
+<div class="row">
+  <div id="links">
+    <ul>
+
+  <li>
+
+   <%= link.score %>
+
+<%= link_to "+", link_votes_path(link, :vote => {:up => true}), :method => :link %>
+
+  <%= link_to "-", link_votes_path(link, :vote => {:up => false}), :method => :link %>
+
+
+    
+
+   
+   <%= link_to link.title, [@group, link] %>
+   <p>
+   <%= link.text %>
+ </p>  
+    by
+  <%= link_to link.username, link.user %>
+  
+    </li>
+    </ul>
+
+    </div>
+  </div>
+    <% end %>
+    </div>
+  </div>
+</div>

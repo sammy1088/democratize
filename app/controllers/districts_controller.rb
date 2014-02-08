@@ -19,11 +19,36 @@ class DistrictsController < ApplicationController
     @districts = District.all
     @links = Link.all
   end
-  def show
-  	@district = District.find(params[:id])
-    @links = @district.links
+def show
+  @district = District.find(params[:id])
+
+  @city = City.find(params[:city_id])
+  
+  @groups = @city.groups  
+  @districts = @city.districts
+  @resources = @city.resources
+  @jobs = @city.jobs
+    
+  @district = District.find(params[:id])
+  @links = @district.links
+
+  @cities = City.all
+
+
+     if params[:sort_by] == "new"
+      puts "sort queries called"
+      @links = @links.order(created_at: :desc)
+    else
+    @links = @links.sort_by{ |l| l.hot }.reverse
+    end
+
+  end
+  def destroy
+    @district = District.find(params[:id])
+    @district.destroy
   end
   private
+
    def district_params
     params.require(:district).permit(:title)
   end

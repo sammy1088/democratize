@@ -1,0 +1,27 @@
+<ul><% comments.sort_by{ |c| c.score }.reverse.each do |comment| %>
+    
+    <li><p>
+        <%= comment.score %>
+        <%= link_to "+", comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => true}), :method => :comment %>
+
+  <%= link_to "-", comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment %>
+        <%= comment.message %> - Posted by <%= comment.user.email %> </p></li>
+    <%= render partial: "comments", locals: { comments: comment.comments } %> 
+               
+    <%= form_for(Comment.new, url: comment_comments_path(comment)) do |f| %> 
+
+    <div class="field">
+        
+        <%= f.text_area :message, :placeholder =>"Add a comment" %>
+        </div>
+        <div class="actions">
+                <%= f.submit %>
+        </div>
+    
+        </div>
+    <% end %> 
+
+<% end %></ul>
+
+
+

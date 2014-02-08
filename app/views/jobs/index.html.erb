@@ -1,0 +1,87 @@
+<center>
+  <p>
+  <strong>
+  <%= @city.title %>
+  </strong>
+</p>
+</center>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <br>
+      <div id="sidebar"
+        <ul>
+           
+           
+Back to <%= link_to @city.title, [@city] %>
+           
+             <% @districts.each do |district| %>
+<ul><%= link_to district.title, [@city, district] %></ul>
+           <% end %>
+           <li><%= @city.title %> Groups</li>
+            <% @groups.each do |group| %>
+<ul><%= link_to group.title, [@city, group] %></ul>
+           <% end %>
+           
+          
+           <li><%= @city.title %> Resources</li>
+           <% @resources.each do |resource| %>
+<%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
+
+<% end %>
+           <li><%= @city.title %> Jobs</li>
+          <% @jobs.each do |job| %>
+<ul><%= link_to job.title, [@city, job] %></ul>
+           <% end %>
+          
+
+        </ul>
+      </div>
+    </div>
+    <div class="span10">
+      <div id="addlink">
+      <p>
+  
+</p>
+</div>
+<% if user_signed_in? %>
+    <%= link_to "Add a link", new_city_job_path(@city) %>
+  <% end %>
+<%= link_to "hot", city_jobs_path(@city, @job, sort_by: "hot") %>
+<%= link_to "new", city_jobs_path(@city, @job, sort_by: "new") %>
+  <% @jobs.each do |job| %>
+
+
+  
+<div class="row">
+  <div id="links">
+    <ul>
+
+  <li>
+
+   <%= job.score %>
+
+<%= link_to "+", job_votes_path(job, :vote => {:up => true}), :method => :job %>
+
+  <%= link_to "-", job_votes_path(job, :vote => {:up => false}), :method => :job %>
+
+
+    
+
+   
+   <%= link_to job.title, [@city, job] %>
+   
+   <%= job.username %>
+   <%= link_to 'Destroy', job_path(job),
+                    method: :delete, data: { confirm: 'Are you sure?' } %>
+  
+    </li>
+    </ul>
+
+    </div>
+  </div>
+    <% end %>
+    </div>
+  </div>
+</div>

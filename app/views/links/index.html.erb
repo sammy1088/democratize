@@ -1,8 +1,5 @@
 
 
-
-
-
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
@@ -40,9 +37,6 @@
 
    <%= link.score %>
 
-<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
-
-  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
 
 
     
@@ -54,6 +48,8 @@
  </p>  
     by
   <%= link_to link.username, link.user %>
+  <%= link_to 'Destroy', link_path(link),
+                    method: :delete, data: { confirm: 'Are you sure?' } %>
   
     </li>
     </ul>
@@ -61,6 +57,10 @@
     </div>
   </div>
     <% end %>
+<%= will_paginate @links %>
+
+
+    
     </div>
   </div>
 </div>

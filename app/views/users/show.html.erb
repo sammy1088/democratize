@@ -1,7 +1,19 @@
-<%= @user.username %>, <%= @user.email %>, <%= @user.bio %>,
- <%= image_tag @user.avatar.url(:small) %>
+<center>
+<p><%= image_tag @user.avatar.url(:small) %></p>
+<%= @user.username %> <%= @user.email %>, 
 
+<p><%= @user.bio %></p>
+  
+  <% @groups.each do |g| %>
+ <p>My Groups</p>
+<p><%= g.title %></p>
+<% end %>
+
+<p>My Posts</p>
  <% @links.each do |link| %>
 
- <%= link_to link.title %>
+ <p><%= link_to link.title %></p>
  <% end %>
+
+
+</center>

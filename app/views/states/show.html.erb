@@ -1,11 +1,61 @@
-<p>
-  <strong>Title:</strong>
-  <%= @state.title %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <br>
+      <div id="sidebar"
+        <ul>
+           <li>About <%= @state.title %> SEO text</li>
+           <li><%= @state.title %></li
+           <li><%= @state.title %> Groups</li>
+           <li><%= @state.title %> Jobs</li>
+          
+          
+
+        </ul>
+      </div>
+    </div>
+    <div class="span10">
+      <div id="addlink">
+      <p>
+  <% if user_signed_in? %>
+    <%= link_to "Add a link", new_state_link_path(params[:id]) %>
+  <% end %>
 </p>
+</div>
+
+|hot| |new|
+  <% @links.each do |link| %>
+
+  
+<div class="row">
+  <div id="links">
+    <ul>
+
+  <li>
+
+   <%= link.score %>
+
+<%= link_to "+", link_votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
+
+  <%= link_to "-", link_votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
 
 
- <% if user_signed_in? %>
-<%= link_to "Add a link", new_state_link_path(params[:id]) %>
+    
 
-<% end %>
+   
+   <%= link_to link.title, [@state, link] %>
+   <p>
+   <%= link.text %>
+ </p>  
+    by
+  <%= link_to link.username, link.user %>
+  
+    </li>
+    </ul>
 
+    </div>
+  </div>
+    <% end %>
+    </div>
+  </div>
+</div>

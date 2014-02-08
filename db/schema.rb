@@ -11,13 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111164558) do
+ActiveRecord::Schema.define(version: 20140202202356) do
 
   create_table "cities", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "countries", force: true do |t|
     t.string   "title"
@@ -30,6 +42,35 @@ ActiveRecord::Schema.define(version: 20140111164558) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "city_id"
+  end
+
+  create_table "follow_groups", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follow_groups", ["group_id"], name: "index_follow_groups_on_group_id"
+  add_index "follow_groups", ["user_id"], name: "index_follow_groups_on_user_id"
+
+  create_table "groups", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "city_id"
+  end
+
+  create_table "jobs", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "city_id"
+    t.string   "description"
+    t.string   "companyurl"
+    t.string   "companyname"
+    t.string   "username"
+    t.integer  "user_id"
   end
 
   create_table "links", force: true do |t|
@@ -49,12 +90,22 @@ ActiveRecord::Schema.define(version: 20140111164558) do
     t.integer  "district_id"
     t.integer  "rep_id"
     t.integer  "country_id"
+    t.integer  "comment_id"
+    t.integer  "group_id"
   end
 
   create_table "reps", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "resources", force: true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "city_id"
+    t.string   "title"
   end
 
   create_table "states", force: true do |t|
@@ -89,10 +140,13 @@ ActiveRecord::Schema.define(version: 20140111164558) do
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"
-    t.integer  "link_id"
     t.boolean  "up"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "votable_id"
+    t.integer  "votable_type"
   end
+
+  add_index "votes", ["votable_id", "votable_type"], name: "index_votes_on_votable_id_and_votable_type"
 
 end

@@ -1,0 +1,15 @@
+<%= form_for([@parent, @resource]) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

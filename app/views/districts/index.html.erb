@@ -1,3 +1,7 @@
+
+
 <% @districts.each do |district| %>
 <%= link_to district.title %>
+<%= link_to 'Destroy', district_path(district),
+                    method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

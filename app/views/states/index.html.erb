@@ -1,5 +1,8 @@
 <% @states.each do |state| %>
 <p>
 	 <%= link_to state.title, state %>
+	 <%= link_to 'Destroy', state_path(state),
+                    method: :delete, data: { confirm: 'Are you sure?' } %>
 	</p>
+
 	 <% end %>

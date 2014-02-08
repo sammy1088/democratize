@@ -1,1 +1,30 @@
-show
+
+
+   <%= @parent.title %>
+
+   <%= @link.title %>
+
+   <%= @link.username %>
+
+    
+
+
+<%= form_for([@link, Comment.new]) do |f| %> 
+
+    <div class="field">
+        
+        <%= f.text_area :message, :placeholder =>"Add a comment" %>
+        </div>
+        <div class="actions">
+                <%= f.submit %>
+        </div>
+<% end %>
+<%= render partial: "comments", locals: { comments: @comments } %> 
+   
+          
+
+        
+
+        
+
+ 

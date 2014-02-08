@@ -1,14 +1,85 @@
-<p>
-  <strong>Title:</strong>
+<center>
+  <p>
+  <strong>
   <%= @district.title %>
+  </strong>
 </p>
-<% @links.each do |link| %>
+</center>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <br>
+      <div id="sidebar"
+        <ul>
+           
+           
+Back to <%= link_to @city.title, [@city] %>
+           
+             <% @districts.each do |district| %>
+<ul><%= link_to district.title, [@city, district] %></ul>
+           <% end %>
+           <li><%= @city.title %> Groups</li>
+            <% @groups.each do |group| %>
+<ul><%= link_to group.title, [@city, group] %></ul>
+           <% end %>
+           
+          
+           <li><%= @city.title %> Resources</li>
+           <% @resources.each do |resource| %>
+<%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
+
+<% end %>
+           <li><%= @city.title %> Jobs</li>
+          
+          
+
+        </ul>
+      </div>
+    </div>
+    <div class="span10">
+      <div id="addlink">
+      <p>
+  
+</p>
+</div>
+<% if user_signed_in? %>
+    <%= link_to "Add a link", new_district_link_path(@district) %>
+  <% end %>
+<%= link_to "hot", city_district_path(@city, @district, sort_by: "hot") %>
+<%= link_to "new", city_district_path(@city, @district, sort_by: "new") %>
+  <% @links.each do |link| %>
+
+  
+<div class="row">
+  <div id="links">
+    <ul>
+
+  <li>
 
    <%= link.score %>
 
-<%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :link %>
+<%= link_to "+", link_votes_path(link, :vote => {:up => true}), :method => :link %>
 
-  <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :link %>
+  <%= link_to "-", link_votes_path(link, :vote => {:up => false}), :method => :link %>
 
-<%= link_to link.title %>
-	<% end %>
+
+    
+
+   
+   <%= link_to link.title, [@district, link] %>
+   <p>
+   <%= link.text %>
+ </p>  
+    by
+  <%= link_to link.username, link.user %>
+  
+    </li>
+    </ul>
+
+    </div>
+  </div>
+    <% end %>
+    </div>
+  </div>
+</div>

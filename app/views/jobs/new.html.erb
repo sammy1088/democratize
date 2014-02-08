@@ -1,0 +1,22 @@
+<%= form_for([@parent, @job]) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :companyname %><br>
+    <%= f.text_field :companyname %>
+  </p>
+  <p>
+    <%= f.label :companyurl %><br>
+    <%= f.text_field :companyurl %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
