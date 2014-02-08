@@ -13,42 +13,24 @@
 
  <div class="row">
   
-     <div id="header">
+     <div id="headerL">
 
-<h1>Democratize</h1>
+Democratize
+
+</div>
+
+<div id="headerR">
+
+
 <p>
 
 <%= link_to "|Choose location|", root_path %>
 </p>
 </div>
 
-  
-  
-<div id="profile">
-  <%# user is logged in, show log out link %>
-  <% if current_user.present? %>
-    <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-  <%# user is not logged in, show signup and login links %>
-  <% else %>
-    <%= link_to 'Sign In', new_user_session_path %> |
-    <%= link_to 'Register Now!', new_user_registration_path %>
-  <% end %>
-  <p>
-  <% if user_signed_in? %>
-<%= link_to current_user.username, current_user %>
-
-<% end %>
-</p>
-  
-
-  </div>
 </div>
+  
 
-
-
-<% if alert %>
-  <p class="alert-message warning"><%= alert %></p>
-<% end %>
 <%= yield %>
 
 </body>

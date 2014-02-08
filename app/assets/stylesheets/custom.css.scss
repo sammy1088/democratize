@@ -2,15 +2,23 @@
 
  html {
  	background:#ffffff;
- 	padding-left:30px;
- 	padding-right:30px; 
+ 	padding-left:10px;
+ 	padding-right:10px; 
  }
 
 
-#header {
+#headerL {
 
 	float:left;
-	padding:20px;
+}
+
+#headerR {
+	float:right;
+}
+
+#LRpad {
+	margin-left:200px;
+ 	margin-right:200px; 
 }
 
 #sidebar {
@@ -21,7 +29,7 @@
 }
 
 #profile {
-	float:right;
+	
 }
 
 #links {

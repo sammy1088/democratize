@@ -1,12 +1,36 @@
-
+<div id="LRpad">
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
       <br>
-      <div id="sidebar"
+      <div id="sidebar">
         <ul>
         
-           
+           <li><div id="profile">
+  <%# user is logged in, show log out link %>
+  <% if current_user.present? %>
+    <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+  <%# user is not logged in, show signup and login links %>
+  <% else %>
+    <%= link_to 'Sign In', new_user_session_path %> |
+    <%= link_to 'Register Now!', new_user_registration_path %>
+  <% end %>
+  <p>
+  <% if user_signed_in? %>
+<%= link_to current_user.username, current_user %>
+
+<% end %>
+</p>
+  
+
+  </div>
+
+
+
+
+<% if alert %>
+  <p class="alert-message warning"><%= alert %></p>
+<% end %></li>
            <li><%= @city.title %></li>
            <% @districts.each do |district| %>
 <ul><%= link_to district.title, [@city, district] %></ul>
@@ -70,6 +94,7 @@
    <%= link.created_at %>
  </p>  
     by
+    <%= image_tag link.user.avatar.url(:small), :class => "img-circle" %>
   <%= link_to link.username, link.user %>
   
     </li>
@@ -90,4 +115,5 @@
 %>
     </div>
   </div>
+</div>
 </div>
