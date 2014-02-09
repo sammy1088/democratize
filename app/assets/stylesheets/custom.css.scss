@@ -2,10 +2,8 @@
 
  html {
  	background:#ffffff;
- 	padding-left:10px;
- 	padding-right:10px; 
+ 	
  }
-
 
 #headerL {
 
@@ -16,16 +14,23 @@
 	float:right;
 }
 
-#LRpad {
-	margin-left:200px;
- 	margin-right:200px; 
+#foot {
+	text-align:center;
+	background:#00FFFF; 
+}
+
+.container-fluid {
+     background:#C0C0C0;
+    width:950px;
+    margin: 0 auto 0 auto;
+}
+
+#citytitle {
+	text-align:center;
 }
 
 #sidebar {
-	border-left-style:solid;
-	border-right-style:solid;
 	list-style-type:none;
-	padding:10px;
 }
 
 #profile {
@@ -33,16 +38,12 @@
 }
 
 #links {
-
-	vertical-align:middle
-
+	vertical-align:middle;
+	list-style-type:none;
 }
-
-.row {
-
-	padding:20px;
-}
-
 #addlink {
 	float:right;
+}
+#ads {
+	text-align:center;
 }

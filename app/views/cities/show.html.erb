@@ -1,119 +1,108 @@
-<div id="LRpad">
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
-      <br>
       <div id="sidebar">
-        <ul>
+          <div id="sideprof">
+            <%# user is logged in, show log out link %>
+            <% if current_user.present? %>
+              <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+              <%# user is not logged in, show signup and login links %>
+            <% else %>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+              <li><%= link_to 'Register Now!', new_user_registration_path %></li>
+            <% end %>
+            <p>
+            <% if user_signed_in? %>
+              <%= link_to current_user.username, current_user %>
+            <% end %>
+            </p>
+            <% if alert %>
+            <p class="alert-message warning"><%= alert %></p>
+            <% end %>
+          </div>
+          <div id="sidenav">
+              <li><%= @city.title %></li>
+                       <% @districts.each do |district| %>
+              <ul><%= link_to district.title, [@city, district] %></ul>
+                       <% end %>
+                       <li><%= @city.title %> Groups</li>
+                       <% @groups.each do |group| %>
+              <ul><%= link_to group.title, [@city, group] %></ul>
+                       <% end %>
+                       <li><%= @city.title %> Resources</li>
+                       <% @resources.each do |resource| %>
+              <%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
+
+              <% end %>
+                       <li><%= link_to @city.title, city_jobs_path(@city) %> Jobs</li>
+                       <% @jobs.each do |job| %>
+                <ul><%= link_to job.title, [@city, job] %></ul>
+                       <% end %>
+          </div>
+        </div>
+    </div>
+    <div class="span8">
+      <div id="citytitle">
+          <h1><%= @city.title %></h1>
+        </div>
+        <div id="addlink">
+              <p>
+                <% if user_signed_in? %>
+                <%= link_to "Add a link", new_city_link_path(params[:id]) %>
+                <% end %>
+              </p>
+        </div>
+
+
+        <%= link_to "hot", city_path(@city, sort_by: "hot") %>
+        |
+        <%= link_to "new", city_path(@city, sort_by: "new") %>
+
+
+        <% @links.each do |link| %>
+
         
-           <li><div id="profile">
-  <%# user is logged in, show log out link %>
-  <% if current_user.present? %>
-    <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-  <%# user is not logged in, show signup and login links %>
-  <% else %>
-    <%= link_to 'Sign In', new_user_session_path %> |
-    <%= link_to 'Register Now!', new_user_registration_path %>
-  <% end %>
-  <p>
-  <% if user_signed_in? %>
-<%= link_to current_user.username, current_user %>
+        <div class="row">
+          <div id="links">
+         
 
-<% end %>
-</p>
-  
+          <li>
 
-  </div>
+         <%= link.score %>
+
+        <%= link_to "+", link_votes_path(link, :vote => {:up => true}), :method => :link %>
+
+        <%= link_to "-", link_votes_path(link, :vote => {:up => false}), :method => :link %>
 
 
-
-
-<% if alert %>
-  <p class="alert-message warning"><%= alert %></p>
-<% end %></li>
-           <li><%= @city.title %></li>
-           <% @districts.each do |district| %>
-<ul><%= link_to district.title, [@city, district] %></ul>
-           <% end %>
-           <li><%= @city.title %> Groups</li>
-           <% @groups.each do |group| %>
-<ul><%= link_to group.title, [@city, group] %></ul>
-           <% end %>
-           <li><%= @city.title %> Resources</li>
-           <% @resources.each do |resource| %>
-<%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
-
-<% end %>
-           <li><%= link_to @city.title, city_jobs_path(@city) %> Jobs</li>
-           <% @jobs.each do |job| %>
-<ul><%= link_to job.title, [@city, job] %></ul>
-           <% end %>
-          
           
 
-        </ul>
-      </div>
-    </div>
-    <div class="span10">
-      <%= @city.title %>
-      <div id="addlink">
-      <p>
-  <% if user_signed_in? %>
-    <%= link_to "Add a link", new_city_link_path(params[:id]) %>
-  <% end %>
-</p>
-</div>
+         
+         <%= link_to link.title, [@city, link] %>
+         <p>
+         <%= link.text %>
+         <%# link.created_at %>
+        </p>  
+          by
+          <%= image_tag link.user.avatar.url(:small), :class => "img-circle" %>
+        <%= link_to link.username, link.user %>
+        
+          </li>
+          
 
+          </div>
+        </div>
 
-<%= link_to "hot", city_path(@city, sort_by: "hot") %>
-<%= link_to "new", city_path(@city, sort_by: "new") %>
+          <% end %>
+          <%= will_paginate @links %>
 
+          </div>
 
-  <% @links.each do |link| %>
-
-  
-<div class="row">
-  <div id="links">
-    <ul>
-
-  <li>
-
-   <%= link.score %>
-
-<%= link_to "+", link_votes_path(link, :vote => {:up => true}), :method => :link %>
-
-  <%= link_to "-", link_votes_path(link, :vote => {:up => false}), :method => :link %>
-
-
-    
-
-   
-   <%= link_to link.title, [@city, link] %>
-   <p>
-   <%= link.text %>
-   <%= link.created_at %>
- </p>  
-    by
-    <%= image_tag link.user.avatar.url(:small), :class => "img-circle" %>
-  <%= link_to link.username, link.user %>
-  
-    </li>
-    </ul>
-
-    </div>
+          <div class="span2">
+            <div id="ads">
+              <br><br><br>
+              <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922342_en_v0">
+            </div>
+          </div>
   </div>
-
-    <% end %>
-    <%= will_paginate @links %>
-    <%
-=begin
-%>
-  
-
-  <%
-=end
-%>
-    </div>
-  </div>
-</div>
 </div>
