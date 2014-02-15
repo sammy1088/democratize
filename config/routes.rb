@@ -41,7 +41,7 @@ Sawit::Application.routes.draw do
 
   
 
-  root :to => "pages#index"
+  root :to => "cities#show", :id => '1'
 
   resources :states   do
     resources :links

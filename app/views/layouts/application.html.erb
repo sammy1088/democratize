@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Democratize</title>
   
@@ -11,33 +11,49 @@
 </head>
 <body>
 
- <div class="row-fluid">
-  
-     <div id="headerL">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
 
-Democratize
+        <p class="navbar-text navbar-left">Democratize</p>
 
-</div>
+        <div class="btn-group navbar-right">
+              <button class="btn btn-default navbar-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                <%= link_to "Choose location", root_path %> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>Oklahoma</li>
+                   <li><%= link_to "Tulsa", "/cities/1" %></li>
+                    <li>Texas</li>
+              </ul>
 
-<div id="headerR">
 
-<%= link_to "|Choose location|", root_path %>
 
-</div>
+          </div>
+    
 
-</div>
-  
+
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
 
 <%= yield %>
 
+
+
+
 </body>
 <footer>
-  <div class="row-fluid">
-<div id="foot">
-
+  
 About | Contact Us | Get Involved!
+  
 
-</div>
-  </div>
+</footer>
 
 </html>

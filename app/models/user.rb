@@ -15,7 +15,7 @@ has_many :groups, through: :follow_groups
 
 
 
-has_attached_file :avatar, :styles => { :small => "50x50#" },
+has_attached_file :avatar, :styles => { :main => "200x200#" },
                   :url  => "/assets/products/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
 

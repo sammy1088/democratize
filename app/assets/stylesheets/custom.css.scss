@@ -1,28 +1,17 @@
-@import "bootstrap";
 
- html {
- 	background:#ffffff;
- 	
- }
 
-#headerL {
 
-	float:left;
-}
 
-#headerR {
-	float:right;
-}
-
-#foot {
+footer {
 	text-align:center;
-	background:#00FFFF; 
+	background:#0000FF;
 }
 
-.container-fluid {
+
+
+.container {
      background:#C0C0C0;
-    width:950px;
-    margin: 0 auto 0 auto;
+  
 }
 
 #citytitle {
@@ -38,12 +27,13 @@
 }
 
 #links {
-	vertical-align:middle;
+	
 	list-style-type:none;
 }
 #addlink {
 	float:right;
 }
+
 #ads {
-	text-align:center;
+	
 }
