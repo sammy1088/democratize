@@ -1,30 +1,36 @@
 <div class="container">
-  <div class="row-fluid">
+  <div class="row">
 
         <div class="col-xs-12">
                 <div id="citytitle">
-                    <h1><%= @city.title %></h1>
+                    <%= @city.title %>
                 </div>
         </div>  
   </div>
 </div>  
 
 <div class="container">
-  <div class="row-fluid">
+  <div class="row">
     <div class="col-xs-2">
       <div id="sidebar">
           <div id="sideprof">
             <%# user is logged in, show log out link %>
             <% if current_user.present? %>
+            <center>
+            <%= image_tag current_user.avatar.url(:main), :class => "img-circle", :size => "100x100" %><br>
+              <%= link_to current_user.username, current_user %><br>
               <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+              </center>
               <%# user is not logged in, show signup and login links %>
             <% else %>
+            <center>
               <li><%= link_to 'Sign In', new_user_session_path %></li>
               <li><%= link_to 'Register Now!', new_user_registration_path %></li>
+            </center>
             <% end %>
             <p>
             <% if user_signed_in? %>
-              <%= link_to current_user.username, current_user %>
+
             <% end %>
             </p>
             <% if alert %>
@@ -32,10 +38,22 @@
             <% end %>
           </div>
           <div id="sidenav">
-              <li><%= @city.title %></li>
-                       <% @districts.each do |district| %>
-              <ul><%= link_to district.title, [@city, district] %></ul>
-                       <% end %>
+            <ul class="nav nav-pills nav-stacked">
+  <li><a class="list-group-item"><%= @city.title %> Districts</a>
+
+    <% @districts.each do |district| %>
+  <ul><a href="#" class="list-group-item"><%= district.title %></a></ul>
+   <% end %>
+
+<a class="list-group-item"><%= @city.title %> Groups</a>
+<% @groups.each do |group| %>
+  <a href="#" class="list-group-item"><%= @city.title %> Groups</a>
+  <% end %>
+  <a href="#" class="list-group-item">Vestibulum at eros</a>
+  </li>
+</ul>
+              
+                      
                        <li><%= @city.title %> Groups</li>
                        <% @groups.each do |group| %>
               <ul><%= link_to group.title, [@city, group] %></ul>
@@ -104,6 +122,7 @@
                      
 
                         <% end %>
+                        
                         <%= will_paginate @links %>
 
           
@@ -112,9 +131,9 @@
           <div class="col-xs-2">
             <center>
            
-              
+              <div id="ads">
               <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922342_en_v0">
-            
+              </div>
            
             </center>
           </div>
