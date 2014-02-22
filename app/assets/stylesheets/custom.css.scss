@@ -1,46 +1,74 @@
-html {  
+@import "bootstrap";
+html {
+	margin:0;
 }
 
 body {
-background:#00FF00;
+ background:#FFFFCC;
 
 }
 
 footer {
 	text-align:center;
+	background:#0066CC;	
+}
+
+.hea {
+	background:#00FFFF;
+
+}
+
+.headL {
+	float:left;
 	
 }
 
-#content {
-	}
-
-
-
-.cont {
-     background:#C0C0C0;
-  
+.headR {
+	float:right;
+	
 }
+
+.bod {
+	width:1200px;
+    margin: 0 auto 0 auto;
+    background:#FF6633;
+}
+
+#sidebar {
+	
+	margin: 0;
+	float:left;
+	text-align:center;
+}
+
+
 
 #citytitle {
 	text-align:center;
 }
 
+
 #sidebar {
 	list-style-type:none;
+
 }
 
-#profile {
+#filters {
 	
 }
+
 
 #links {
-	
+	word-wrap:break-word;
 	list-style-type:none;
+	
 }
 #addlink {
 	float:right;
+
 }
 
 #ads {
+text-align:center;
 
 }
