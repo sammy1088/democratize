@@ -8,129 +8,165 @@
   <meta name="description" content="dynamic titles, <%= @city.title %> for each group politics yo!">
 </head>
 <body>
-
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container">
-    <div class="headL">
-      Democratize<br>"virtual town hall"</p>
-    </div>
-
-    <div class="headR">
-      <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Dropdown
-          <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-          <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-          <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-        </ul>
+    <div class="container">
+      <div class="headL">
+        Democratize<br>"virtual town hall"</p>
       </div>
-    </div>
-  </div>
-  <div class="bod">
-  <div class="row">
-    <div id="citytitle">
-      <h1><%= @city.title %></h1>
-    </div>
-  </div>
-  <div class="row">  
-  <div class="col-xs-2">
-    <div id="sidebar">
-          <div id="sideprof">
-            <%# user is logged in, show log out link %>
-            <% if current_user.present? %>
-            
-            <%= image_tag current_user.avatar.url(:main), :class => "img-circle", :size => "100x100" %><br>
-              <%= link_to current_user.username, current_user %><br>
-              <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-              
-              <%# user is not logged in, show signup and login links %>
-            <% else %>
-            
-              <li><%= link_to 'Sign In', new_user_session_path %></li>
-              <li><%= link_to 'Register Now!', new_user_registration_path %></li>
-            
-            <% end %>
-            
-           <%# if user_signed_in? %>
 
-            <%# end %>
-          </div>
-          <div id="sidenav">
-            <ul class="nav nav-pills nav-stacked">
-              <br>
-                  <li><center><b><%= @city.title %> Districts</b></center></a>
-
-                    <% @districts.each do |district| %>
-                  <%= link_to district.title, [@city, district], class: "list-group-item" %>
-                   <% end %>
-                <br>
-                <center><b><%= link_to @city.title+" Groups", city_groups_path(@city) %></b></center>
-                <% @groups.each do |group| %>
-                <%= link_to group.title, [@city, group], class: "list-group-item" %>
-                  <% end %>
-                  <br>
-                  <center><b><%= @city.title %> Resources</b></center>
-                  <% @resources.each do |resource| %>
-                <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
-                  <% end %>
-                <br>
-                  <center><b><%= link_to @city.title+" Jobs", city_jobs_path(@city) %></b></center>
-                  </li>
-                </ul>
-          </div>
-    </div>
-  </div>
-  <div class="col-xs-8">
-    <div class="row">
-        <div id="filters">
-            <%= link_to "hot", city_path(@city, sort_by: "hot") %>
-            |
-            <%= link_to "new", city_path(@city, sort_by: "new") %>
-        <div id="addlink">
-                <p>
-                  <% if user_signed_in? %>
-                  <%= link_to "Add a link", new_city_link_path(params[:id]) %>
-                  <% end %>
-                </p>
+      <div class="headR">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              Dropdown
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
+              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
+          </ul>
         </div>
-    </div>
-      <div class="row">
-            <% @links.each do |link| %>                      
-          <div id="links">
-            <li>
-                    <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
-                  <span class="glyphicon glyphicon-chevron-up"></span>
-                <% end %>
-                <%= link_to link.title, [@city, link] %>
-                <br>
-                <%= link.score %>
-                <br>
-                <%= link_to link_votes_path(link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
-                  <span class="glyphicon glyphicon-chevron-down"></span>
-                <% end %>
-                by
-                <%= image_tag link.user.avatar.url(:main), :class => "img-circle", :size => "25x25" %>
-                <%= link_to link.username, link.user %>
-                posted <%= time_ago_in_words(link.created_at) %> ago
-            </li>
-          </div>
-                    <% end %>              
-                      <%= will_paginate @links %>
       </div>
     </div>
-    </div>
-  <div class="col-xs-2">
+  </nav>
+  <div class="bod">
     <div class="row">
-          <div id="ads">
-            <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922342_en_v0">
-          </div>
+      <div id="citytitle">
+        <h1><%= @city.title %></h1>
+      </div>
     </div>
-  </div>
-  </div>
-</div>
+    <div class="row">  
+      <div class="col-xs-2">
+        <div id="sidebar">
+              <div id="sideprof">
+                <%# user is logged in, show log out link %>
+                <% if current_user.present? %>
+                
+                <%= image_tag current_user.avatar.url(:main), :class => "img-circle", :size => "100x100" %><br>
+                  <%= link_to current_user.username, current_user %><br>
+                  <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+                  
+                  <%# user is not logged in, show signup and login links %>
+                <% else %>
+                
+                  <li><%= link_to 'Sign In', new_user_session_path %></li>
+                  <li><%= link_to 'Register Now!', new_user_registration_path %></li>
+                
+                <% end %>
+                
+               <%# if user_signed_in? %>
+
+                <%# end %>
+              </div>
+              <div id="sidenav">
+                <ul class="nav nav-pills nav-stacked">
+                  <br>
+                      <li><center><b><%= @city.title %> Districts</b></center></a>
+
+                        <% @districts.each do |district| %>
+                      <%= link_to district.title, [@city, district], class: "list-group-item" %>
+                       <% end %>
+                    <br>
+                    <center><b><%= link_to @city.title+" Groups", city_groups_path(@city) %></b></center>
+                    <% @groups.each do |group| %>
+                    <%= link_to group.title, [@city, group], class: "list-group-item" %>
+                      <% end %>
+                      <br>
+                      <center><b><%= @city.title %> Resources</b></center>
+                      <% @resources.each do |resource| %>
+                    <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
+                      <% end %>
+                    <br>
+                      <center><b><%= link_to @city.title+" Jobs", city_jobs_path(@city) %></b></center>
+                      </li>
+                    </ul>
+              </div>
+        </div>
+      </div>
+      <div class="col-xs-8">
+        <div class="row">
+            <div id="filters">
+                <%= link_to "hot", city_path(@city, sort_by: "hot") %>
+                |
+                <%= link_to "new", city_path(@city, sort_by: "new") %>
+              <div id="addlink">
+                    <p>
+                      <% if user_signed_in? %>
+                      <%= link_to "Add a link", new_city_link_path(params[:id]) %>
+                      <% end %>
+                    </p>
+              </div>
+            </div> 
+        </div>
+        <div class="row">
+          <div class="row">
+            <% @links.each do |link| %> 
+            <ul>                     
+            <div id="links">
+                <li>
+                  <div class="row">
+                    <div class="col-xs-1">
+                      <div class="votes">
+                        <div id="votes+">
+                          <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                          <% end %>
+                        </div>
+                        <div id="votesS">
+                          <%= link.score %> 
+                        </div>
+                        <div id="votes-">                  
+                          <%= link_to link_votes_path(link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                          <% end %>
+                        </div>  
+                      </div>
+                    </div>  
+                    <div class="col-xs-10">
+                      <div class="row">
+                        <div id="linkbody">
+                            <%= link_to link.title, [@city, link] %>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-6"> 
+                          <div id="linkauth">
+                              by
+                              <%= image_tag link.user.avatar.url(:main), :class => "img-circle", :size => "25x25" %>
+                              <%= link_to link.username, link.user %>
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                          <div id="linktime">    
+                              posted <%= time_ago_in_words(link.created_at) %> ago
+                          </div>
+                        </div>      
+                      </div>
+                        
+                    </div>
+                  </div>
+                </li>   
+            </div>
+            </ul> 
+            <% end %> 
+          </div>
+          <div class="row">                               
+            <%= will_paginate @links %>    
+          </div>
+        </div>     
+      </div>      
+      <div class="col-xs-2"> 
+          <div id="ads">
+            <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922342_en_v0">   
+          </div>       
+      </div>
+        
+    </div>  
+      
+    </div>
+  </div>   
 </body>
+
+
 
 
   

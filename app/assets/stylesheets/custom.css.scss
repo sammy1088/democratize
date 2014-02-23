@@ -4,38 +4,48 @@ html {
 }
 
 body {
- background:#FFFFCC;
+ 
 
 }
 
 footer {
 	text-align:center;
-	background:#0066CC;	
+	
 }
 
+ul {
+	list-style:none;
+    padding-left:0;
+}
+
+
+.navbar {
+    margin-bottom:0;
+  }
+
 .hea {
-	background:#00FFFF;
+	
 
 }
 
 .headL {
 	float:left;
-	
+
 }
 
 .headR {
 	float:right;
-	
+
 }
 
 .bod {
 	width:1200px;
     margin: 0 auto 0 auto;
-    background:#FF6633;
+    
 }
 
 #sidebar {
-	
+
 	margin: 0;
 	float:left;
 	text-align:center;
@@ -54,7 +64,7 @@ footer {
 }
 
 #filters {
-	
+
 }
 
 
@@ -62,6 +72,23 @@ footer {
 	word-wrap:break-word;
 	list-style-type:none;
 	
+}
+
+.votes {
+	text-align:center;
+}
+
+#votesS {
+	font-weight:bold;
+	font-size:20px;
+}
+
+#linkbody {
+	word-wrap:break-word;
+}
+
+#linktime {
+	float:right;
 }
 #addlink {
 	float:right;
