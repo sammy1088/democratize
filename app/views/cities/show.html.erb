@@ -10,20 +10,18 @@
 <body>
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
-      <div class="headL">
-        Democratize<br>"virtual town hall"</p>
-      </div>
+      <p class="navbar-text">Democtatize</p>
 
       <div class="headR">
         <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
               Dropdown
             <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
               <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
               <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-          </ul>
+            </ul>
         </div>
       </div>
     </div>
@@ -75,8 +73,8 @@
                       <% @resources.each do |resource| %>
                     <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
                       <% end %>
-                    <br>
-                      <center><b><%= link_to @city.title+" Jobs", city_jobs_path(@city) %></b></center>
+                   
+                      
                       </li>
                     </ul>
               </div>
@@ -106,7 +104,7 @@
                   <div class="row">
                     <div class="col-xs-1">
                       <div class="votes">
-                        <div id="votes+">
+                        <div id="votesup">
                           <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
                             <span class="glyphicon glyphicon-chevron-up"></span>
                           <% end %>
@@ -114,7 +112,7 @@
                         <div id="votesS">
                           <%= link.score %> 
                         </div>
-                        <div id="votes-">                  
+                        <div id="votesdown">                  
                           <%= link_to link_votes_path(link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
                             <span class="glyphicon glyphicon-chevron-down"></span>
                           <% end %>
@@ -155,6 +153,11 @@
         </div>     
       </div>      
       <div class="col-xs-2"> 
+        <div id="jobs">
+        <center><b><%= link_to @city.title+" Jobs", city_jobs_path(@city) %><br>
+        display top 5 jobs<br> (+2 promoted)
+        </b></center>
+      </div>
           <div id="ads">
             <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922342_en_v0">   
           </div>       

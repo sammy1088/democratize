@@ -2,7 +2,6 @@ class VotesController < ApplicationController
 	before_filter :authenticate_user!
 
 
-
  def create
     if params[:comment_id]
           votable = Comment.find(params[:comment_id]) 

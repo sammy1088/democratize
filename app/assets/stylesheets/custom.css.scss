@@ -23,19 +23,8 @@ ul {
     margin-bottom:0;
   }
 
-.hea {
-	
-
-}
-
-.headL {
-	float:left;
-
-}
-
 .headR {
 	float:right;
-
 }
 
 .bod {
@@ -49,6 +38,9 @@ ul {
 	margin: 0;
 	float:left;
 	text-align:center;
+	list-style-type:none;
+	padding-right:5px;
+	padding-top:20px;
 }
 
 
@@ -58,19 +50,13 @@ ul {
 }
 
 
-#sidebar {
-	list-style-type:none;
-
-}
-
-#filters {
-
-}
 
 
 #links {
 	word-wrap:break-word;
 	list-style-type:none;
+	border-bottom-style:solid;
+    border-width:thin;
 	
 }
 
@@ -78,21 +64,39 @@ ul {
 	text-align:center;
 }
 
+#votesup {
+	padding-left:1px;
+}
+
 #votesS {
 	font-weight:bold;
 	font-size:20px;
+	
 }
 
 #linkbody {
 	word-wrap:break-word;
+	font-weight:bold;
+	font-size:20px;
+	padding-top:5px;
+}
+
+#linkauth {
+	padding-top:5px;
+	padding-bottom:5px;
 }
 
 #linktime {
 	float:right;
+	padding-top:5px;
 }
 #addlink {
 	float:right;
+}
 
+#jobs {
+	padding-top:20px;
+	padding-bottom:20px;
 }
 
 #ads {
