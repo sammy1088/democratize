@@ -8,17 +8,17 @@
   <%= link_to "-", comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment %>
         <%= comment.message %> Posted by <%= comment.user.email %> 
     
+             
     <%= form_for(Comment.new, url: comment_comments_path(comment)) do |f| %> 
-
-    <%= f.text_area :message, :placeholder =>"Add a comment" %>
+ 
+        
+    <p><a class="btn" data-toggle="collapse" data-target="#viewdetails">Reply</a></p>
+    <p class="collapse" id="viewdetails"><%= f.text_area :message, :placeholder =>"Add a comment" %>
      
-        <%= f.submit %>
-
+        <%= f.submit %></p>
     <% end %>
-
     <div id="commentcomment">
 <%= render partial: "comments", locals: { comments: comment.comments } %>
 </div>
 </ul>
 <% end %>
-

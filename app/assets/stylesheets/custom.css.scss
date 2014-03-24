@@ -23,6 +23,7 @@ ul {
     margin-bottom:0;
   }
 
+
 .headR {
 	float:right;
 }
@@ -40,7 +41,7 @@ ul {
 	text-align:center;
 	list-style-type:none;
 	padding-right:5px;
-	padding-top:20px;
+	
 }
 
 
@@ -48,9 +49,6 @@ ul {
 #citytitle {
 	text-align:center;
 }
-
-
-
 
 #links {
 	word-wrap:break-word;
@@ -95,7 +93,7 @@ ul {
 }
 
 #jobs {
-	padding-top:20px;
+	
 	padding-bottom:20px;
 }
 
@@ -103,3 +101,15 @@ ul {
 text-align:center;
 
 }
+
+#linktitle {
+	padding-top:20px;
+	font-weight:bold;
+	font-size:20px;
+
+}
+
+#commentcomment {
+	padding-left:30px;
+}
+

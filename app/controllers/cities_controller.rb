@@ -28,9 +28,6 @@ class CitiesController < ApplicationController
     @city = City.find(params[:id])
 
     @links = @city.links
-    
-
-
     @districts = @city.districts
     @groups = @city.groups
     @resources = @city.resources

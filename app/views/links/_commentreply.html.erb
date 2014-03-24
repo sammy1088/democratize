@@ -1,0 +1,7 @@
+<%= form_for(Comment.new, url: comment_comments_path(comment)) do |f| %> 
+
+    <%= f.text_area :message, :placeholder =>"Add a comment" %>
+     
+        <%= f.submit %>
+
+    <% end %>

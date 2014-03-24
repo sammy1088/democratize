@@ -28,7 +28,7 @@ class LinksController < ApplicationController
 
   def new
   	@link = Link.new
-  #  @vote = Vote.new 
+    #@vote = Vote.new 
   end
 
   def destroy

@@ -24,10 +24,7 @@ Sawit::Application.routes.draw do
 
    resources :relationships, only: [:create, :destroy]
   
-  resources :links do
-    resources :comments
-    resources :votes
-  end
+
 
   resources :jobs do
     resources :comments
@@ -77,7 +74,10 @@ resources :cities do
 end
 
 
-  
+    resources :links do
+    resources :comments
+    resources :votes
+  end
 
 
   

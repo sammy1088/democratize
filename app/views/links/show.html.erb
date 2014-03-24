@@ -1,30 +1,58 @@
+<head>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <p class="navbar-text">Democratize<br>"a virtual town hall"</p>
 
-
-   <%= @parent.title %>
-
-   <%= @link.title %>
-
-   <%= @link.username %>
-
-    
-
-
-<%= form_for([@link, Comment.new]) do |f| %> 
-
-    <div class="field">
-        
-        <%= f.text_area :message, :placeholder =>"Add a comment" %>
+      <div class="headR">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
+              Dropdown
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
+              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
+            </ul>
         </div>
-        <div class="actions">
+      </div>
+    </div>
+</nav>
+
+<div class="container">
+  <div class="row"> 
+    <div id="linktitle">
+      <%= @link.title %>
+    </div>
+  </div>
+  <div class="row">
+    <div id="linkauth">
+        by
+        <%= @link.username %>
+    </div>
+  </div> 
+  
+    <div id="linkcomment">
+        <%= form_for([@link, Comment.new]) do |f| %> 
+      <div class="field">
+        <%= f.text_area :message, class: "form-control", :placeholder =>"Add a comment" %>
+      </div>
+      <div class="actions">
                 <%= f.submit %>
-        </div>
-<% end %>
-<%= render partial: "comments", locals: { comments: @comments } %> 
-   
-          
-
-        
-
-        
-
+      </div>
+        <% end %>
+    </div>
  
+  
+    <%= render partial: "comments", locals: { comments: @comments } %> 
+        
+</div>
+
+<div id="details" class="collapse">
+    <p>Details details details details details details details details..</p>
+</div>
+</body>

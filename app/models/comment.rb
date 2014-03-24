@@ -11,5 +11,10 @@ class Comment < ActiveRecord::Base
     downs = votes.where(:up => false).count
     ups - downs
   end
+
+  def user=(user)
+    self.user_id = user.id
+    self.username = user.username
+  end
 	
 end
