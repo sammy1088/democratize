@@ -11,10 +11,34 @@
   <div class="bod">
     <div class="row">  
       <div class="col-xs-2">
+        <div id="logo">
+          <%= link_to "Democratize!", root_path %>
+        </div>
+      </div>  
+      <div class="col-xs-8">
+        <div id="citytitle">
+          <%= @city.title %>
+        </div>  
+      </div>  
+       <div class="col-xs-2"> 
+         <div id="locationdrop">
+         <div class="btn-group">
+            <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
+              Change Location
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
+              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
+            </ul>
+        </div>
+        </div>   
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
         <div id="sidebar">
-              <div id="logo">
-Democratize!
-              </div>
+              
               <div id="sideprof">
                 <%# user is logged in, show log out link %>
                 <% if current_user.present? %>
@@ -61,20 +85,7 @@ Democratize!
         </div>
       </div>
       <div class="col-xs-8">
-        <div class="row">
-          <div id="citytitle">
-            <%= @city.title %> <div class="btn-group">
-            <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
-              Change Location
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-            </ul>
-        </div>
-      </div>
-        </div>
+       
         <div class="row">
             <div id="filters">
                 <%= link_to "hot", city_path(@city, sort_by: "hot") %>

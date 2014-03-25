@@ -5,7 +5,6 @@ html {
 
 body {
  
-
 }
 
 footer {
@@ -19,8 +18,18 @@ ul {
 }
 
 #logo {
+  
   font-weight:bold;
 	font-size:20px;
+  padding-top:15px;
+	text-align:center;
+}
+
+#citytitle {
+	text-align:center;
+  font-weight:bold;
+	font-size:20px;
+  padding-top:30px;
 }
 
 .navbar {
@@ -40,18 +49,8 @@ ul {
 
 #sidebar {
 
-	margin: 0;
-	float:left;
 	text-align:center;
 	list-style-type:none;
-	padding-right:5px;
-	
-}
-
-
-
-#citytitle {
-	text-align:center;
 }
 
 #links {
@@ -67,12 +66,12 @@ ul {
 }
 
 #votesup {
-	padding-left:1px;
+	padding-left:1.5px;
 }
 
 #votesS {
 	font-weight:bold;
-	font-size:20px;
+	font-size:30px;
 	
 }
 
@@ -99,6 +98,10 @@ ul {
 #jobs {
 	
 	padding-bottom:20px;
+}
+
+#locationdrop {
+  text-align:center;
 }
 
 #ads {
