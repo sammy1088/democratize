@@ -17,10 +17,16 @@ ul {
     padding-left:0;
 }
 
+h1 {
+  font-size:25px;
+  display: inline;
+  
+}
+
 #logo {
   
   font-weight:bold;
-	font-size:20px;
+	font-size:25px;
   padding-top:15px;
 	text-align:center;
 }
@@ -29,16 +35,7 @@ ul {
 	text-align:center;
   font-weight:bold;
 	font-size:20px;
-  padding-top:30px;
-}
-
-.navbar {
-    margin-bottom:0;
-  }
-
-
-.headR {
-	float:right;
+  padding-top:25px;
 }
 
 .bod {
@@ -48,7 +45,7 @@ ul {
 }
 
 #sidebar {
-
+  padding-top:15px;
 	text-align:center;
 	list-style-type:none;
 }
@@ -70,8 +67,8 @@ ul {
 }
 
 #votesS {
-	font-weight:bold;
-	font-size:30px;
+	
+	font-size:25px;
 	
 }
 
@@ -96,12 +93,8 @@ ul {
 }
 
 #jobs {
-	
+	padding-top:10px;
 	padding-bottom:20px;
-}
-
-#locationdrop {
-  text-align:center;
 }
 
 #ads {

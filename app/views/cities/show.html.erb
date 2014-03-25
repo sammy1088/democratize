@@ -17,22 +17,11 @@
       </div>  
       <div class="col-xs-8">
         <div id="citytitle">
-          <%= @city.title %>
+          <h1><%= @city.title %></h1>
         </div>  
       </div>  
        <div class="col-xs-2"> 
-         <div id="locationdrop">
-         <div class="btn-group">
-            <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
-              Change Location
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-            </ul>
-        </div>
-        </div>   
+            
       </div>
     </div>
     <div class="row">
@@ -77,7 +66,17 @@
                       <% @resources.each do |resource| %>
                     <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
                       <% end %>
-                   
+                      <br>
+                      <center> <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+              Change Location
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
+              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
+            </ul>
+                        </div></center>
                       
                       </li>
                     </ul>
@@ -158,13 +157,9 @@
         </div>     
       </div>      
       <div class="col-xs-2"> 
-        <div id="jobs">
-        <center><b><%= link_to @city.title+" Jobs", city_jobs_path(@city) %><br>
-        display top 5 jobs<br> (+2 promoted)
-        </b></center>
-      </div>
+       
           <div id="ads">
-            <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922342_en_v0">   
+              
           </div>       
       </div>
         
