@@ -41,7 +41,7 @@ def show
     else
     @links = @links.sort_by{ |l| l.hot }.reverse
     end
-
+@links = @links.paginate(:page => params[:page], :per_page => 10)
   end
   def destroy
     @district = District.find(params[:id])
