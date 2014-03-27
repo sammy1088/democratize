@@ -22,7 +22,10 @@ class LinksController < ApplicationController
     end
     @link = Link.find(params[:id])
     @comments = @link.comments 
-
+    @city = City.find(params[:city_id])
+    @groups = @city.groups
+  @districts = @city.districts
+  @resources = @city.resources
   end
  
 
