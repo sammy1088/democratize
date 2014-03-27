@@ -20,9 +20,10 @@ body {
 .header h3 {
   margin-top: 0;
   margin-bottom: 0;
-  line-height: 40px;
+  line-height: 35px;
   padding-bottom: 19px;
 }
+
 
 /* Custom page footer */
 .footer {
