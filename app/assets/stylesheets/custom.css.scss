@@ -24,18 +24,21 @@ h1 {
 }
 
 #logo {
-  
+  padding-right:10px;
   font-weight:bold;
-	font-size:25px;
-  padding-top:15px;
+	font-size:20px;
 	text-align:center;
+}
+
+#logo a {
+  color:#000000;
 }
 
 #citytitle {
 	text-align:center;
   font-weight:bold;
 	font-size:20px;
-  padding-top:25px;
+  padding-top:15px;
 }
 
 .bod {
@@ -44,8 +47,11 @@ h1 {
     
 }
 
+.btn-group  {
+  padding-top:2.5px;
+}
+
 #sidebar {
-  padding-top:15px;
   padding-right:10px;
 	text-align:center;
 	list-style-type:none;
