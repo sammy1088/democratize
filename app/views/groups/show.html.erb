@@ -3,6 +3,7 @@
   
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <meta name="description" content="dynamic titles, <%= @city.title %> for each group politics yo!">
@@ -13,12 +14,12 @@
     <div class="row">  
       <div class="col-xs-2">
         <div id="logo">
-          <%= link_to "Democratize!", root_path %>
+          <i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
         </div>
       </div>  
       <div class="col-xs-8">
         <div id="citytitle">
-          <h1><%= @city.title %> - <%= @group.title %> <%= link_to "Follow", follow_group_path(@group), class: "btn btn-large btn-primary" %></h1>
+          <h1><%= link_to @city.title, [@city] %> - <%= @group.title %> <%= link_to "+ Follow", follow_group_path(@group), class: "btn btn-xs btn-primary" %></h1>
         </div>  
       </div>  
        <div class="col-xs-2"> 
@@ -49,6 +50,15 @@
 
                 <%# end %>
               </div>
+  <div class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                          Change Location
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><%= link_to "Tulsa", "/cities/1" %></a></li>
+                        </ul>
+                        </div>
               <div id="sidenav">
                 <ul class="nav nav-pills nav-stacked">
                   <br>
@@ -69,20 +79,10 @@
                       <% end %>
                       <br>
       <center>Back to <%= link_to @city.title, [@city] %></center><br>
-                      <center> <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-              Change Location
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-            </ul>
-                        </div></center>
-                      <li><%= @city.title %> Jobs</li>
-           <li>Group Follows</li>
+
+           Group Follows
            <li><% @users.each do |u| %>
-<%= u.email %>
+             <%= u.username %>
 
 <% end %></li>
                       </li>
@@ -90,51 +90,88 @@
               </div>
         </div>
       </div>
-    <div class="span10">
-      <div id="addlink">
-      <p>
-  
-</p>
-</div>
-<% if user_signed_in? %>
-    <%= link_to "Add a link", new_group_link_path(@group) %>
-  <% end %>
-<%= link_to "hot", city_group_path(@city, @group, sort_by: "hot") %>
-<%= link_to "new", city_group_path(@city, @group, sort_by: "new") %>
+
+<div class="col-xs-8">
+        <div class="row">
+            <div id="filters">
+              <%= link_to "hot", city_group_path(@city, @group, sort_by: "hot") %>
+              <%= link_to "new", city_group_path(@city, @group, sort_by: "new") %>
+              <div id="addlink">
+              <p>
+                <% if user_signed_in? %>
+                <%= link_to "Add a link", new_group_link_path(@group) %>
+                <% end %>
+              </p>
+              </div>
+          </div>  
+      </div>
+<div class="row">
+   <div class="row">
   <% @links.each do |link| %>
 
-  
-<div class="row">
-  <div id="links">
-    <ul>
-
-  <li>
-
-   <%= link.score %>
-
-<%= link_to "+", link_votes_path(link, :vote => {:up => true}), :method => :link %>
-
-  <%= link_to "-", link_votes_path(link, :vote => {:up => false}), :method => :link %>
-
-
-    
-
-   
-   <%= link_to link.title, [@group, link] %>
-   <p>
-   <%= link.text %>
- </p>  
-    by
-  <%= link_to link.username, link.user %>
-  
-    </li>
-    </ul>
-
+ <ul>                     
+            <div id="links">
+                <li>
+                  <div class="row">
+                    <div class="col-xs-1">
+                      <div class="votes">
+                        <div id="votesup">
+                          <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+                          <% end %>
+                        </div>
+                        <div id="votesS">
+                          <%= link.score %> 
+                        </div>
+                        <div id="votesdown">                  
+                          <%= link_to link_votes_path(link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                          <% end %>
+                        </div>  
+                      </div>
+                    </div>  
+                    <div class="col-xs-10">
+                      <div class="row">
+                        <div id="linkbody">
+                            <%= link_to link.title, [@group, link] %>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-6"> 
+                          <div id="linkauth">
+                              by
+                              <%= image_tag link.user.avatar.url(:main), :class => "img-circle", :size => "25x25" %>
+                              <%= link_to link.username, link.user %>
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                          <div id="linktime">    
+                              posted <%= time_ago_in_words(link.created_at) %> ago
+                          </div>
+                        </div>      
+                      </div>
+                        
+                    </div>
+                  </div>
+                </li>   
+            </div>
+            </ul> 
+            <% end %> 
+          </div>
+          <div class="row">                               
+            <%= will_paginate @links %>    
+          </div>
+        </div>     
+      </div>      
+      <div class="col-xs-2"> 
+       
+          <div id="ads">
+              
+          </div>       
+      </div>
+        
+    </div>  
+      
     </div>
-  </div>
-    <% end %>
-    </div>
-  </div>
-</div>
-
+  </div>   
 </body>

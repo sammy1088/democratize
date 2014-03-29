@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class DistrictsController < ApplicationController
   before_filter :find_parent, only: [:new, :create]
   def new

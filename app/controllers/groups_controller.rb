@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class GroupsController < ApplicationController
 	before_filter :find_parent, only: [:new, :create]
 def new
@@ -44,7 +45,9 @@ def show
     else
     @links = @links.sort_by{ |l| l.hot }.reverse
     end
-  end
+  @links = @links.paginate(:page => params[:page], :per_page => 10)
+
+end
 def follow
     current_user.follow_group(params[:id])
     redirect_to :back

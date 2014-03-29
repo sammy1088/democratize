@@ -69,12 +69,12 @@ resources :cities do
   resources :links
   resources :groups
   resources :jobs
-  resources :districts  
+  resources :districts 
   resources :resources
 end
 
 
-    resources :links do
+resources :links do
     resources :comments
     resources :votes
   end

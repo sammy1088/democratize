@@ -1,26 +1,25 @@
 <head>
-  <title>Democratize <%= @city.title %>: Local News, Politics, Discussion, Events</title>
+  <title>Democratize! Local News, Politics, Discussion, Events</title>
   
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= csrf_meta_tags %>
-  <meta name="description" content="dynamic titles, <%= @city.title %> for each group politics yo!">
+  <meta name="description" content="dynamic titles, for each group politics yo!">
 </head>
 <body>
  <div class="bod">
     <div class="row">  
       <div class="col-xs-2">
         <div id="logo">
-          <%= link_to "Democratize!", root_path %>
+         <i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
         </div>
-        Back to <%= link_to @city.title, [@city] %>
-      </div>  
-    
-    </div>
-    <div class="row">
-      <div class="col-xs-2">
+     
+       
+   
+ 
         <div id="sidebar">
-              
+             
               <div id="sideprof">
                 <%# user is logged in, show log out link %>
                 <% if current_user.present? %>
@@ -41,67 +40,37 @@
 
                 <%# end %>
               </div>
-              <div id="sidenav">
-                <ul class="nav nav-pills nav-stacked">
-                  <br>
-                      <li><center><b><%= @city.title %> Districts</b></center></a>
-
-                        <% @districts.each do |district| %>
-                      <%= link_to district.title, [@city, district], class: "list-group-item" %>
-                       <% end %>
-                    <br>
-                    <center><b><%= link_to @city.title+" Groups", city_groups_path(@city) %></b></center>
-                    <% @groups.each do |group| %>
-                    <%= link_to group.title, [@city, group], class: "list-group-item" %>
-                      <% end %>
-                      <br>
-                      <center><b><%= @city.title %> Resources</b></center>
-                      <% @resources.each do |resource| %>
-                    <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
-                      <% end %>
-                      <br>
-                      <center> <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-              Change Location
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-              <li><a href="#"><%= link_to "Tulsa", "/cities/1" %></a></li>
-            </ul>
-                        </div></center>
-                      
-                      </li>
-                    </ul>
-              </div>
+            
         </div>
       </div>
   <div class="row"> 
+    <div class="col-xs-8">
     <div id="linktitle">
       <%= @link.title %>
     </div>
-  </div>
-  <div class="row">
+    <%= @link.text %>
+ 
     <div id="linkauth">
         by
         <%= @link.username %>
     </div>
-  </div> 
+
   
     <div id="linkcomment">
         <%= form_for([@link, Comment.new]) do |f| %> 
-      <div class="field">
-        <%= f.text_area :message, class: "form-control", :placeholder =>"Add a comment" %>
-      </div>
-      <div class="actions">
-                <%= f.submit %>
-      </div>
+          <div class="field">
+            <%= f.text_area :message, class: "form-control", :placeholder =>"Add a comment" %>
+          </div>
+            <div class="actions">
+                      <%= f.submit %>
+            </div>
         <% end %>
     </div>
  
   
     <%= render partial: "comments", locals: { comments: @comments } %> 
         
+  </div> 
 </div>
-
+</div>
 </body>
