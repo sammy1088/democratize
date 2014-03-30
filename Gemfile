@@ -14,6 +14,7 @@ end
 gem 'devise'
 
 gem "paperclip", "~> 3.0"
+gem 'aws-sdk'
 
 gem 'will_paginate', '~> 3.0.5'
 
