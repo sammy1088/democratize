@@ -1,6 +1,7 @@
 require 'will_paginate/array'
 class DistrictsController < ApplicationController
   before_filter :find_parent, only: [:new, :create]
+  http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:show]
   def new
     @district = District.new
   end

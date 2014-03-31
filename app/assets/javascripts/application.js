@@ -15,3 +15,9 @@
 //= require bootstrap.min
 //= require turbolinks
 //= require_tree .
+$('document').ready(function() {
+$(".reply-link").click(function(e){
+  e.preventDefault();
+  $(this).siblings('.reply-container').toggle();
+});
+  });

@@ -1,5 +1,5 @@
 <% comments.sort_by{ |c| c.score }.reverse.each do |comment| %>
-    
+    <div class='message_group'>
     
        <ul><%= comment.score %>
         
@@ -7,7 +7,9 @@
 
   <%= link_to "-", comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment %>
         <%= comment.message %> Posted by <%= comment.user.email %> 
-    
+         
+      <%= link_to "Reply", '#', class: 'reply-link', id: 'reply-link' %>
+  <div class="reply-container", id='reply-container'>
     <%= form_for(Comment.new, url: comment_comments_path(comment)) do |f| %> 
 
     <%= f.text_area :message, :placeholder =>"Add a comment" %>
@@ -15,10 +17,12 @@
         <%= f.submit %>
 
     <% end %>
-
+     </div>
+ 
+  </div>
+         
     <div id="commentcomment">
 <%= render partial: "comments", locals: { comments: comment.comments } %>
 </div>
 </ul>
 <% end %>
-
