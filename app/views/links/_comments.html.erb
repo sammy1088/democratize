@@ -8,7 +8,7 @@
   <%= link_to "-", comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment %>
         <%= comment.message %> Posted by <%= comment.user.email %> 
          
-      <%= link_to "Reply", class: 'reply-link', id: 'reply-link' %>
+      <%= link_to "Reply", '#', class: 'reply-link', id: 'reply-link' %>
   <div class="reply-container", id='reply-container'>
     <%= form_for(Comment.new, url: comment_comments_path(comment)) do |f| %> 
 
