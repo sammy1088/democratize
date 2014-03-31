@@ -36,9 +36,6 @@
                 
                 <% end %>
                 
-               <%# if user_signed_in? %>
-
-                <%# end %>
               </div>
             
         </div>
@@ -49,20 +46,31 @@
       <%= @link.title %>
     </div>
     <%= @link.text %>
- 
+ <div class="textaux">
+  <div class="row">
+        <div class="col-xs-6">
     <div id="linkauth">
         by
-        <%= @link.username %>
+        <%= image_tag @link.user.avatar.url(:main), :class => "img-circle", :size => "25x25" %>
+                              <%= link_to @link.username, @link.user %>
     </div>
-
-  
+          </div>
+          <div class="col-xs-6">
+          <div id="linktime">    
+                              posted <%= time_ago_in_words(@link.created_at) %> ago
+                          </div>
+            </div>
+    </div>
+</div>
     <div id="linkcomment">
         <%= form_for([@link, Comment.new]) do |f| %> 
+      
           <div class="field">
-            <%= f.text_area :message, class: "form-control", :placeholder =>"Add a comment" %>
+            
+            <%= f.text_area :message, :class => "form-control", :placeholder =>"Add a comment" %>
           </div>
             <div class="actions">
-                      <%= f.submit %>
+              <%= f.submit :class => "btn btn-primary" %>
             </div>
         <% end %>
     </div>
