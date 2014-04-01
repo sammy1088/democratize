@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_filter :find_parent, only: [:new, :create]
+  http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:show]
 
   def index
     if params[:state_id] or params[:city_id] or params[:district_id] or params[:country_id] or params[:rep_id] or params[:group_id]

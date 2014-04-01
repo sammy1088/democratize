@@ -1,5 +1,4 @@
 <% @cities.each do |city| %>
 <%= link_to city.title %>
-<%= link_to 'Destroy', city_path(city),
-                    method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= button_to "delete", city, :method=>:delete, :class=>:destroy %>
 <% end %>

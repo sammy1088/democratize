@@ -1,7 +1,9 @@
 index
-<% @users.each do |link| %>
-
+<% @users.each do |user| %>
+<ul>
   
-<%= @user.username %>, <%= @user.email %>, <%= @user.bio %>,
- <%= image_tag @user.avatar.url(:small) %>
+<%= user.username %>, <%= user.email %>, <%= user.bio %>,
+ <%= image_tag user.avatar.url(:small) %>
+<%= button_to "delete", user, :method=>:delete, :class=>:destroy %>
+</ul>
     <% end %>

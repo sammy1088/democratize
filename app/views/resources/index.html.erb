@@ -3,7 +3,6 @@ index ya
 <% @resources.each do |resource| %>
 <%= resource.title %>
 <%= link_to resource.url, "http://#{resource.url}", target: '_blank' %>
-<%= link_to 'Destroy', resource_path(resource),
-                    method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= button_to "delete", resource, :method=>:delete, :class=>:destroy %>
 
 <% end %>

@@ -48,9 +48,8 @@
  </p>  
     by
   <%= link_to link.username, link.user %>
-  <%= link_to 'Destroy', link_path(link),
-                    method: :delete, data: { confirm: 'Are you sure?' } %>
-  
+
+  <%= button_to "delete", link, :method=>:delete, :class=>:destroy %>
     </li>
     </ul>
 

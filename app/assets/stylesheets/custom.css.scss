@@ -69,8 +69,9 @@ h1 {
 	text-align:center;
 }
 
+
 #votesup {
-	padding-left:1.5px;
+
 }
 
 #votesS {
@@ -117,13 +118,15 @@ text-align:center;
 
 }
 
-.textaux {
-
+#linktext {
+padding-bottom:10px;
+  font-size:20px;
 
 }
 
 #linkcomment {
   padding-top:10px;
+  padding-bottom:10px;
 }
 
 #commentcomment {
@@ -134,4 +137,20 @@ text-align:center;
  padding-top:5px; 
 }
 
+#votesCont {
+  text-align:center;
+  width:50px;
+}
+.commentbod {
+ width:500px;
+}
+
 .reply-container { display: none; }
+
+#usergroups {
+ width:200px; 
+}
+
+#fileup {
+ width:175px; 
+}

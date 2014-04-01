@@ -1,5 +1,4 @@
 <% @groups.each do |group| %>
 <%= link_to group.title %>
-<%= link_to 'Destroy', group_path(group),
-                    method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= button_to "delete", group, :method=>:delete, :class=>:destroy %>
 <% end %>
