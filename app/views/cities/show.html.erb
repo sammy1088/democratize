@@ -65,12 +65,12 @@
                 <ul class="nav nav-pills nav-stacked">
                         
                       <br>
-                      <li><center><b><%= @city.title %> Districts</b></center></a>
+                      <li><center><b><%= @city.title %> Districts</b></center>
                         <% @districts.each do |district| %>
                       <%= link_to district.title, [@city, district], class: "list-group-item" %>
                        <% end %>
                     <br>
-                    <center><b><%= link_to @city.title+" Groups", city_groups_path(@city) %></b></center>
+                    <center><b><%= @city.title %> Groups</b></center>
                     <% @groups.each do |group| %>
                     <%= link_to group.title, [@city, group], class: "list-group-item" %>
                       <% end %>
