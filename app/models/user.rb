@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 has_many :links
 has_many :votes
 has_many :jobs
+has_many :groups
 
 has_many :comments
 has_many :follow_groups
@@ -19,7 +20,7 @@ has_attached_file :avatar, :styles => { :main => "200x200#" },
                   :url  => "/assets/products/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
 
-validates_attachment_presence :avatar
+
 validates_attachment_size :avatar, :less_than => 5.megabytes
 validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
 

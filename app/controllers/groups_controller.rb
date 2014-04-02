@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 class GroupsController < ApplicationController
-	before_filter :find_parent, only: [:new, :create]
+	before_filter :find_parent, only: [:new, :create, :show]
   http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:show]
 def new
     @group = Group.new
@@ -28,11 +28,10 @@ def create
   end
 
 def show
+
   @group = Group.find(params[:id])
-  @city = City.find(params[:city_id])
-  @groups = @city.groups
-  @districts = @city.districts
-  @resources = @city.resources
+  
+  
 
   @group = Group.find(params[:id])
   @links = @group.links

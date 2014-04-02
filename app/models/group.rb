@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
 	OUR_EPOCH = Time.local(2005, 12, 8, 7, 46, 43).to_time
 	has_many :links
 	belongs_to :city
+  belongs_to :user
 	has_many :follow_groups
 	has_many :users, through: :follow_groups
 	def score

@@ -24,7 +24,7 @@
 
                       <li><center><b>My Groups</b></center></a>
                         <% @groups.each do |g| %>
-                      <%= link_to g.title, [@city, g], class: "list-group-item" %>
+                      <%= link_to g.title, [g], class: "list-group-item" %>
                        <% end %>
               </li>
           </ul>  

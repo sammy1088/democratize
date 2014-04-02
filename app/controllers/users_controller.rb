@@ -10,8 +10,8 @@ class UsersController < ApplicationController
 	@user = User.find(params[:id])
 	@links = @user.links
   @groups = @user.groups
-    @city = City.find(params[:id])
-    @groups = @city.groups
+   ## @city = City.find(params[:id])
+    ##@groups = @city.groups
   end
   def destroy
      @user = User.find(params[:id])
