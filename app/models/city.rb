@@ -7,7 +7,6 @@ class City < ActiveRecord::Base
   has_many :resources
   
 
-
 	  def score
     ups = votes.where(:up => true).count
     downs = votes.where(:up => false).count

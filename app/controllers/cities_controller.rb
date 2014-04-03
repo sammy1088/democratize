@@ -3,6 +3,15 @@ class CitiesController < ApplicationController
   before_filter :find_parent, only: [:new, :create]
   http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:show]
   
+  def slug
+    name.downcase.gsub(" ", "-")  
+  end
+
+  def to_param
+    "#{id}-#{slug}"
+  end
+
+  
   def index
     @cities = City.all
     @links = Link.all
@@ -22,10 +31,12 @@ class CitiesController < ApplicationController
     @city = City.find(params[:id])
     @city.destroy
   end
+
   def show
    
     ##n@district = District.find(params[:id])
     @city = City.find(params[:id])
+   
 
     @links = @city.links
     @districts = @city.districts

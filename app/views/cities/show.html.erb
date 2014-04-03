@@ -111,16 +111,28 @@
                     <div class="col-xs-1">
                       <div class="votes">
                         <div id="votesup">
+                          <% if current_user && current_user.votes.where(:votable_id => link.id, :up => true).present? %>
+                          <div class="glyphup">
+                          <i class="glyphicon glyphicon-chevron-up"></i>
+                          </div>
+                            <% else %>
                           <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
                             <i class="glyphicon glyphicon-chevron-up"></i>
+                          <% end %>
                           <% end %>
                         </div>
                         <div id="votesS">
                           <%= link.score %> 
                         </div>
-                        <div id="votesdown">                  
+                        <div id="votesdown">  
+                            <% if current_user && current_user.votes.where(:votable_id => link.id, :up => false).present? %>
+                                <div class="glyphdown">
+                                  <span class="glyphicon glyphicon-chevron-down"></span>
+                                </div>  
+                            <% else %>
                           <%= link_to link_votes_path(link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
                             <span class="glyphicon glyphicon-chevron-down"></span>
+                          <% end %>
                           <% end %>
                         </div>  
                       </div>

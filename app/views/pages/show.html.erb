@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= favicon_link_tag 'favicon.ico' %>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+    <title>Democratize! Local News, Politics, Discussion, Events</title>
+
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><%= link_to "About", "pages/about" %></li>
+          <li><a href="mailto:democratizellc@gmail.com">Contact</a></li>
+        </ul>
+        <h3 class="text"><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %></h3>
+      </div>
+
+      
+
+      
+        <div class="col-lg-12">
+          <h4>What is Democratize!?</h4>
+          <p>On Democratize!, the right opinion could resonate and become more than just an opinion.</p>
+          <br>
+          <h4>How can I use Democratize!?</h4>
+          <p>On Democratize!, the right opinion could resonate and become more than just an opinion.</p>
+
+
+      <div class="footer">
+        <p>&copy; Democratize! 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>
