@@ -12,10 +12,10 @@ class VotesController < ApplicationController
   end
    
    @vote = current_user.votes.build(vote_params.merge(votable_id: votable.id, votable_type: votable.class.name))
-   ## @vote.update_attributes(:up => params[:vote][:up])
-   @vote.up = params[:vote][:up]
-   @vote.save!
-    redirect_to :back
+   @vote.update_attributes(:up => params[:vote][:up])
+  
+  
+   redirect_to :back
 end
 
 	def vote_params

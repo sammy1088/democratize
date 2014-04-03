@@ -113,11 +113,11 @@
                         <div id="votesup">
                           <% if current_user && current_user.votes.where(:votable_id => link.id, :up => true).present? %>
                           <div class="glyphup">
-                          <i class="glyphicon glyphicon-chevron-up"></i>
+                          <span class="glyphicon glyphicon-chevron-up"></span>
                           </div>
                             <% else %>
                           <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
-                            <i class="glyphicon glyphicon-chevron-up"></i>
+                            <span class="glyphicon glyphicon-chevron-up"></span>
                           <% end %>
                           <% end %>
                         </div>

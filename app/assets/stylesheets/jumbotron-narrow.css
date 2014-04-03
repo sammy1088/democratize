@@ -28,6 +28,10 @@ body {
   color:#000000;
 }
 
+.aboutlinks a {
+  color:#0000FF;
+}
+
 /* Custom page footer */
 .footer {
   padding-top: 19px;
