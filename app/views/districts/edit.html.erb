@@ -1,0 +1,13 @@
+edit
+
+<%= form_for [@city, @district], :method => :patch do |f| %>
+
+<p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+<p>
+    <%= f.submit %>
+  </p>
+<% end %>

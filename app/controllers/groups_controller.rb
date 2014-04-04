@@ -48,6 +48,20 @@ def show
   @links = @links.paginate(:page => params[:page], :per_page => 10)
 
 end
+    def edit
+    @city = City.find(params[:city_id])
+    @group = Group.find(params[:id])
+end
+  def update
+    @city = City.find(params[:city_id])
+    @group = Group.find(params[:id])
+ 
+    if @group.update(params[:group].permit(:title))
+      redirect_to [@city, @group]
+  else
+    render 'edit'
+  end
+end
 def follow
     current_user.follow_group(params[:id])
     redirect_to :back

@@ -45,6 +45,20 @@ def show
     end
 @links = @links.paginate(:page => params[:page], :per_page => 10)
   end
+  def edit
+    @city = City.find(params[:city_id])
+    @district = District.find(params[:id])
+end
+  def update
+    @city = City.find(params[:city_id])
+    @district = District.find(params[:id])
+ 
+    if @district.update(params[:district].permit(:title))
+      redirect_to [@city, @district]
+  else
+    render 'edit'
+  end
+end
   def destroy
     @district = District.find(params[:id])
     @district.destroy
