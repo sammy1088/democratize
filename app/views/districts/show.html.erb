@@ -20,7 +20,7 @@
       </div>  
       <div class="col-xs-8">
         <div id="citytitle">
-          <h1><%= link_to @city.title, [@city] %> - <%= @district.title %></h1>
+          <h1><%= link_to @city.title, [@city] %> <%= @district.title %></h1>
         </div>  
       </div>  
        <div class="col-xs-2"> 
@@ -90,6 +90,7 @@
         <div class="row">
             <div id="filters">
               <%= link_to "hot", city_district_path(@city, @district, sort_by: "hot") %>
+              |
               <%= link_to "new", city_district_path(@city, @district, sort_by: "new") %>
               <div id="addlink">
               <p>
