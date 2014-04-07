@@ -1,0 +1,18 @@
+edit
+
+<%= form_for [@parent, @link], :method => :patch do |f| %>
+
+<div class="field">
+                <%= f.label :title %><br/>
+                <%= f.text_field :title, class:"form-control" %>
+           </div>
+
+<p>
+                <%= f.label :text %><br>
+                <%= f.text_area :text, class:"form-control" %>
+              </p>
+
+<p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -35,6 +35,21 @@ include ActionView::Helpers::TextHelper
   	@link = Link.new
     #@vote = Vote.new 
   end
+  
+  def edit
+
+    @link = Link.find(params[:id])
+end
+  def update
+
+    @link = Link.find(params[:id])
+ 
+    if @link.update(params[:link].permit(:title, :text))
+      redirect_to [@link]
+  else
+    render 'edit'
+  end
+end
 
   def destroy
     @link = Link.find(params[:id])
