@@ -13,6 +13,8 @@ end
 
 gem 'devise'
 
+gem 'rails_autolink'
+
 gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
 

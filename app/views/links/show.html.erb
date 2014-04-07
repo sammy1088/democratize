@@ -51,7 +51,7 @@
       <%= @link.title %>
     </div>
       <div id="linktext">
-    <%= @link.text %>
+    <%= auto_link(@link.text).html_safe %>
       </div>
  <div class="textaux">
   <div class="row">
@@ -60,7 +60,7 @@
       posted <%= time_ago_in_words(@link.created_at) %> ago              
       <br>
         by
-        <%= image_tag @link.user.avatar.url(:main), :class => "img-circle", :size => "25x25" %>
+        <%= image_tag @link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
                               <%= link_to @link.username, @link.user %>
     </div>
    </div>
