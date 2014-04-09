@@ -10,6 +10,11 @@ body {
 .footer {
   padding-left: 15px;
   padding-right: 15px;
+  
+}
+
+.marketing {
+  border-bottom: 1px solid #e5e5e5;
 }
 
 /* Custom page header */
@@ -62,6 +67,7 @@ body {
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
+  
 }
 .marketing p + h4 {
   margin-top: 28px;

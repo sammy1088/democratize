@@ -57,7 +57,7 @@ class CitiesController < ApplicationController
     
     end
 
-    @links = @links.paginate(:page => params[:page], :per_page => 10)
+    @links = @links.paginate(:page => params[:page], :per_page => 15)
 
   end
   private

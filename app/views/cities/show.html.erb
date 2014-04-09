@@ -7,7 +7,7 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
-  <meta name="description" content="dynamic titles, <%= @city.title %> for each group politics yo!">
+  <meta name="description" content="Democratize! <%= @city.title %> is a user generated hub for local news, politics, and opinion sharing in Tulsa, OK.">
 </head>
 <body>
   <div class="bod">
@@ -88,17 +88,6 @@
         </div>
       </div>
       <div class="col-xs-8">
-       <h4>What is Democratize!?</h4>
-          <p>Democratize! is a web/mobile app that serves as a town hall for cities. In this "virtual town hall", users share any useful information that is currently affecting their community.
-             This can be through an opinion, a piece of relevant news, or even an attempt at creating a grassroots movement. What sets Democratize! apart from other networks is that it is centered on the community at large rather than
-            individual. Everything on Democratize! is subect to the democratic process. Democratize! seeks to bridge the gap between the community and their political  representation by connecting them in a new and exciting way.
-          </p>
-<div class="aboutlinks">
-          <h4>How do I use Democratize!?</h4>
-          <p>You can view any post in any city/community but to actaully make your voice heard, you have to sign up(which is relatively painless). Once registered you can post and comment on anything.
-            Utilizing <%= link_to "reddit", "http://www.reddit.com", target: "_blank" %> voting and commenting features but with a local-centric focus similar to <%= link_to "craigslist", "http://www.craigslist.com", target: "_blank" %>, Democratize! truly is a "virtual town hall".
-          </p>
-
         <div class="row">
             <div id="filters">
                 <%= link_to "hot", city_path(@city, sort_by: "hot") %>
@@ -181,7 +170,8 @@
             <%= will_paginate @links %>    
           </div>
         </div>     
-      </div>      
+      </div> 
+
       <div class="col-xs-2"> 
        
           <div id="ads">
