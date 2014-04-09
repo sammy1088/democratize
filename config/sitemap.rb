@@ -2,6 +2,13 @@
 SitemapGenerator::Sitemap.default_host = "http://www.democratize.io"
 
 SitemapGenerator::Sitemap.create do
+  
+  add '/cities'
+  
+  add cities_path, :priority => 0.7, :changefreq => 'daily'
+  City.find_each do |city|
+ add city_path(city), :lastmod => city.updated_at
+end
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.
