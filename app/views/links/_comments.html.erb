@@ -15,7 +15,7 @@
                             <span class="glyphicon glyphicon-chevron-down"></span>
                           <% end %>
 
-       <b><%= comment.message %></b>
+       <b><%= auto_link(comment.message).html_safe %></b>
       
                         
        </div>
