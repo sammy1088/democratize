@@ -62,12 +62,13 @@ h2 {
 	list-style-type:none;
 }
 
+
 #links {
 	word-wrap:break-word;
 	list-style-type:none;
 	border-bottom-style:solid;
     border-width:thin;
-	
+padding-bottom:20px;	
 }
 
 .votes {
@@ -155,7 +156,9 @@ padding-bottom:10px;
  width:500px;
 }
 
-.reply-container { display: none; }
+.reply-container { display: none;
+padding-top:5px;
+}
 
 #usergroups {
  width:200px; 
@@ -185,11 +188,12 @@ padding-bottom:10px;
 
 #meetups {
    text-align:center;
-  padding-left:3px;
+  padding-left:10px;
 }
 
 #footlinks {
  float:right; 
+  padding-right:15px;
 }
 
 #paginate {
@@ -197,5 +201,6 @@ padding-bottom:10px;
 }
 
 #policy {
-  padding-left:3px;
+  padding-left:10px;
 }
+
