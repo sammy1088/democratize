@@ -33,11 +33,13 @@ class CitiesController < ApplicationController
   end
 
   def show
-   
+ @link = Link.find(params[:id])
+    @comments = @link.comments
+
     ##n@district = District.find(params[:id])
     @city = City.find(params[:id])
    
-
+  
     @links = @city.links
     @districts = @city.districts
     @groups = @city.groups
@@ -62,7 +64,7 @@ class CitiesController < ApplicationController
   end
   private
    def city_params
-    params.require(:city).permit(:title)
+    params.require(:city).permit(:title, :slug)
   end
   def find_parent
     if params[:city_id]
