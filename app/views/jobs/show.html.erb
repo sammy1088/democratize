@@ -1,25 +1,15 @@
- <%= @parent.title %>
+<center>
+  <p><%= @parent.title %></p>
 
-   <%= @job.title %>
+   <p><%= @job.title %></p>
 
-   <%= @job.description %>
+  <p><%= @job.description %></p>
 
-   <%= @job.companyname %>
+  <p><%= @job.companyname %></p>
 
-   <%= @job.companyurl %>
+   <p><%= @job.companyurl %></p>
 
-   <%= @job.username %>
+   <p><%= @job.username %></p>
 
-   <%= @job.user_id %>
-
-<%= form_for([@job, Comment.new]) do |f| %> 
-
-    <div class="field">
-        
-        <%= f.text_area :message, :placeholder =>"Add a comment" %>
-        </div>
-        <div class="actions">
-                <%= f.submit %>
-        </div>
-<% end %>
-<%= render partial: "comments", locals: { comments: @comments } %> 
+   <p><%= @job.user_id %></p>
+</center>

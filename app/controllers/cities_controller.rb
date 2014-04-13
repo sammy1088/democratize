@@ -44,7 +44,7 @@ class CitiesController < ApplicationController
     @districts = @city.districts
     @groups = @city.groups
     @resources = @city.resources
-    @jobs = @city.jobs
+    @jobs = @city.jobs.limit(2)
     
     
     if params[:sort_by] == "new"
@@ -59,7 +59,7 @@ class CitiesController < ApplicationController
     
     end
 
-    @links = @links.paginate(:page => params[:page], :per_page => 20)
+    @links = @links.paginate(:page => params[:page], :per_page => 15)
 
   end
   private

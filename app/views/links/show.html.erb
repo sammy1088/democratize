@@ -85,10 +85,10 @@
       </div>
         <div class="textaux">
   <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-12">
     <div id="linkauth">
       posted <%= time_ago_in_words(@link.created_at)  %> ago              
-      <br>
+     
         by
         <%= image_tag @link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
                               <%= link_to @link.username, @link.user %>

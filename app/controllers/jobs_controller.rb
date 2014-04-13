@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class JobsController < ApplicationController
 	before_filter :find_parent, only: [:new, :create]
 
@@ -37,12 +38,10 @@ def index
   @cities = City.all
 
 
-     if params[:sort_by] == "new"
-      puts "sort queries called"
+
       @jobs = @jobs.order(created_at: :desc)
-    else
-    @jobs = @jobs.sort_by{ |l| l.hot }.reverse
-    end
+
+  @jobs = @jobs.paginate(:page => params[:page], :per_page => 15)
 end
 
 def create
