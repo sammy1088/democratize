@@ -44,7 +44,8 @@ class CitiesController < ApplicationController
     @districts = @city.districts
     @groups = @city.groups
     @resources = @city.resources
-    @jobs = @city.jobs.limit(2)
+    @jobs = @city.jobs.limit(5)
+    @events = @city.events.limit(5).sort! {|a,b| a.date <=> b.date }
     
     
     if params[:sort_by] == "new"

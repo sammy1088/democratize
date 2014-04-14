@@ -5,6 +5,7 @@ class City < ActiveRecord::Base
   has_many :groups
   has_many :jobs
   has_many :resources
+  has_many :events
   
 
 	  def score

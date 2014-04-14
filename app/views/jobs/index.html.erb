@@ -110,11 +110,11 @@
    
    
                   <div class="reply-container", id='reply-container'>
-                     <p><%= job.description %></p>
+                    <p><%= job.description %></p>
 
-  <p><%= job.companyname %></p>
+                    <p><b>Company:</b> <%= job.companyname %></p>
 
-   <p><%= job.companyurl %></p>
+   <p><%= auto_link(job.companyurl).html_safe %></p>
 
                           </div>
  posted <b><%= time_ago_in_words(job.created_at) %></b> ago
@@ -147,12 +147,7 @@
           <%= link_to "+more events", city_jobs_path(@city), class: 'btn btn-xs btn-success' %>
       </div>
         <div id="policy">
-          <h2><%= @city.title %> Jobs</h2>
-          
-                      <% @jobs.order('created_at DESC').each do |job| %>
-          <p><%= link_to job.title, [@city, job] %></p>
-                      <% end %>
-          <%= link_to "+more jobs", city_jobs_path(@city), class: 'btn btn-xs btn-success' %>
+         
         </div>
 <div id="ads">
               

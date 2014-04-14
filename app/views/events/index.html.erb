@@ -1,0 +1,36 @@
+<h1>Events and Important Dates</h1>
+
+<table>
+  <tr>
+    <th><h2>Date</h2></th>
+    <th><h2>Event</h2></th>
+    <th><h2>Description</h2></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr><th><h3>Upcoming / Today</h3></th></tr>
+<% @events.each do |event| %>
+  <% if event.date.to_date >= Time.now.to_date %>
+  <tr>
+    <td><%= event.date.strftime("%m/%d/%Y") %></td>
+    <td><b><%= event.title %></b></td>
+    <td><%= event.description %></td>
+  </tr>  
+  <% end %>
+<% end %>
+  <tr><th><h3>Past</h3></th></tr>
+<% @events.each do |event| %>
+  <% if event.date.to_date < Time.now.to_date %>
+  <tr>
+    <td><%= event.date.strftime("%m/%d/%Y") %></td>
+    <td><b><%= event.title %></b></td>
+    <td><%= event.description %></td>
+
+  </tr>  
+  <% end %>
+<% end %>
+
+</table>
+
+<br />

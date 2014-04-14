@@ -1,5 +1,6 @@
 Sawit::Application.routes.draw do
 
+  get "events/index"
    devise_for :users
  
   # The priority is based upon order of creation: first created -> highest priority.
@@ -71,6 +72,7 @@ resources :cities do
   resources :jobs
   resources :districts 
   resources :resources
+  resources :events
 end
 
 

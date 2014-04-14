@@ -49,8 +49,8 @@ def create
  @job.user = current_user if current_user
     respond_to do |format|
       if @job.save
-        format.html { redirect_to [@parent, @job], notice: 'Article was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @job }
+        format.html { redirect_to action: 'index', notice: 'Article was successfully created.' }
+        format.json { render action: 'index', status: :created, location: @job }
       else
         format.html { render action: 'new' }
         format.json { render json: @job.errors, status: :unprocessable_entity }
