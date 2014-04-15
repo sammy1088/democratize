@@ -31,6 +31,7 @@ def index
   @districts = @city.districts
   @resources = @city.resources
   @jobs = @city.jobs
+  @events = @city.events
     
   
   

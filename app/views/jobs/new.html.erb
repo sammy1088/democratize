@@ -57,6 +57,7 @@
 
 <div class="col-xs-8"> 
 <%= form_for([@parent, @job]) do |f| %>
+  <b>New Job Posting</b><br><br>
   <p>
     <b>Job</b> <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -75,7 +76,7 @@
   </p>
 
   <p>
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </p>
 <% end %>
   

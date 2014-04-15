@@ -92,7 +92,7 @@
               <div id="addlink">
               <p>
                 <% if user_signed_in? %>
-                <%= link_to "Post", new_city_job_path(@city, @job) %>
+                <%= link_to "Post", new_city_job_path(@city, @job), :class => "btn btn-xs btn-primary" %>
                 <% end %>
               </p>
               </div>
@@ -130,9 +130,12 @@
             <%= will_paginate @jobs %> 
             </div>
             <br>
-            <div id="footlinks">
-              <%= link_to "About", "/pages/show" %>  
+              <div id="footabout">
+              
               <%= link_to "Contact", "mailto:democratizellc@gmail.com" %>
+              </div>
+            <div id="footcontact">
+              <%= link_to "About", "/pages/show" %> 
             </div>
           </div>
         </div>     
@@ -140,11 +143,13 @@
 
       <div class="col-xs-2"> 
         <div id="meetups">
-          <p><%= link_to "Tulsa City Council Meetings", "http://www.tulsacouncil.org/about-uspublications/meetings.aspx", target: '_blank' %></p>
-          <p><%= link_to "Republican Party", "http://tulsagop.org/calendar-4/", target: '_blank' %></p>
-          <p><%= link_to "Democratic Party", "http://tulsacountydemocrats.org/communications/calendar", target: '_blank' %></p>
-          <p><%= link_to "Tulsa Young Professionals(TYPRO'S)", "http://www.typros.org/events.asp?id=776", target: '_blank' %></p>
-          <%= link_to "+more events", city_jobs_path(@city), class: 'btn btn-xs btn-success' %>
+           <h2><%= @city.title %> Events</h2>
+                    <% @events.each do |event| %>
+                    <% if event.date.to_date >= Time.now.to_date %>
+          <p><%= link_to event.title, city_events_path(@city) %></p>
+                      <% end %>
+                      <% end %>
+          <%= link_to "+more events", city_events_path(@city), class: 'btn btn-xs btn-success' %>
       </div>
         <div id="policy">
          

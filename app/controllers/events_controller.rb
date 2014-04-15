@@ -1,7 +1,19 @@
+require 'will_paginate/array'
 class EventsController < ApplicationController
 	before_filter :find_parent, only: [:new, :create]
   def index
-  	@events = Event.all
+ @city = City.find(params[:city_id])
+  
+  @groups = @city.groups  
+  @districts = @city.districts
+  @resources = @city.resources
+  @jobs = @city.jobs
+    @events = @city.events
+      @cities = City.all
+
+
+    @events = @events.paginate(:page => params[:page], :per_page => 15)
+
   end
     def new
     @event = Event.new

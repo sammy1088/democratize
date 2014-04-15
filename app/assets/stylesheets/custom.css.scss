@@ -1,10 +1,11 @@
 @import "bootstrap";
 html {
 	margin:0;
+  
 }
 
 body {
- 
+
 }
 
 footer {
@@ -48,6 +49,7 @@ h2 {
 .bod {
 	width:1200px;
     margin: 0 auto 0 auto; 
+  
 }
 
 
@@ -86,7 +88,7 @@ padding-left:1px;
 	
 }
 
-#linkbody {
+.linkbody {
 	word-wrap:break-word;
 	font-weight:bold;
 	font-size:20px;
@@ -96,6 +98,11 @@ padding-left:1px;
 #linkauth {
 	padding-top:5px;
 	padding-bottom:5px;
+}
+
+#reply-container {
+  font-size:15px;
+  font-weight:normal;
 }
 
 #linktime {
@@ -191,9 +198,14 @@ padding-top:5px;
   padding-left:10px;
 }
 
-#footlinks {
+#footabout {
  float:right; 
-  padding-right:15px;
+  padding-right:5px;
+}
+
+#footcontact {
+ float:right; 
+  padding-right:10px;
 }
 
 #paginate {
