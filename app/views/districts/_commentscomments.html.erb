@@ -1,20 +1,20 @@
-<% link.comments.sort_by{ |c| c.score }.reverse.each do |comment| %>
+<% comments.sort_by{ |c| c.score }.reverse.each do |comment| %>
 
-   <ul> 
+<ul> 
      
      
-<div class='message_group'>
-   <div class="row">
-      <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => true}), :method => :comment, class: "btn btn-small" do %>
-      <span class="glyphicon glyphicon-chevron-up"></span>
-       <% end %>
-       <%= link_to comment.user.username, comment.user %>
+     <div class='message_group'>
+<div class="row">
+                          <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => true}), :method => :comment, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-up"></i>
+                          <% end %>
+                       <%= link_to comment.user.username, comment.user %>
   <b><%= comment.score %></b> points 
           </div> 
      <div class="row">
-       <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment, class: "btn btn-small" do %>
-        <span class="glyphicon glyphicon-chevron-down"></span>
-        <% end %>
+                          <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-down"></i>
+                          <% end %>
 
        <b><%= auto_link(comment.message, :all, :target => "_blank").html_safe %></b>
       
@@ -32,8 +32,6 @@
                   <% end %>
                                                
      </div>
-                  
-      
 <div id="commentcomment">
 <%= render partial: "commentscomments", locals: { comments: comment.comments } %>
 </div>

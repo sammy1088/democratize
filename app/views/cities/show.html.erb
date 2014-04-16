@@ -169,6 +169,8 @@
                      
                        <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
                       <%= link_to "Link", [@city, link], class: 'btn btn-xs btn-info' %>
+                      <div class="linkpad">
+                      </div>
                   <div class="reply-container", id='reply-container'>
                                 <%= form_for([link, Comment.new]) do |f| %> 
                               <div class="field">
@@ -227,6 +229,10 @@
           <p><%= link_to job.title, city_jobs_path(@city) %></p>
                       <% end %>
           <%= link_to "+more jobs", city_jobs_path(@city), class: 'btn btn-xs btn-success' %>
+          <br>
+          <h2>Policy</h2>
+          <p>All posts must be civil. Anything hateful, sexist, racist, abusive, threatening, etc. will be removed.</p>
+     
         </div>
 <div id="ads">
 

@@ -3,6 +3,7 @@ class Job < ActiveRecord::Base
 	
 	belongs_to :city
   belongs_to :user
+  belongs_to :district
 
 	has_many :votes, as: :votable 
   has_many :comments, as: :commentable

@@ -28,12 +28,12 @@ def create
   end
 
 def show
-
-  @group = Group.find(params[:id])
+@group = Group.find(params[:id])
+  @city = City.find(params[:city_id])
   
   
 
-  @group = Group.find(params[:id])
+  
   @links = @group.links
     
     @cities = City.all

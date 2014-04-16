@@ -1,6 +1,8 @@
 class District < ActiveRecord::Base
 	 OUR_EPOCH = Time.local(2005, 12, 8, 7, 46, 43).to_time
   has_many :links
+  has_many :events
+  has_many :jobs
 
 	belongs_to :city
   belongs_to :state

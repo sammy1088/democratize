@@ -1,26 +1,27 @@
 
+<html>
 <head>
-  <title>Democratize <%= @city.title %>: Local News, Politics, Discussion, Events</title>
+  <title>Democratize! <%= @city.title %> News, Politics, Discussion, Events</title>
   
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
-  <meta name="description" content="dynamic titles, <%= @city.title %> for each group politics yo!">
+  <meta name="description" content="Democratize! <%= @city.title %> is a user generated hub for local news, politics, and opinion sharing in Tulsa, OK.">
 </head>
 <body>
-
- <div class="bod">
+  <div class="bod">
     <div class="row">  
       <div class="col-xs-2">
         <div id="logo">
-         <i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
+          <i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
         </div>
-        
       </div>  
       <div class="col-xs-8">
+        
         <div id="citytitle">
-          <h1><%= link_to @city.title, [@city] %> <%= @district.title %></h1>
+          <h1><%= @city.title %></h1>
         </div>  
       </div>  
        <div class="col-xs-2"> 
@@ -30,7 +31,7 @@
     <div class="row">
       <div class="col-xs-2">
         <div id="sidebar">
-             
+              
               <div id="sideprof">
                 <%# user is logged in, show log out link %>
                 <% if current_user.present? %>
@@ -51,21 +52,22 @@
 
                 <%# end %>
               </div>
-  <div class="btn-group">
+                <div class="btn-group">
                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                           Change Location
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                           <li><%= link_to "Tulsa", "/cities/1-tulsa" %></a></li>
-                          <li><%= link_to "Oklahoma City", "/cities/2-oklahomacity" %></a></li>
                         </ul>
                         </div>
+                        
               <div id="sidenav">
+                    
                 <ul class="nav nav-pills nav-stacked">
-                  <br>
-                      <li><center><b><%= @city.title %> Districts</b></center></a>
-
+                        
+                      <br>
+                      <li><center><b><%= @city.title %> Districts</b></center>
                         <% @districts.each do |district| %>
                       <%= link_to district.title, [@city, district], class: "list-group-item" %>
                        <% end %>
@@ -75,50 +77,48 @@
                     <%= link_to group.title, [@city, group], class: "list-group-item" %>
                       <% end %>
                       <br>
-                      <center><b><%= @city.title %> Resources</b></center>
+                      <center><b><%= @city.title %> News Sources</b></center>
                       <% @resources.each do |resource| %>
                     <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
                       <% end %>
-                      <br>
-                   
+                    
                       </li>
                     </ul>
               </div>
         </div>
       </div>
-
-    <div class="col-xs-8">
+      <div class="col-xs-8">
         <div class="row">
             <div id="filters">
-              <%= link_to "hot", city_district_path(@city, @district, sort_by: "hot") %>
-              |
-              <%= link_to "new", city_district_path(@city, @district, sort_by: "new") %>
+                <%= link_to "hot", city_district_path(@city, @district, sort_by: "hot") %>
+                |
+                <%= link_to "new", city_district_path(@city, @district, sort_by: "new") %>
               <div id="addlink">
-              <p>
-                <% if user_signed_in? %>
-                <%= link_to "Post", new_district_link_path(@district) %>
-                <% end %>
-              </p>
+                    <p>
+                      <% if user_signed_in? %>
+                      <%= link_to "Post", new_district_link_path(params[:id]), :class => "btn btn-xs btn-primary" %>
+                      <% end %>
+                    </p>
               </div>
-          </div>  
-      </div>
-<div class="row">
+            </div> 
+        </div>
+        <div class="row">
           <div class="row">
             <% @links.each do |link| %> 
             <ul>                     
             <div id="links">
                 <li>
-                 <div class="row">
+                  <div class="row">
                     <div class="col-xs-1">
                       <div class="votes">
                         <div id="votesup">
                           <% if current_user && current_user.votes.where(:votable_id => link.id, :up => true).present? %>
                           <div class="glyphup">
-                          <i class="glyphicon glyphicon-chevron-up"></i>
+                          <span class="glyphicon glyphicon-chevron-up"></span>
                           </div>
                             <% else %>
                           <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
-                            <i class="glyphicon glyphicon-chevron-up"></i>
+                            <span class="glyphicon glyphicon-chevron-up"></span>
                           <% end %>
                           <% end %>
                         </div>
@@ -137,28 +137,59 @@
                           <% end %>
                         </div>  
                       </div>
-                    </div> 
+                    </div>  
                     <div class="col-xs-10">
                       <div class="row">
-                        <div id="linkbody">
-                            <%= link_to link.title, [@district, link] %>
+                        <div class="linkbody">
+                            <%= link.title %>
+                         
+                          <%= link_to "+read more", '#', class: 'btn btn-xs btn-success reply-link', id: 'reply-link' %>
+                          
+                  <div class="reply-container", id='reply-container'>
+                    <%= auto_link(link.text, :all, :target => "_blank").html_safe %></em>
+                          
+                       </div>
                         </div>
                       </div>
+                      
                       <div class="row">
-                        <div class="col-xs-6"> 
+                        <div class="col-xs-10"> 
+                          
                           <div id="linkauth">
+                            posted <b><%= time_ago_in_words(link.created_at) %></b> ago
                               by
                               <%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
                               <%= link_to link.username, link.user %>
                           </div>
                         </div>
-                        <div class="col-xs-6">
-                          <div id="linktime">    
-                              posted <%= time_ago_in_words(link.created_at) %> ago
-                          </div>
-                        </div>      
-                      </div>
+                       
                         
+                     
+                      <div class="col-xs-10">
+                    <div class="row">
+                     
+                       <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
+                      <%= link_to "Link", [@city, link], class: 'btn btn-xs btn-info' %>
+                      <div class="linkpad">
+                      </div>
+                  <div class="reply-container", id='reply-container'>
+                                <%= form_for([link, Comment.new]) do |f| %> 
+                              <div class="field">
+                                <%= f.text_area :message, class: "form-control", :placeholder =>"Add a comment" %>
+                              </div>
+                              <div class="actions">
+                                <%= f.submit :class => "btn btn-primary" %>
+                              </div>
+                                <% end %>
+                            
+                        
+                         <%= render partial: "comments", locals: { link: link, comments: @comments } %> 
+</div>
+                        </div>
+                    </div> 
+                    </div>
+                      
+                      
                     </div>
                   </div>
                 </li>   
@@ -166,20 +197,39 @@
             </ul> 
             <% end %> 
           </div>
-          <div class="row">                               
-            <%= will_paginate @links %>    
+          <div class="row">
+            <div id="paginate">
+            <%= will_paginate @links %> 
+            </div>
+            <br>
+            <div id="footabout">
+              
+              <%= link_to "Contact", "mailto:democratizellc@gmail.com" %>
+              </div>
+            <div id="footcontact">
+              <%= link_to "About", "/pages/show" %> 
+            </div>
           </div>
         </div>     
-      </div>      
+      </div> 
+
       <div class="col-xs-2"> 
-       
-          <div id="ads">
-              
-          </div>       
+        <div id="meetups">
+
       </div>
-        
+        <div id="policy">
+
+     
+        </div>
+<div id="ads">
+
+          </div>          
     </div>  
-      
+ 
+  
+  
     </div>
   </div>   
 </body>
+
+</html>
