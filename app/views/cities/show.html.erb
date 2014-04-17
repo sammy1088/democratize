@@ -145,21 +145,22 @@
                           <%= link_to "+read more", '#', class: 'btn btn-xs btn-success reply-link', id: 'reply-link' %>
                           
                   <div class="reply-container", id='reply-container'>
-                    <%= auto_link(link.text, :all, :target => "_blank").html_safe %></em>
+                    <%= auto_link(link.text, :all, :target => "_blank").html_safe %>
                           
                        </div>
-                        </div>
-                      </div>
-                      
-                      <div class="row">
-                        <div class="col-xs-10"> 
-                          
                           <div id="linkauth">
                             posted <b><%= time_ago_in_words(link.created_at) %></b> ago
                               by
                               <%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
                               <%= link_to link.username, link.user %>
                           </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-xs-10"> 
+                          
+                          
                         </div>
                        
                         

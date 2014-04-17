@@ -1,5 +1,6 @@
 
 class LinksController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :find_parent, only: [:new, :create]
   http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:show, :new, :create]
 include ActionView::Helpers::TextHelper

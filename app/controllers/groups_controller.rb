@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 class GroupsController < ApplicationController
 	before_filter :find_parent, only: [:new, :create, :show]
-  http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:show]
+  http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:show, :follow]
 def new
     @group = Group.new
   end

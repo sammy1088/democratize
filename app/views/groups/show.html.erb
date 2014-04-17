@@ -67,11 +67,11 @@
                     
 
                 <b>Group Followers</b>
-           <li><% @users.each do |user| %>
-             <%= link_to user.username, user %>
+           <% @users.each do |user| %>
+             <li><%= link_to user.username, user %></li>
 
-<% end %></li>
-                      </li>
+<% end %>
+                      
                     </ul>
               </div>
         </div>
