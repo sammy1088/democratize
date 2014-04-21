@@ -206,6 +206,9 @@
               
               <%= link_to "Contact", "mailto:democratizellc@gmail.com" %>
               </div>
+            <div id="footabout">
+            <%= link_to "Advertise!", "/pages/ads" %>
+              </div>
             <div id="footcontact">
               <%= link_to "About", "/pages/show" %> 
             </div>
@@ -218,11 +221,12 @@
   <h2><%= @city.title %> Events</h2>
                     <% @events.each do |event| %>
                     <% if event.date.to_date >= Time.now.to_date %>
-          <p><%= link_to event.title, city_events_path(@city) %></p>
+          <p><%= link_to event.title, city_events_path(@city) %><br>on <%= event.date %></p>
                       <% end %>
                       <% end %>
           <%= link_to "+more events", city_events_path(@city), class: 'btn btn-xs btn-success' %>
       </div>
+
         <div id="policy">
           <h2><%= @city.title %> Jobs</h2>
           
@@ -231,12 +235,13 @@
                       <% end %>
           <%= link_to "+more jobs", city_jobs_path(@city), class: 'btn btn-xs btn-success' %>
           <br>
+
           <h2>Policy</h2>
           <p>All posts must be civil. Anything hateful, sexist, racist, abusive, threatening, etc. will be removed.</p>
      
         </div>
 <div id="ads">
-
+  <%= link_to "Advertise!", "/pages/ads", class: 'btn btn-xs btn-info' %>
           </div>          
     </div>  
  

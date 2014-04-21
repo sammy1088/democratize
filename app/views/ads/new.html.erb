@@ -1,0 +1,20 @@
+<%= form_for([@parent, @ad]) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+ <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+
+ <%= f.label :photo %>*<br />
+   <div id="fileup">
+     <%= f.file_field :photo %>
+     </div>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

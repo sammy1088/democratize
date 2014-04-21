@@ -44,6 +44,7 @@ class CitiesController < ApplicationController
     @districts = @city.districts
     @groups = @city.groups
     @resources = @city.resources
+    @ads = @city.ads
     @jobs = @city.jobs.limit(5)
     @events = @city.events.limit(5).sort! {|a,b| a.date <=> b.date }
     

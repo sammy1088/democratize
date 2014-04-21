@@ -1,6 +1,7 @@
 Sawit::Application.routes.draw do
 
   get "events/index"
+  get "pages/ads"
    devise_for :users
  
   # The priority is based upon order of creation: first created -> highest priority.
@@ -22,6 +23,7 @@ Sawit::Application.routes.draw do
 
   resources :pages
   resources :users
+  resources :ads
 
    resources :relationships, only: [:create, :destroy]
   
@@ -73,6 +75,7 @@ resources :cities do
   resources :districts 
   resources :resources
   resources :events
+  resources :ads
 end
 
 

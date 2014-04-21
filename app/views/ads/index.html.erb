@@ -1,0 +1,6 @@
+<% @ads.each do |ad| %>
+<%= ad.title %><br>
+<%= ad.description %><br>
+<%= image_tag ad.photo.url(:main) %>
+
+<% end %>

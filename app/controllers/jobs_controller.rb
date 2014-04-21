@@ -58,7 +58,20 @@ def create
       end
     end
 	end
-
+def edit
+@city = City.find(params[:city_id])
+     @job = Job.find(params[:id])
+end
+  def update
+@city = City.find(params[:city_id])
+    @job = Job.find(params[:id])
+ 
+    if @job.update(params[:job].permit(:title, :description, :companyname, :companyurl, :username, :user_id))
+      redirect_to [@city, @job]
+  else
+    render 'edit'
+  end
+end
 private
   def job_params
     params.require(:job).permit(:title, :description, :companyname, :companyurl, :username, :user_id)

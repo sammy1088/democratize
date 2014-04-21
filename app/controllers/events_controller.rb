@@ -31,6 +31,20 @@ class EventsController < ApplicationController
       end
     end
   end
+   def edit
+@city = City.find(params[:city_id])
+     @event = Event.find(params[:id])
+end
+  def update
+@city = City.find(params[:city_id])
+    @event = Event.find(params[:id])
+ 
+    if @event.update(params[:event].permit(:title, :date, :description, :location))
+      redirect_to [@city, @event]
+  else
+    render 'edit'
+  end
+end
   private
   def event_params
     params.require(:event).permit(:title, :date, :description, :location)
