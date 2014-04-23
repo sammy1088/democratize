@@ -18,6 +18,6 @@ class UsersController < ApplicationController
      @user.destroy
   end
   def user_params
-    params.require(:user).permit(:email, :username, :bio, :avatar)
+    params.require(:user).permit(:username, :bio, :avatar)
   end
 end

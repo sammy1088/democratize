@@ -46,8 +46,9 @@ Sawit::Application.routes.draw do
   resources :states   do
     resources :links
     resources :groups
-    resources :jobs
+    resources :jobs 
     resources :resources
+    resources :events
   end
 
   resources :countries do
@@ -84,6 +85,10 @@ resources :links do
     resources :votes
   end
 
+  resources :events do
+    resources :comments
+    resources :votes
+  end
 
   
 

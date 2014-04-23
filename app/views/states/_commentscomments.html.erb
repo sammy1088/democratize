@@ -1,0 +1,40 @@
+<% comments.sort_by{ |c| c.score }.reverse.each do |comment| %>
+
+<ul> 
+     
+     
+     <div class='message_group'>
+<div class="row">
+                          <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => true}), :method => :comment, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-up"></i>
+                          <% end %>
+                       <%= link_to comment.user.username, comment.user %>
+  <b><%= comment.score %></b> points 
+          </div> 
+     <div class="row">
+                          <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-down"></i>
+                          <% end %>
+
+       <b><%= auto_link(comment.message, :all, :target => "_blank").html_safe %></b>
+      
+                        
+       </div>
+    
+                        <%= link_to "Reply", '#', class: 'reply-link', id: 'reply-link' %>
+                  <div class="reply-container", id='reply-container'>
+                  <%= form_for(Comment.new, url: comment_comments_path(comment)) do |f| %> 
+              
+                  <%= f.text_area :message, :class => "form-control", :placeholder =>"Add a comment" %>
+                   
+                      <%= f.submit :class => "btn btn-primary" %>
+              
+                  <% end %>
+                                               
+     </div>
+<div id="commentcomment">
+<%= render partial: "commentscomments", locals: { comments: comment.comments } %>
+</div>
+</ul>
+
+<% end %>

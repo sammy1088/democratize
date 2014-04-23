@@ -2,6 +2,7 @@ class Link < ActiveRecord::Base
 	OUR_EPOCH = Time.local(2005, 12, 8, 7, 46, 43).to_time
 
   belongs_to :user
+  belongs_to :event
   belongs_to :state
   belongs_to :city
   belongs_to :district

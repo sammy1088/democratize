@@ -1,12 +1,12 @@
 
 <head>
-  <title>Democratize <%= @city.title %>: Local News, Politics, Discussion, Events</title>
+  <title>Democratize! Local News, Politics, Discussion, Events</title>
   
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= csrf_meta_tags %>
-  <meta name="description" content="dynamic titles, <%= @city.title %> for each group politics yo!">
+  <meta name="description" content="dynamic titles, for each group politics yo!">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
       </div>  
       <div class="col-xs-8">
         <div id="citytitle">
-          <h1><%= link_to @city.title, [@city] %> Job Board</h1>
+          <h1><%= link_to @parent.title, [@parent] %> Job Board</h1>
         </div>  
       </div> 
       <div class="col-xs-2"> 
@@ -64,18 +64,13 @@
               <div id="sidenav">
                 <ul class="nav nav-pills nav-stacked">
                   <br>
-                      <li><center><b><%= @city.title %> Districts</b></center></a>
-
-                        <% @districts.each do |district| %>
-                      <%= link_to district.title, [@city, district], class: "list-group-item" %>
-                       <% end %>
-                    <br>
-                    <center><b><%= @city.title %> Groups</b></center>
+                      <li>
+                    <center><b><%= @parent.title %> Groups</b></center>
                     <% @groups.each do |group| %>
-                    <%= link_to group.title, [@city, group], class: "list-group-item" %>
+                    <%= link_to group.title, [@parent, group], class: "list-group-item" %>
                       <% end %>
                       <br>
-                      <center><b><%= @city.title %> Resources</b></center>
+                      <center><b><%= @parent.title %> Resources</b></center>
                       <% @resources.each do |resource| %>
                     <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
                       <% end %>
@@ -92,7 +87,7 @@
               <div id="addlink">
               <p>
                 <% if user_signed_in? %>
-                <%= link_to "Post", new_city_job_path(@city, @job), :class => "btn btn-xs btn-primary" %>
+                <%= job_to_for_parent(@parent) %>
                 <% end %>
               </p>
               </div>
@@ -143,13 +138,13 @@
 
       <div class="col-xs-2"> 
         <div id="meetups">
-           <h2><%= @city.title %> Events</h2>
+           <h2><%= @parent.title %> Events</h2>
                     <% @events.each do |event| %>
                     <% if event.date.to_date >= Time.now.to_date %>
-          <p><%= link_to event.title, city_events_path(@city) %></p>
+          <p><%= link_to event.title, [@parent, :events] %></p>
                       <% end %>
                       <% end %>
-          <%= link_to "+more events", city_events_path(@city), class: 'btn btn-xs btn-success' %>
+          <%= link_to "+more events", [@parent, :events], class: 'btn btn-xs btn-success' %>
       </div>
         <div id="policy">
          

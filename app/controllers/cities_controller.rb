@@ -46,7 +46,8 @@ class CitiesController < ApplicationController
     @resources = @city.resources
     @ads = @city.ads
     @jobs = @city.jobs.limit(5)
-    @events = @city.events.limit(5).sort! {|a,b| a.date <=> b.date }
+    @events = @city.events.where(['date >= ?', DateTime.now.to_date]).limit(5)
+               
     
     
     if params[:sort_by] == "new"

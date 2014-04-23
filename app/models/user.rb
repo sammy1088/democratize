@@ -28,6 +28,9 @@ def follow_group(group_id)
 	group = Group.find(group_id)
 	FollowGroup.create(user_id: id, group_id: group_id)
 end
-
+  
+def email_required?
+    false
+  end
 
 end

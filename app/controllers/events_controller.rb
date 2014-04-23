@@ -2,22 +2,27 @@ require 'will_paginate/array'
 class EventsController < ApplicationController
 	before_filter :find_parent, only: [:new, :create]
   def index
- @city = City.find(params[:city_id])
-  
-  @groups = @city.groups  
-  @districts = @city.districts
-  @resources = @city.resources
-  @jobs = @city.jobs
-    @events = @city.events
-      @cities = City.all
 
-
-    @events = @events.paginate(:page => params[:page], :per_page => 15)
-
+ if params[:state_id] or params[:city_id]
+       find_parent
+    end
+    @groups = @parent.groups  
+    @resources = @parent.resources
+    @jobs = @parent.jobs.limit(5)
+    @events = @parent.events
+    @events = @events.where(['date >= ?', DateTime.now.to_date]).paginate(:page => params[:page], :per_page => 15)
   end
     def new
-    @event = Event.new
+     
+      @event = @parent.events.new
 
+  end
+  def show 
+    if params[:state_id] or params[:city_id] or params[:district_id] or params[:country_id] or params[:rep_id] or params[:group_id]
+       find_parent
+    end
+    @event = Event.find(params[:id])
+    @comments = @event.comments
   end
   def create
     @event = @parent.events.new(event_params)
@@ -52,6 +57,8 @@ end
   def find_parent
     if params[:city_id]
       @parent = City.find(params[:city_id])
+      elsif params[:state_id]
+      @parent = State.find(params[:state_id])
   end
 end
 end

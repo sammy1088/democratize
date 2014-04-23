@@ -22,20 +22,14 @@ end
   end
 
 def index
-	
-	
-
-  @city = City.find(params[:city_id])
-  
-  @groups = @city.groups  
-  @districts = @city.districts
-  @resources = @city.resources
-  @jobs = @city.jobs
-  @events = @city.events
+	if params[:state_id] or params[:city_id]
+       find_parent
+    end
+  @groups = @parent.groups  
+  @resources = @parent.resources
+  @jobs = @parent.jobs
+  @events = @parent.events
     
-  
-  
-
   @cities = City.all
 
 
@@ -79,6 +73,8 @@ private
 def find_parent
     if params[:city_id]
       @parent = City.find(params[:city_id])
+      elsif params[:state_id]
+      @parent = State.find(params[:state_id])
   end
 end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140419161042) do
+ActiveRecord::Schema.define(version: 20140421201947) do
 
   create_table "ads", force: true do |t|
     t.string   "title"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140419161042) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "city_id"
+    t.integer  "state_id"
   end
 
   create_table "follow_groups", force: true do |t|
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140419161042) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "city_id"
+    t.integer  "state_id"
   end
 
   create_table "jobs", force: true do |t|
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 20140419161042) do
     t.string   "companyname"
     t.string   "username"
     t.integer  "user_id"
+    t.integer  "state_id"
   end
 
   create_table "links", force: true do |t|
@@ -128,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140419161042) do
     t.datetime "updated_at"
     t.integer  "city_id"
     t.string   "title"
+    t.integer  "state_id"
   end
 
   create_table "states", force: true do |t|

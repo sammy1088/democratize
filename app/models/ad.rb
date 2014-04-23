@@ -1,5 +1,6 @@
 class Ad < ActiveRecord::Base
   belongs_to :city
+  belongs_to :state
   
   has_attached_file :photo, :styles => { :main => "100x100#" },
                   :url  => "/assets/products/:id/:style/:basename.:extension",
