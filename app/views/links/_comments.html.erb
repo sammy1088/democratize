@@ -27,12 +27,13 @@
                   <%= f.text_area :message, :class => "form-control", :placeholder =>"Add a comment" %>
                    
                       <%= f.submit :class => "btn btn-primary" %>
-              
+             
                   <% end %>
                                                
      </div>
-                  
-      
+                 <% if comment.user == current_user %>
+ <%= button_to "delete", comment, :method=>:delete, :class=>:destroy %>   
+       <% end %>
           
     <div id="commentcomment">
 <%= render partial: "comments", locals: { comments: comment.comments } %>

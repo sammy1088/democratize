@@ -7,6 +7,10 @@ class Comment < ActiveRecord::Base
 	has_many :comments, as: :commentable
 	has_many :votes, as: :votable 
 
+  
+  validates :message, :presence => true,
+                    :length => { :minimum => 5 }
+  
 	 def score
     ups = votes.where(:up => true).count
     downs = votes.where(:up => false).count

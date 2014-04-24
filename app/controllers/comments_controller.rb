@@ -25,7 +25,10 @@ end
 
         redirect_to :back
     end
-    
+    def destroy
+      @comment = Comment.find(params[:id])
+      @comment.destroy
+  end
     
 
   def comment_params
