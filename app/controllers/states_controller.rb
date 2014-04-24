@@ -46,7 +46,7 @@ class StatesController < ApplicationController
     @resources = @state.resources
     @ads = @state.ads
     @jobs = @state.jobs.limit(5)
-    @events = @state.events.limit(5).sort! {|a,b| a.date <=> b.date }
+    @events = @state.events.where(['date >= ?', DateTime.now.to_date]).limit(5)
     
     
     if params[:sort_by] == "new"

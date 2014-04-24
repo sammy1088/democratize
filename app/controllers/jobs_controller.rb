@@ -28,7 +28,7 @@ def index
   @groups = @parent.groups  
   @resources = @parent.resources
   @jobs = @parent.jobs
-  @events = @parent.events
+  @events = @parent.events.where(['date >= ?', DateTime.now.to_date]).limit(5)
     
   @cities = City.all
 

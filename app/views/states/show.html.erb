@@ -222,7 +222,7 @@
       <div class="col-xs-2"> 
         <div id="meetups">
   <h2><%= @state.title %> Events</h2>
-                    <% @events.each do |event| %>
+                    <% @events.order('date ASC').each do |event| %>
                     <% if event.date.to_date >= Time.now.to_date %>
           <p><%= link_to event.title, state_events_path(@state) %><br>on <%= event.date %></p>
                       <% end %>

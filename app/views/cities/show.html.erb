@@ -225,7 +225,7 @@
       <div class="col-xs-2"> 
         <div id="meetups">
   <h2><%= @city.title %> Events</h2>
-                    <% @events.each do |event| %>
+                    <% @events.order('date ASC').each do |event| %>
 
  
           <p><%= link_to event.title, city_events_path(@city) %><br><b>on</b> <%= event.date.strftime("%m/%d/%Y") %></p>
