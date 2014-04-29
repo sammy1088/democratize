@@ -28,6 +28,11 @@ h2 {
   text-align:center;
 }
 
+#tag {
+
+  font-size:14px;
+}
+
 #logo {
   padding-right:10px;
   font-weight:bold;
@@ -249,4 +254,55 @@ padding-bottom:10px;
 
 #commpad {
  padding-top:5px; 
+}
+
+.navbar-text {
+ float:right;
+   font-weight:bold;
+	font-size:20px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+#navtitle {
+   font-weight:bold;
+	font-size:25px;
+  padding-bottom:5px;
+  padding-top:5px;
+}
+
+.bodymob {
+  padding-top: 45px;
+}
+
+.linksmob {
+  word-wrap:break-word;
+
+   padding-left:10px;
+  padding-right:10px;
+  border-bottom-style:solid;
+    border-width:thin;
+}
+
+#filtersmob {
+  padding-top:10px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:15px;
+}
+
+.linkbodmob {
+  font-size:20px;
+
+ 
+}
+
+.row2mob {
+  padding-top:10px;
+}
+
+.gup {
+  margin:0;
 }

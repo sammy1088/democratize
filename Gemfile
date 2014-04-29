@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.1.0'
 gem 'bootstrap-sass'
 gem 'dynamic_form', '1.1.4'
 
@@ -12,6 +12,7 @@ group :production do
 end
 
 gem 'devise'
+gem 'jquery-turbolinks'
 
 gem 'rails_autolink'
 
@@ -19,6 +20,7 @@ gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
 
 gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate-bootstrap'
 
 gem 'sitemap_generator'
 

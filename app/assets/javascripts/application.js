@@ -11,18 +11,21 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap.min
 //= require turbolinks
 //= require_tree .
-
-var ready;
-ready = function() {
+$(document).ready(function() {
 $(".reply-link").click(function(e){
   e.preventDefault();
   $(this).siblings('.reply-container').toggle();
 });
-};
+  
+    $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

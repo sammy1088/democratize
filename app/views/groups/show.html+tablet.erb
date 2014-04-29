@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Democratize! News, Politics, Discussion, Events</title>
+  
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Democratize! is a site for user-generated local news, politics, and opinion sharing.">
+</head>
+<body>
+<div class="bodymob">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+<div class="btn-group">
+<button type="button" class="btn btn-default btn-lg navbar-btn navbar-left dropdown-toggle" data-toggle="dropdown">
+    Menu <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><% if current_user.present? %>
+                
+                  <%= link_to current_user.username, current_user %>
+                  <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+
+                <% else %>
+                
+                  <li><%= link_to 'Sign In', new_user_session_path %></li>
+                  <li><%= link_to 'Register Now!', new_user_registration_path %></li>
+                
+                <% end %></li>
+    <li class="divider"></li>
+    <li><%= @parent.title %> Groups</li>
+    <% @groups.each do |group| %>
+    <li><%= link_to group.title, [@parent, group] %></li>
+    <% end %>
+    <li><%= @parent.title %> News Sources</li>
+    <% @resources.each do |resource| %>
+    <li><%= link_to resource.title, "http://#{resource.url}", target: '_blank' %></li>
+    <% end %>
+
+  </ul>
+</div>
+
+
+    <p class="navbar-text"><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %></p>
+
+      
+  </div>    
+  </nav>
+  
+   <center>
+    <div id="navtitle">
+    <%= @group.title %>
+    </div>
+  <div class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                          Change Location
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><b><%= link_to "Oklahoma", "/states/2" %></a></b></li>
+                          <li><%= link_to "Oklahoma City", "/cities/2-oklahomacity" %></a></li>
+                          <li><%= link_to "Tulsa", "/cities/1-tulsa" %></a></li>
+                        </ul>
+                        </div>
+  
+</center>
+
+   <div class="container">
+     <div class="row">
+            <div id="filtersmob">
+                <%= link_to "hot", city_district_path(@city, @group, sort_by: "hot"), :class => "btn btn-xs btn-info" %>
+                |
+                <%= link_to "new", city_district_path(@city, @group, sort_by: "new"), :class => "btn btn-xs btn-info" %>
+              <div id="addlink">
+                    <p>
+                      <% if user_signed_in? %>
+                      <%= link_to "Post", new_group_link_path(params[:id]), :class => "btn btn-xs btn-primary" %>
+                      <% end %>
+                    </p>
+              </div>
+            </div> 
+        </div>
+<div class="row">
+  
+    <% @links.each do |link| %> 
+  <div class="linksmob">
+
+      <div class="linkbody">
+        <button type="button" class="btn btn-default"><b><%= link.score %></b></button>
+        
+    <%= link.title %>
+                         
+                          <%= link_to "+", '#', class: 'btn btn-xs btn-success reply-link', id: 'reply-link' %>
+                          
+                  <div class="reply-container", id='reply-container'>
+                    <%= auto_link(link.text, :all, :target => "_blank").html_safe %>
+                          <div id="linkauthmob">
+                            posted <b><%= time_ago_in_words(link.created_at) %></b> ago
+                              by
+                              <%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
+                              <%= link_to link.username, link.user %>
+                          </div>
+                       </div>
+                          
+                        </div>
+  
+ <div class="row2mob"> 
+   <div class="gup"
+ <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                          <% end %>
+ 
+<%= link_to link_votes_path(link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                          <% end %>
+     <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
+     
+                      (<b><%= link.comments.count %> </b> comments)
+                      <%= link_to "Link", [@city, link], class: 'btn btn-xs btn-info' %>
+    
+                      <div class="linkpad">
+                      </div>
+                  <div class="reply-container", id='reply-container'>
+                                <%= form_for([link, Comment.new]) do |f| %> 
+                              <div class="field">
+                                <%= f.text_area :message, class: "form-control", :placeholder =>"Comments must be at least 5 characters long..." %>
+                              </div>
+                              <div class="actions">
+                                <%= f.submit :class => "btn btn-primary" %>
+                              </div>
+                                <% end %>
+                            
+                        
+                         <%= render partial: "comments", locals: { link: link, comments: @comments } %> 
+                  </div>
+       </div>
+
+</div>
+
+      </div>
+  <% end %>
+
+</div>
+
+<%= will_paginate @links, renderer: BootstrapPagination::Rails %> 
+
+</div>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 
 class LinksController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:new, :create]
   before_filter :find_parent, only: [:new, :create]
   http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:show, :new, :create]
 include ActionView::Helpers::TextHelper
@@ -29,6 +29,10 @@ include ActionView::Helpers::TextHelper
     ##@groups = @city.groups
     ##@districts = @city.districts
    ## @resources = @city.resources
+          respond_to do |format|
+    format.html               # /app/views/articles/index.html.erb
+    format.html.tablet     # /app/views/posts/index.html+tablet.erb
+    end
   end
  
 

@@ -11,6 +11,10 @@ class EventsController < ApplicationController
     @jobs = @parent.jobs.limit(5)
     @events = @parent.events
     @events = @events.where(['date >= ?', DateTime.now.to_date]).paginate(:page => params[:page], :per_page => 15)
+      respond_to do |format|
+    format.html               # /app/views/articles/index.html.erb
+    format.html.tablet     # /app/views/posts/index.html+tablet.erb
+    end
   end
     def new
      
@@ -23,6 +27,7 @@ class EventsController < ApplicationController
     end
     @event = Event.find(params[:id])
     @comments = @event.comments
+    
   end
   def create
     @event = @parent.events.new(event_params)

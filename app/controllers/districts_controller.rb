@@ -44,6 +44,10 @@ def show
     @links = @links.sort_by{ |l| l.hot }.reverse
     end
 @links = @links.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+    format.html               # /app/views/articles/index.html.erb
+    format.html.tablet     # /app/views/posts/index.html+tablet.erb
+    end
   end
   def edit
     @city = City.find(params[:city_id])

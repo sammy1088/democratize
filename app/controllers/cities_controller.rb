@@ -63,7 +63,11 @@ class CitiesController < ApplicationController
     end
 
     @links = @links.paginate(:page => params[:page], :per_page => 15)
-
+    
+  respond_to do |format|
+    format.html               # /app/views/articles/index.html.erb
+    format.html.tablet     # /app/views/posts/index.html+tablet.erb
+    end
   end
   private
    def city_params
