@@ -19,24 +19,5 @@
     <b><%= @user.username %></b> 
 
     <p><em><%= @user.bio %></em></p>
-    <div id="usergroups">
-  <ul class="nav nav-pills nav-stacked">
 
-                      <li><center><b>My Groups</b></center></a>
-                        <% @groups.each do |g| %>
-                      <%= link_to g.title, [g], class: "list-group-item" %>
-                       <% end %>
-              </li>
-          </ul>  
-
-</div>
-<br>
-<p><b>My Posts</b></p>
- <% @links.each do |link| %>
-
- <p><%= link_to link.title, [link] %></p>
- <% end %>
-
-
-</center>
 </body>

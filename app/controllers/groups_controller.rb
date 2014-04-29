@@ -29,7 +29,7 @@ def create
 
 def show
 @group = Group.find(params[:id])
-  @city = City.find(params[:city_id])
+ 
   @groups = @parent.groups
   @resources = @parent.resources
   
