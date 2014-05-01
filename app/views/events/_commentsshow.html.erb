@@ -8,7 +8,7 @@
       <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => true}), :method => :comment, class: "btn btn-small" do %>
       <span class="glyphicon glyphicon-chevron-up"></span>
        <% end %>
-       <%= link_to comment.user.username, comment.user %>
+       <%= comment.user.username %>
   <b><%= comment.score %></b> points 
           </div> 
      <div class="row">

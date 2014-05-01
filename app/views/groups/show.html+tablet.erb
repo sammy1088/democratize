@@ -22,7 +22,7 @@
   <ul class="dropdown-menu" role="menu">
     <li><% if current_user.present? %>
                 
-                  <%= link_to current_user.username, current_user %>
+                  <%= current_user.username %>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
 
                 <% else %>
@@ -53,7 +53,7 @@
   
    <center>
     <div id="navtitle">
-    <%= @group.title %>
+    <%= link_to @parent.title, [@parent] %> <%= @group.title %>
     </div>
   <div class="btn-group">
                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -72,9 +72,9 @@
    <div class="container">
      <div class="row">
             <div id="filtersmob">
-                <%= link_to "hot", city_district_path(@city, @group, sort_by: "hot"), :class => "btn btn-xs btn-info" %>
+                <%= link_to "hot", [@parent, @group, sort_by: "hot"], :class => "btn btn-xs btn-info" %>
                 |
-                <%= link_to "new", city_district_path(@city, @group, sort_by: "new"), :class => "btn btn-xs btn-info" %>
+                <%= link_to "new", [@parent, @group, sort_by: "new"], :class => "btn btn-xs btn-info" %>
               <div id="addlink">
                     <p>
                       <% if user_signed_in? %>
@@ -102,7 +102,7 @@
                             posted <b><%= time_ago_in_words(link.created_at) %></b> ago
                               by
                               <%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
-                              <%= link_to link.username, link.user %>
+                              <b><%= link.username %></b> <% if link.user.bio? %><em>"<%= link.user.bio %>"</em><% end %>
                           </div>
                        </div>
                           

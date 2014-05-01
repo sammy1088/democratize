@@ -22,7 +22,7 @@
   <ul class="dropdown-menu" role="menu">
     <li><% if current_user.present? %>
                 
-                  <%= link_to current_user.username, current_user %>
+                  <%= current_user.username %>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
 
                 <% else %>
@@ -113,7 +113,7 @@
      <%= link_to "Discuss!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
      
                       (<b><%= event.comments.count %> </b> comments)
-                      <%= link_to "Link", [@parent, event], class: 'btn btn-xs btn-info' %>
+                      
     
                       <div class="linkpad">
                       </div>

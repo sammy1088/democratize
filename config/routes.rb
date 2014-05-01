@@ -45,7 +45,9 @@ Sawit::Application.routes.draw do
 
   resources :states   do
     resources :links
-    resources :groups
+    resources :groups do
+    resources :links
+  end
     resources :jobs 
     resources :resources
     resources :events
@@ -71,9 +73,13 @@ end
 
 resources :cities do
   resources :links
-  resources :groups
+  resources :groups do
+    resources :links
+  end
   resources :jobs
-  resources :districts 
+  resources :districts do
+    resources :links
+  end 
   resources :resources
   resources :events
   resources :ads

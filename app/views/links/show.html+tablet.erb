@@ -22,7 +22,7 @@
   <ul class="dropdown-menu" role="menu">
     <li><% if current_user.present? %>
                 
-                  <%= link_to current_user.username, current_user %>
+                  <%= current_user.username %>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
 
                 <% else %>

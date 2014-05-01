@@ -32,9 +32,7 @@ def show
  
   @groups = @parent.groups
   @resources = @parent.resources
-  
 
-  
   @links = @group.links
     
     @cities = City.all

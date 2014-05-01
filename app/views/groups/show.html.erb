@@ -1,27 +1,28 @@
 
 <html>
 <head>
-  <title>Democratize! <%= @city.title %> News, Politics, Discussion, Events</title>
+  <title>Democratize! News, Politics, Discussion, Events</title>
   
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
-  <meta name="description" content="Democratize! <%= @city.title %> is a user generated hub for local news, politics, and opinion sharing in Tulsa, OK.">
+  <meta name="description" content="Democratize! is a user generated hub for local news, politics, and opinion sharing.">
 </head>
 <body>
   <div class="bod">
     <div class="row">  
       <div class="col-xs-2">
         <div id="logo">
-          <i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
+          <center><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
+            <br><em><div id="tag">"a virtual town hall"</div></em></center>
         </div>
       </div>  
       <div class="col-xs-8">
         
         <div id="citytitle">
-          <h1><%= @group.title %> <%= link_to "+ Follow", follow_group_path(@group), class: "btn btn-xs btn-primary" %></h1>
+          <h1><%= @group.title %></h1>
         </div>  
       </div>  
        <div class="col-xs-2"> 
@@ -34,7 +35,7 @@
               
               <div id="sideprof">
                 <%# user is logged in, show log out link %>
-                <% if current_user.present? %>
+                <br><% if current_user.present? %>
                 
                 <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %><br>
                   <%= link_to current_user.username, current_user %><br>
@@ -64,17 +65,9 @@
                         </ul>
                         </div>
               <div id="sidenav">
-                <ul>
+                
                   <br>
-                    
-
-                <b>Group Followers</b>
-           <% @users.each do |user| %>
-             <li><%= link_to user.username, user %></li>
-
-<% end %>
-                      
-                    </ul>
+                <b>Back to <%= link_to @parent.title, [@parent] %></b>
               </div>
         </div>
       </div>
@@ -82,9 +75,9 @@
  <div class="col-xs-8">
         <div class="row">
             <div id="filters">
-                <%= link_to "hot", city_group_path(@city, @group, sort_by: "hot") %>
+              <%= link_to "hot", [@parent, @group, sort_by: "hot"] %>
                 |
-                <%= link_to "new", city_group_path(@city, @group, sort_by: "new") %>
+                <%= link_to "new", [@parent, @group, sort_by: "new"] %>
               <div id="addlink">
                     <p>
                       <% if user_signed_in? %>
@@ -141,8 +134,7 @@
                     <%= auto_link(link.text, :all, :target => "_blank").html_safe %></em>
                           
                        </div>
-                        </div>
-                      </div>
+                      </div> 
                       
                       <div class="row">
                         <div class="col-xs-10"> 
@@ -151,23 +143,25 @@
                             posted <b><%= time_ago_in_words(link.created_at) %></b> ago
                               by
                               <%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
-                              <%= link_to link.username, link.user %>
+                              <b><%= link.username %></b> <% if link.user.bio? %><em>"<%= link.user.bio %>"</em><% end %> 
                           </div>
                         </div>
-                       
+                        
+                      </div>
                         
                      
                       <div class="col-xs-10">
                     <div class="row">
                      
                        <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
-                      <%= link_to "Link", [@city, link], class: 'btn btn-xs btn-info' %>
+                      (<b><%= link.comments.count %> </b> comments)
+                      <%= link_to "Link", [@parent, @group, link], class: 'btn btn-xs btn-info' %>
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>
                                 <%= form_for([link, Comment.new]) do |f| %> 
                               <div class="field">
-                                <%= f.text_area :message, class: "form-control", :placeholder =>"Add a comment" %>
+                                <%= f.text_area :message, class: "form-control", :placeholder =>"Comment must be at least 5 characters long..." %>
                               </div>
                               <div class="actions">
                                 <%= f.submit :class => "btn btn-primary" %>
@@ -194,9 +188,12 @@
             <%= will_paginate @links %> 
             </div>
             <br>
-            <div id="footabout">
+              <div id="footabout">
               
               <%= link_to "Contact", "mailto:democratizellc@gmail.com" %>
+              </div>
+            <div id="footabout">
+            <%= link_to "Advertise!", "/pages/ads" %>
               </div>
             <div id="footcontact">
               <%= link_to "About", "/pages/show" %> 

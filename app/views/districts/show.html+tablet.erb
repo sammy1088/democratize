@@ -22,7 +22,7 @@
   <ul class="dropdown-menu scrollable-menu" role="menu">
     <li><% if current_user.present? %>
                 
-                  <%= link_to current_user.username, current_user %>
+                  <%= current_user.username %>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
 
                 <% else %>
@@ -61,7 +61,7 @@
   
   <center>
     <div id="navtitle">
-    <%= @district.title %>
+    <%= link_to @city.title, [@city] %> <%= @district.title %>
     </div>
   <div class="btn-group">
                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -110,7 +110,7 @@
                             posted <b><%= time_ago_in_words(link.created_at) %></b> ago
                               by
                               <%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
-                              <%= link_to link.username, link.user %>
+                              <b><%= link.username %></b> <% if link.user.bio? %><em>"<%= link.user.bio %>"</em><% end %>
                           </div>
                        </div>
                           
@@ -128,7 +128,7 @@
      <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
      
                       (<b><%= link.comments.count %> </b> comments)
-                      <%= link_to "Link", [@city, link], class: 'btn btn-xs btn-info' %>
+                      <%= link_to "Link", [@parent, @district, link], class: 'btn btn-xs btn-info' %>
     
                       <div class="linkpad">
                       </div>
