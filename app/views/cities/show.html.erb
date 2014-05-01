@@ -161,7 +161,7 @@
                             posted <b><%= time_ago_in_words(link.created_at) %></b> ago
                               by
                               <%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
-                            <b><%= link.username %></b> <% if link.user.bio? %><em>"<%= link.user.bio %>"</em><% end %>                           
+                            <b><%= link.username %></b> <% if link.user.bio? %><em><%= link.user.bio %></em><% end %>                           
 </div>
                         </div>
                       </div>

@@ -40,12 +40,12 @@
   <%= f.text_field :username, :autofocus => true %></div>
 
    <div>
-     <%= f.label :bio %><b>/Quote*</b><br />
+     <%= f.label :bio %><b>/Quote</b><em> (optional, minimum characters: 5, maximum characters: 45)</em><br /> 
     <%= f.text_field :bio, :autofocus => true %>
   </div>
 
    <div>
-     <%= f.label :avatar %>*<br />
+     <%= f.label :avatar %> <em>(optional)</em><br />
    <div id="fileup">
      <%= f.file_field :avatar %>
      </div>
@@ -56,12 +56,10 @@
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
-
+<br>
   <div><%= f.submit "Sign up" %></div>
 <% end %>
-  
-  <div><b>*=Optional</b></div>
-<br>
+
 <%= render "devise/shared/links" %>
   
   </center>

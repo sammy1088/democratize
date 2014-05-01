@@ -94,7 +94,7 @@
       <div class="linkbody">
 
         
-    <%= event.title %>
+    <%= event.date.strftime("%m/%d") %>: <%= event.title %>
                          
                           <%= link_to "+", '#', class: 'btn btn-xs btn-success reply-link', id: 'reply-link' %>
                           
