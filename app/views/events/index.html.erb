@@ -14,7 +14,8 @@
     <div class="row">  
       <div class="col-xs-2">
         <div id="logo">
-          <i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
+          <center><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
+            <br><em><div id="tag">"a virtual town hall"</div></em></center>
         </div>
       </div>  
       <div class="col-xs-8">
@@ -33,7 +34,7 @@
               
               <div id="sideprof">
                 <%# user is logged in, show log out link %>
-                <% if current_user.present? %>
+                <br><% if current_user.present? %>
                 
                 <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %><br>
                   <%= link_to current_user.username, current_user %><br>

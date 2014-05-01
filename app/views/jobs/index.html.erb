@@ -14,7 +14,8 @@
     <div class="row">  
       <div class="col-xs-2">
         <div id="logo">
-         <i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
+          <center><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
+            <br><em><div id="tag">"a virtual town hall"</div></em></center>
         </div>
         
       </div>  
@@ -33,10 +34,10 @@
              
               <div id="sideprof">
                 <%# user is logged in, show log out link %>
-                <% if current_user.present? %>
+                <br><% if current_user.present? %>
                 
                 <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %><br>
-                  <%= link_to current_user.username, current_user %><br>
+                  <b><%= current_user.username %><b><br>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
                   
                   <%# user is not logged in, show signup and login links %>
@@ -142,7 +143,7 @@
            <h2><%= @parent.title %> Events</h2>
                     <% @events.order('date ASC').each do |event| %>
                     
-          <p><%= link_to event.title, [@parent, :events] %></p>
+          <p><%= link_to event.title, [@parent, :events] %><br><b>on</b> <%= event.date.strftime("%m/%d/%Y") %></p>
                      
                       <% end %>
           <%= link_to "+more events", [@parent, :events], class: 'btn btn-xs btn-success' %>
