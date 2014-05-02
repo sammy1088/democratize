@@ -71,7 +71,7 @@
       posted <%= time_ago_in_words(@link.created_at)  %> ago              
      
         by
-        <%= image_tag @link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
+       <% if @link.user.avatar? %><%= image_tag @link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %><% end %> 
                               <%= link_to @link.username, @link.user %>
     </div>
    </div>

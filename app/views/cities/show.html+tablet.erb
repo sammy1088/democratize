@@ -109,7 +109,7 @@
                           <div id="linkauthmob">
                             posted <b><%= time_ago_in_words(link.created_at) %></b> ago
                               by
-                              <%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>
+                              <% if link.user.avatar? %><%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %><% end %> 
                              <b><%= link.username %></b> <% if link.user.bio? %><em>"<%= link.user.bio %>"</em><% end %>
                           </div>
                        </div>
@@ -127,7 +127,11 @@
                           <% end %>
      <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
      
-                      (<b><%= link.comments.count %> </b> responses)
+                      <% if link.comments.count == 1 %>
+                      (<b><%= link.comments.count %> </b> response)
+                            <% else %>
+                            (<b><%= link.comments.count %> </b> responses)
+                            <% end %>
                       <%= link_to "Link", [@city, link], class: 'btn btn-xs btn-info' %>
     
                       <div class="linkpad">
