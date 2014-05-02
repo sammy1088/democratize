@@ -21,8 +21,11 @@
               <div id="sideprof">
                 <%# user is logged in, show log out link %>
                 <br><% if current_user.present? %>
-                
-                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %><br>
+
+                <% if current_user.avatar? %>
+                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %>
+                <br>
+                <% end %>
                   <%= current_user.username %><br>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
                   
