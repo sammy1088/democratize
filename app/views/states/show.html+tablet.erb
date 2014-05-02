@@ -22,7 +22,7 @@
   <ul class="dropdown-menu scrollable-menu" role="menu">
     <li><% if current_user.present? %>
                 
-                  <%= link_to current_user.username, current_user %>
+                  <%= current_user.username %>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
 
                 <% else %>
@@ -124,7 +124,7 @@
                           <% end %>
      <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
      
-                      (<b><%= link.comments.count %> </b> comments)
+                      (<b><%= link.comments.count %> </b> responses)
                       <%= link_to "Link", [@city, link], class: 'btn btn-xs btn-info' %>
     
                       <div class="linkpad">

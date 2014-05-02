@@ -12,6 +12,15 @@ has_many :groups
 has_many :comments
 has_many :follow_groups
 has_many :groups, through: :follow_groups
+  
+  before_save do
+    self.username.downcase! if self.username
+end
+
+def self.find_for_authentication(conditions) 
+  conditions[:username].downcase! 
+  super(conditions) 
+end 
 
   validates :bio, :length => { :minimum => 5, :maximum => 70 }
 

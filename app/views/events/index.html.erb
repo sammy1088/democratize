@@ -132,7 +132,7 @@
                       <div class="col-xs-10">
                     <div class="row">
                      
-                       <%= link_to "Discuss!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
+                       <%= link_to "Discuss!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %> (<b><%= event.comments.count %> </b> responses)
                       <%= link_to "Link", [@parent, event], class: 'btn btn-xs btn-info' %>
                       <div class="linkpad">
                       </div>
