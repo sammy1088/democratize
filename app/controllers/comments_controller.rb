@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
      before_filter :authenticate_user!
-
+  http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", except: [:new, :create]
 
 
      def new
@@ -32,6 +32,6 @@ end
     
 
   def comment_params
-    params.require(:comment).permit(:user_id, :message, :link_id)
+    params.require(:comment).permit(:user_id, :message, :link_id, :comment_id)
   end
 end

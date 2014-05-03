@@ -72,7 +72,9 @@ resources :groups do
 end
 
 resources :cities do
-  resources :links
+  resources :links do
+  resources :comments
+end
   resources :groups do
     resources :links
   end

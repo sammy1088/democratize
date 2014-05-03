@@ -42,7 +42,7 @@
                 <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %>
                 <br>
                 <% end %>
-                <b><%= current_user.username %></b><br>
+                <b><%= link_to current_user.username, current_user %></b><br>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
                   
                   <%# user is not logged in, show signup and login links %>
