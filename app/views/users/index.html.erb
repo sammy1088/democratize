@@ -2,7 +2,7 @@ index
 <% @users.each do |user| %>
 <ul>
   
-<%= user.username %>, <%= user.email %>, <%= user.bio %>,
+<%= user.username %>, <%= user.email %>, <%= user.bio %>, <%= user.id %>
  <%= image_tag user.avatar.url(:small) %>
 <%= button_to "delete", user, :method=>:delete, :class=>:destroy %>
 </ul>
