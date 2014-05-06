@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
 has_many :links
 has_many :votes
@@ -12,17 +12,32 @@ has_many :groups
 has_many :comments
 has_many :follow_groups
 has_many :groups, through: :follow_groups
+
+    def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.username || self.email
+  end
   
-  before_save do
-    self.username.downcase! if self.username
-end
+      def self.find_first_by_auth_conditions(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      else
+        where(conditions).first
+      end
+    end
+  
+  
+validates :username,
+  :uniqueness => {
+    :case_sensitive => false
+  }
 
-def self.find_for_authentication(conditions) 
-  conditions[:username].downcase! 
-  super(conditions) 
-end 
 
-  validates :bio, :length => { :minimum => 5, :maximum => 70 }
+validates :bio, :length => { :minimum => 5, :maximum => 70 }
 
 
 has_attached_file :avatar, :styles => { :main => "200x200#" },
