@@ -59,8 +59,8 @@
 <%= form_for([@parent, @bill]) do |f| %>
   <b>Create New Bill</b><br><br>
   <div class="field">
-    <%= f.label "Name of event" %><br />
-    <%= f.text_field :title %>
+    <%= f.label "bill" %><br />
+    <%= f.text_field :title, class:"form-control" %>
   </div>
   <div class="field">
     <%= f.label :date %><br />
@@ -68,7 +68,7 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class:"form-control" %>
   </div>
   <div class="actions">
     <%= f.submit :class => "btn btn-primary" %>
