@@ -51,6 +51,7 @@ Sawit::Application.routes.draw do
     resources :jobs 
     resources :resources
     resources :events
+    resources :bills
   end
 
   resources :countries do
@@ -74,7 +75,7 @@ end
 resources :cities do
   resources :links do
   resources :comments
-end
+  end
   resources :groups do
     resources :links
   end
@@ -85,6 +86,7 @@ end
   resources :resources
   resources :events
   resources :ads
+  resources :bills
 end
 
 
@@ -94,6 +96,11 @@ resources :links do
   end
 
   resources :events do
+    resources :comments
+    resources :votes
+  end
+  
+    resources :bills do
     resources :comments
     resources :votes
   end

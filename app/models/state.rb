@@ -6,6 +6,7 @@ class State < ActiveRecord::Base
   has_many :resources
   has_many :events
   has_many :ads
+  has_many :bills
   
 
 	  def score

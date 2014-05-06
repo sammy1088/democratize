@@ -7,6 +7,8 @@ class VotesController < ApplicationController
           votable = Comment.find(params[:comment_id]) 
         elsif params[:link_id]
           votable = Link.find(params[:link_id])
+    elsif params[:bill_id]
+          votable = Bill.find(params[:bill_id])
     else
       raise "Vote can't be orphaned"
   end

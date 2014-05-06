@@ -6,6 +6,7 @@ class City < ActiveRecord::Base
   has_many :jobs
   has_many :resources
   has_many :events
+  has_many :bills
   has_many :ads
   
 

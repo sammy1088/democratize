@@ -1,0 +1,192 @@
+<html>
+<head>
+  <title>Democratize! News, Politics, Discussion, Events</title>
+  
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= csrf_meta_tags %>
+  <meta name="description" content="Democratize! <%= @parent.title %> is a user generated hub for local news, politics, and opinion sharing in Tulsa, OK.">
+</head>
+<body>
+  <div class="bod">
+    <div class="row">  
+      <div class="col-xs-2">
+        <div id="logo">
+          <center><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
+            <br><em><div id="tag">"a virtual town hall"</div></em></center>
+        </div>
+      </div>  
+      <div class="col-xs-8">
+        
+        <div id="citytitle">
+          <h1><%= link_to @parent.title, [@parent] %> Upcoming Votes</h1>
+        </div>  
+      </div>  
+       <div class="col-xs-2"> 
+            
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        <div id="sidebar">
+              
+              <div id="sideprof">
+                <%# user is logged in, show log out link %>
+                <br><% if current_user.present? %>
+                <% if current_user.avatar? %>
+                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %>
+                <br>
+                <% end %>
+                <b><%= current_user.username %></b><br>
+                  <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+                  
+                  <%# user is not logged in, show signup and login links %>
+                <% else %>
+                
+                  <li><%= link_to 'Sign In', new_user_session_path %></li>
+                  <li><%= link_to 'Register Now!', new_user_registration_path %></li>
+                
+                <% end %>
+                
+               <%# if user_signed_in? %>
+
+                <%# end %>
+              </div>
+                <div class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                          Change Location
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><b><%= link_to "Oklahoma", "/states/2" %></a></b></li>
+                          <li><%= link_to "Oklahoma City", "/cities/2-oklahomacity" %></a></li>
+                          <li><%= link_to "Tulsa", "/cities/1-tulsa" %></a></li>
+                        </ul>
+                        </div>
+                        
+             
+        </div>
+      </div>
+<div class="col-xs-8">
+        <div class="row">
+         
+              <div id="addlink">
+              <p>
+                <% if user_signed_in? %>
+                <%= bill_to_for_parent(@parent) %>
+                <% end %>
+              </p>
+              </div>
+      </div>
+<div class="row">
+<div class="row">
+  <% @bills.order('date ASC').each do |bill| %>
+
+    <ul>                     
+            <div id="links">
+                <li>
+                  
+                   <div class="row">
+                     
+                    <div class="col-xs-10">
+                      <div class="row">
+                        <div class="linkbodyE">
+                          <%= bill.date.strftime("%m/%d") %>: <b><%= bill.title %></b>
+                          <%= link_to "+read more", '#', class: 'btn btn-xs btn-success reply-link', id: 'reply-link' %>
+                          
+                  <div class="reply-container", id='reply-container'>
+                    <%= auto_link(bill.description, :all, :target => "_blank").html_safe %><br>
+                    <b>on</b> <%= bill.date.strftime("%m/%d/%Y") %><br>
+
+                       </div>
+                        
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-xs-10"> 
+                          
+                         
+                        </div>
+                       
+                        <div class="EvButts">
+                     
+                      <div class="col-xs-10">
+                    <div class="row">
+                     
+ <%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %> (<b><%= bill.votes.where(:up => true).count %></b>)
+<%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %> (<b><%= bill.votes.where(:up => false).count %></b>)
+
+                       <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
+                          <% if bill.comments.count == 1 %>
+                      (<b><%= bill.comments.count %> </b> response)
+                            <% else %>
+                            (<b><%= bill.comments.count %> </b> responses)
+                            <% end %>
+                          
+                      <%= link_to "Link", [@parent, bill], class: 'btn btn-xs btn-info' %>
+                      <div class="linkpad">
+                      </div>
+                  <div class="reply-container", id='reply-container'>
+                                <%= form_for([bill, Comment.new]) do |f| %> 
+                              <div class="field">
+                                <%= f.text_area :message, class: "form-control", :placeholder =>"Add a comment" %>
+                              </div>
+                              <div class="actions">
+                                <%= f.submit :class => "btn btn-primary" %>
+                              </div>
+                                <% end %>
+                            
+                        
+                         <%= render partial: "comments", locals: { bill: bill, comments: @comments } %> 
+                  </div>
+                      
+                       </div>
+                        </div>
+                    </div> 
+                  
+                      
+                      
+                    </div>
+                  </div>
+                </li>   
+            </div>
+            </ul> 
+            <% end %> 
+
+          </div>
+          <div class="row">
+            <div id="paginate">
+            <%= will_paginate @bills %> 
+            </div>
+            <br>
+            <div id="footabout">
+              
+              <%= link_to "Contact", "mailto:democratizellc@gmail.com" %>
+              </div>
+            <div id="footabout">
+            <%= link_to "Advertise!", "/pages/ads" %>
+              </div>
+            <div id="footcontact">
+              <%= link_to "About", "/pages/show" %> 
+            </div>
+          </div>
+        </div>     
+      </div> 
+      <div class="col-xs-2"> 
+        <div id="meetups">
+         
+      </div>
+        <div id="policy">
+         
+        </div>
+<div id="ads">
+              
+          </div>          
+    </div>  
+    </div>
+  </div>
+</div>
+</body>

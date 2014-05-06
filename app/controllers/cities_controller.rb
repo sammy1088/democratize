@@ -45,6 +45,7 @@ class CitiesController < ApplicationController
     @groups = @city.groups
     @resources = @city.resources
     @ads = @city.ads
+    @bills = @city.bills.where(['date >= ?', DateTime.now.to_date]).limit(2)
     @jobs = @city.jobs.limit(5)
     @events = @city.events.where(['date >= ?', DateTime.now.to_date]).limit(5)
                

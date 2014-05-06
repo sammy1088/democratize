@@ -47,6 +47,7 @@ class StatesController < ApplicationController
     @ads = @state.ads
     @jobs = @state.jobs.limit(5)
     @events = @state.events.where(['date >= ?', DateTime.now.to_date]).limit(5)
+    @bills = @state.bills.where(['date >= ?', DateTime.now.to_date]).limit(2)
     
     
     if params[:sort_by] == "new"

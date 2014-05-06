@@ -17,6 +17,8 @@ class CommentsController < ApplicationController
           commentable = Job.find(params[:job_id])
         elsif params[:event_id]
           commentable = Event.find(params[:event_id])
+          elsif params[:bill_id]
+          commentable = Bill.find(params[:bill_id])
 else
   raise "Comment can't be orphaned"
 end
