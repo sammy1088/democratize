@@ -87,7 +87,7 @@
         </div>
          <div class="row">
           
-          <b>upcoming votes</b> <%= link_to "+more votes", state_bills_path(@state), class: 'btn btn-xs btn-success' %><br>
+          <b><%= link_to "upcoming votes", state_bills_path(@state) %></b><br>
         </div>
      
         <% @bills.order('date ASC').each do |bill| %>
@@ -109,8 +109,8 @@
           
 
                           <div class="row">
-                  <%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %> (<b><%= bill.votes.where(:up => true).count %></b>)
-<%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %> (<b><%= bill.votes.where(:up => false).count %></b>)
+                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link %></b> (<b><%= bill.votes.where(:up => true).count %></b>)
+                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link %></b> (<b><%= bill.votes.where(:up => false).count %></b>)
 
                        <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
                           <% if bill.comments.count == 1 %>
@@ -119,7 +119,7 @@
                             (<b><%= bill.comments.count %> </b> responses)
                             <% end %>
                           
-                      <%= link_to "Link", [@state, bill], class: 'btn btn-xs btn-info' %>
+                            <b><%= link_to "Link", [@state, bill] %></b>
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>
@@ -197,7 +197,7 @@
                         <div class="linkbody">
                             <%= link.title %>
                          
-                          <%= link_to "+read more", '#', class: 'btn btn-xs btn-success reply-link', id: 'reply-link' %>
+                          <%= link_to "+read more", '#', class: 'btn btn-xs btn-default reply-link', id: 'reply-link' %>
                           
                   <div class="reply-container", id='reply-container'>
                     <%= auto_link(link.text, :all, :target => "_blank").html_safe %>
@@ -228,7 +228,7 @@
                             (<b><%= link.comments.count %> </b> responses)
                             <% end %>
                           
-                      <%= link_to "Link", [@state, link], class: 'btn btn-xs btn-info' %>
+                            <b><%= link_to "Link", [@state, link] %></b>
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>

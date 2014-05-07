@@ -112,7 +112,7 @@
                       <div class="row">
                         <div class="linkbodyE">
                           <%= event.date.strftime("%m/%d") %>: <b><%= event.title %></b>
-                          <%= link_to "+read more", '#', class: 'btn btn-xs btn-success reply-link', id: 'reply-link' %>
+                          <%= link_to "+read more", '#', class: 'btn btn-xs btn-default reply-link', id: 'reply-link' %>
                           
                   <div class="reply-container", id='reply-container'>
                     <%= auto_link(event.description, :all, :target => "_blank").html_safe %><br>
@@ -135,7 +135,7 @@
                     <div class="row">
                      
                        <%= link_to "Discuss!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %> (<b><%= event.comments.count %> </b> responses)
-                      <%= link_to "Link", [@parent, event], class: 'btn btn-xs btn-info' %>
+                      <b><%= link_to "Link", [@parent, event] %></b>
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>
