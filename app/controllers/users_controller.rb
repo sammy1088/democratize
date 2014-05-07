@@ -15,12 +15,21 @@ if params[:state_id] or params[:city_id]
 	@links = @user.links
     @groups = @user.groups
 
-
-   ## @city = City.find(params[:id])
-    ##@groups = @city.groups
-
-    
   end
+    def edit
+
+      @user = User.find(params[:id])
+end
+  def update
+
+    @user = User.find(params[:id])
+ 
+    if @user.update(params[:user].permit(:username, :bio, :avatar))
+      redirect_to [@user]
+  else
+    render 'edit'
+  end
+end
   def destroy
      @user = User.find(params[:id])
      @user.destroy

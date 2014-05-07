@@ -22,7 +22,7 @@
                 <br><% if current_user.present? %>
                 
                 <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %><br>
-                  <%= link_to current_user.username, current_user %><br>
+                <b><%= current_user.username %></b><br>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
                   
                   <%# user is not logged in, show signup and login links %>
@@ -60,8 +60,8 @@
         <div id="linktext">
     <%= auto_link(@bill.description, :all, :target => "_blank").html_safe %><br>
           <b>on</b> <%= @bill.date %><br>
-               <%= link_to "Support", bill_votes_path(@bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %> (<b><%= @bill.votes.where(:up => true).count %></b>)
-<%= link_to "Oppose", bill_votes_path(@bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %> (<b><%= @bill.votes.where(:up => false).count %></b>)
+               <%= link_to "Support", bill_votes_path(@bill, :vote => {:up => true}), :method => :link %> (<b><%= @bill.votes.where(:up => true).count %></b>)
+<%= link_to "Oppose", bill_votes_path(@bill, :vote => {:up => false}), :method => :link %> (<b><%= @bill.votes.where(:up => false).count %></b>)
       </div>
         <div class="textaux">
   <div class="row">
