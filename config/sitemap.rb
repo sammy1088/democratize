@@ -10,6 +10,10 @@ SitemapGenerator::Sitemap.create do
   City.find_each do |city|
  add city_path(city), :lastmod => city.updated_at
 end
+    add states_path, :priority => 0.7, :changefreq => 'daily'
+  State.find_each do |state|
+    add state_path(state), :lastmod => state.updated_at
+end
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.
