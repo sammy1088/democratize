@@ -109,8 +109,8 @@
           
 
                           <div class="row">
-                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link %></b> (<b><%= bill.votes.where(:up => true).count %></b>)
-                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link %></b> (<b><%= bill.votes.where(:up => false).count %></b>)
+                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %></b> (<b><%= bill.votes.where(:up => true).count %></b>)
+                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %></b> (<b><%= bill.votes.where(:up => false).count %></b>)
 
                        <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
                           <% if bill.comments.count == 1 %>
@@ -196,15 +196,13 @@
                       <div class="row">
                         <div class="linkbody">
                             <%= link.title %>
-                         
-                          <%= link_to "+read more", '#', class: 'btn btn-xs btn-default reply-link', id: 'reply-link' %>
-                          
-                  <div class="reply-container", id='reply-container'>
+                         </div>
+                      <div class="linkdesc">
                     <%= auto_link(link.text, :all, :target => "_blank").html_safe %>
                           
                        </div>
                      
-                        </div>                      
+                                             
                       <div class="row">
                         <div class="col-xs-10">
                           <div id="linkauth">

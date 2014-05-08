@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= favicon_link_tag 'favicon.ico' %>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+    <title>Democratize! Local News, Politics, Discussion, Events</title>
+
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><%= link_to "About", "/pages/about" %></li>
+          <li><a href="mailto:democratizellc@gmail.com">Contact</a></li>
+        </ul>
+        <h3 class="text"><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %></h3>
+      </div>
+
+      
+
+      
+        <div class="col-lg-12">
+          <h4>Democratize! Sitemap</h4>
+
+ 
+          <ul>
+             States
+            <b>
+            <li><%= link_to "Oklahoma", "/states/2" %></li>
+            </b>
+            <br>
+            Cities
+            <b>
+            <li><%= link_to "Tulsa", "/cities/1-tulsa" %></li>
+             <li><%= link_to "Oklahoma City", "/cities/2-oklahomacity" %></li>
+            </b>
+            <br>
+            Other
+
+              <b>
+
+                <li><%= link_to "Advertise!", "/pages/ads" %></li>
+
+            <li><%= link_to "Privacy", "/pages/privacy" %></li>
+
+            <li><%= link_to "Sitemap", "/pages/sitemap" %></li>
+
+              <li><%= link_to "About", "/pages/show" %></li> 
+            </b>
+          </ul>
+          </div>
+          <br>
+
+      <div class="footer">
+        <p>&copy; Democratize! 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>

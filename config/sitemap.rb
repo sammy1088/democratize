@@ -4,6 +4,7 @@ SitemapGenerator::Sitemap.default_host = "http://www.democratize.io"
 SitemapGenerator::Sitemap.create do
   
   add '/cities'
+  add '/states'
   
   add cities_path, :priority => 0.7, :changefreq => 'daily'
   City.find_each do |city|
