@@ -1,0 +1,384 @@
+@import "bootstrap";
+
+html {
+	margin:0;
+  background:#F0F0F0  ;
+}
+
+body {
+
+    margin: 0 auto 0 auto; 
+
+}
+.bod {
+  
+}
+
+footer {
+	text-align:center;
+	
+}
+
+ul {
+	list-style:none;
+    padding-left:0;
+}
+
+h1 {
+  font-size:25px;
+  display: inline;
+}
+
+h2 {
+  font-size:20px;
+  text-align:center;
+}
+
+#tag {
+
+  font-size:14px;
+}
+
+#logo {
+  padding-right:5px;
+  padding-left:5px;
+  font-weight:bold;
+	font-size:20px;
+	text-align:center;
+}
+
+#logo a {
+  color:#000000;
+}
+
+#citytitle {
+	text-align:center;
+  font-weight:bold;
+	font-size:20px;
+  padding-top:5px;
+}
+
+.bod {
+
+  
+}
+
+
+
+.btn-group  {
+  padding-top:2.5px;
+}
+
+#sidebar {
+  padding-right:5px;
+	text-align:center;
+	list-style-type:none;
+ padding-left:5px;
+}
+
+#filters {
+ padding-top:10px; 
+}
+
+#links {
+	word-wrap:break-word;
+	list-style-type:none;
+	border-bottom-style:solid;
+    border-width:thin;
+
+}
+
+.linkpad {
+  
+  padding-bottom:5px;
+}
+
+.votes {
+	text-align:center;
+}
+
+
+#votesup {
+padding-left:1px;
+}
+
+#votesS {
+	
+	font-size:25px;
+	
+}
+
+.linkbody {
+	word-wrap:break-word;
+	font-weight:bold;
+	font-size:20px;
+	padding-top:5px;
+  padding-bottom:5px;
+}
+
+.linkbodyE {
+	word-wrap:break-word;
+	
+	font-size:20px;
+	padding-top:5px;
+  padding-left:15px;
+}
+
+.linkbodyEx {
+	word-wrap:break-word;
+	color:#009933;
+	font-size:20px;
+	padding-top:5px;
+  padding-left:15px;
+}
+
+#linkauth {
+	padding-top:5px;
+	padding-bottom:5px;
+  font-size:15px;
+  font-weight:normal;
+}
+
+#reply-container {
+  font-size:15px;
+  font-weight:normal;
+}
+
+
+
+#linktime {
+	float:right;
+	padding-top:5px;
+}
+#addlink {
+	float:right;
+}
+
+#jobs {
+	padding-top:10px;
+	padding-bottom:20px;
+}
+
+#ads {
+text-align:center;
+
+}
+
+#linktitle {
+	padding-top:20px;
+  padding-bottom:5px;
+	font-weight:bold;
+	font-size:20px;
+}
+#linktitleS {
+  
+  padding-bottom:5px;
+	font-weight:bold;
+	font-size:20px;
+}
+
+#linktext {
+padding-bottom:10px;
+  font-size:20px;
+
+}
+
+#linktextB {
+padding-bottom:10px;
+font-size:17px;
+	font-weight:normal;
+}
+
+#linkcomment {
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+#commentcomment {
+	padding-left:30px;
+}
+
+.actions {
+ padding-top:5px; 
+}
+
+#votesCont {
+  text-align:center;
+  width:50px;
+}
+.commentbod {
+ width:500px;
+}
+
+.reply-container { display: none;
+
+}
+
+#usergroups {
+ width:200px; 
+}
+
+#fileup {
+ width:175px; 
+}
+
+.glyphup {
+  padding-bottom:7px;
+}
+
+.glyphdown {
+  padding-top:7px;
+  padding-bottom:5px;
+}
+
+.col-votes {
+  width:45px; 
+  float:left;
+}
+
+.col-bod {
+  width:700px;
+  float:left;
+}
+
+#meetups {
+   text-align:center;
+  padding-left:5px;
+  padding-right:5px;
+}
+
+#footabout {
+ float:right; 
+  padding-right:10px;
+}
+
+#footcontact {
+ float:right; 
+  padding-right:10px;
+}
+
+#paginate {
+  float:left;
+}
+
+#policy {
+  padding-left:5px;
+  padding-right:5px;
+  text-align:center;
+}
+
+.message_group .row .glyphicon.glyphicon-chevron-up {
+  padding-left:1px;
+}
+
+#contactbutt a:link {color:#FFFFFF;}
+
+#contactbutt a:visited {color:#FFFFFF;}
+
+.EvButts {
+  padding-left:15px;
+}
+
+#commpad {
+ padding-top:5px; 
+}
+
+.navbar-text {
+ float:right;
+   font-weight:bold;
+	font-size:20px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+#navtitle {
+   font-weight:bold;
+	font-size:25px;
+  padding-bottom:5px;
+  padding-top:5px;
+}
+
+.bodymob {
+  padding-top: 60px;
+
+}
+
+.linksmob {
+  word-wrap:break-word;
+
+   padding-left:10px;
+  padding-right:10px;
+  border-bottom-style:solid;
+    border-width:thin;
+}
+
+#filtersmob {
+  padding-top:10px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:15px;
+}
+
+.linkbodmob {
+  font-size:20px;
+
+ 
+}
+
+.row2mob {
+  padding-top:10px;
+}
+
+.gup {
+  margin:0;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 400px;
+    overflow-x: hidden;
+}
+
+.billyea {
+
+font-size:15px;
+}
+
+#votestop {
+  	border-bottom-style:solid;
+    border-width:thin;
+  	word-wrap:break-word;
+	list-style-type:none;
+}
+
+.billtitle {
+  	word-wrap:break-word;
+	font-weight:bold;
+	font-size:20px;
+  padding-left:10px;
+  color:#009933;
+}
+
+.billdesc {
+  	word-wrap:break-word;
+  padding-left:20px;
+  padding-bottom:5px;
+}
+
+.billdate {
+  padding-left:10px;
+  font-weight:bold;
+	font-size:15px;
+}
+
+#commpadB {
+  	border-bottom-style:solid;
+    border-width:thin;
+  margin-bottom:20px;
+}
+
+.linkdesc {
+ 
+}
