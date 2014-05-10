@@ -1,11 +1,14 @@
 <head>
-  <title>Democratize! Local News, Politics, Discussion, Events</title>
+  <title>Democratize! <%= @state.title %> News, Politics, Discussion, Events</title>
   
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
-  <meta name="description" content="dynamic titles, for each group politics yo!">
+  <meta name="description" content="Democratize! <%= @state.title %> local news, politics, and community debate.">
+<meta property="og:image" content="favicon.ico" />
+
 </head>
 <body>
  <div class="bod">
@@ -57,9 +60,9 @@
     <div id="linktitleS">
       <%= @bill.title %>
     </div>
-        <div id="linktext">
+        <div id="linktextB">
     <%= auto_link(@bill.description, :all, :target => "_blank").html_safe %><br>
-          <b>on</b> <%= @bill.date %><br>
+          <b>by</b> <%= @bill.date %><br>
                <%= link_to "Support", bill_votes_path(@bill, :vote => {:up => true}), :method => :link %> (<b><%= @bill.votes.where(:up => true).count %></b>)
 <%= link_to "Oppose", bill_votes_path(@bill, :vote => {:up => false}), :method => :link %> (<b><%= @bill.votes.where(:up => false).count %></b>)
       </div>

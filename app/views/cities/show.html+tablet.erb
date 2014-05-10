@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+
 <head>
   <title>Democratize! <%= @city.title %> News, Politics, Discussion, Events</title>
   
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "mobile", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= favicon_link_tag 'favicon.ico' %>
@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Democratize! <%= @city.title %> is a site for user-generated local news, politics, and opinion sharing in <%= @city.title %>.">
 </head>
-<body>
+
 <div class="bodymob">
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -162,5 +162,3 @@
 
 </div>
 </div>
-</body>
-</html>

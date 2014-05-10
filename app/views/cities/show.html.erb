@@ -8,6 +8,7 @@
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <meta name="description" content="Democratize! <%= @city.title %> local news, politics, and community debate.">
+  <meta property="og:image" content="favicon.ico" />
 </head>
 <body>
 
@@ -208,8 +209,8 @@
                             <%= link.title %></div> 
                         <div class="linkdesc">
                     <%= auto_link(link.text, :all, :target => "_blank").html_safe %>
-                          </div> 
-      
+                          
+</div>       
                      
                                            
                       <div class="row">

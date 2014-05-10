@@ -8,15 +8,15 @@
                           <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => true}), :method => :comment, class: "btn btn-small" do %>
                             <span class="glyphicon glyphicon-chevron-up"></i>
                           <% end %>
-                       <%= comment.user.username %>
-  <b><%= comment.score %></b> points 
+  <b><%= comment.user.username %></b>
+  <%= comment.score %></b> points 
           </div> 
      <div class="row">
                           <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment, class: "btn btn-small" do %>
                             <span class="glyphicon glyphicon-chevron-down"></i>
                           <% end %>
 
-       <b><%= auto_link(comment.message, :all, :target => "_blank").html_safe %></b>
+       <%= auto_link(comment.message, :all, :target => "_blank").html_safe %>
       
                         
        </div>
