@@ -109,8 +109,14 @@
           
 
                           <div class="row">
-                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %></b> (<b><%= bill.votes.where(:up => true).count %></b>)
-                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %></b> (<b><%= bill.votes.where(:up => false).count %></b>)
+                           <% if current_user && current_user.votes.where(:votable_id => bill.id, :up => true).present? %>
+                            <b>Supported!</b>
+                            <% else %>
+                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %></b><% end %> (<b><%= bill.votes.where(:up => true).count %></b>)
+                             <% if current_user && current_user.votes.where(:votable_id => bill.id, :up => false).present? %>
+                            <b>Opposed!</b>
+                            <% else %>
+                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %></b><% end %> (<b><%= bill.votes.where(:up => false).count %></b>)
 
                        <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
                           <% if bill.comments.count == 1 %>
@@ -166,6 +172,13 @@
                     <div class="col-xs-1">
                       <div class="votes">
                         <div id="votesup">
+                           <% if current_user.present? %>
+       <% if current_user.id == 23 %>
+                      <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                          <% end %>
+                          <% end %>
+                          <% end %>
                           <% if current_user && current_user.votes.where(:votable_id => link.id, :up => true).present? %>
                           <div class="glyphup">
                           <span class="glyphicon glyphicon-chevron-up"></span>

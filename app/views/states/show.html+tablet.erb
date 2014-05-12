@@ -76,6 +76,64 @@
 </center>
 
    <div class="container">
+    <div class="row">
+          
+          <b><%= link_to "upcoming votes", state_bills_path(@state) %></b><br>
+        </div>
+     
+        <% @bills.order('date ASC').each do |bill| %>
+
+        
+        
+<div class="row">
+             
+          
+              <b><%= bill.date.strftime("%m/%d") %></b>: <div class="billtitle"><%= bill.title %> </div>
+               </div> 
+          <div class="row">
+<div class="billdesc">
+                    <%= auto_link(bill.description, :all, :target => "_blank").html_safe %>
+                      </div>    
+                    </div> 
+                          
+               
+          
+
+                          <div class="row">
+                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %></b> (<b><%= bill.votes.where(:up => true).count %></b>)
+                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %></b> (<b><%= bill.votes.where(:up => false).count %></b>)
+
+                       <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
+                          <% if bill.comments.count == 1 %>
+                      (<b><%= bill.comments.count %> </b> response)
+                            <% else %>
+                            (<b><%= bill.comments.count %> </b> responses)
+                            <% end %>
+                          
+                            <b><%= link_to "Link", [@state, bill] %></b>
+                      <div class="linkpad">
+                      </div>
+                  <div class="reply-container", id='reply-container'>
+                                <%= form_for([bill, Comment.new]) do |f| %> 
+                              <div class="field">
+                                <%= f.text_area :message, class: "form-control", :placeholder =>"Comments must be at least 5 characters long..." %>
+                              </div>
+                              <div class="actions">
+                                <%= f.submit :class => "btn btn-primary" %>
+                              </div>
+                                <% end %>
+                            
+                        
+                         <%= render partial: "commentsL", locals: { bill: bill, comments: @comments } %> 
+                  </div>
+                      
+
+          
+          
+        </div>
+
+        <% end %>
+     <br>
      <div class="row">
             <div id="filtersmob">
                 <%= link_to "hot", state_path(@state, sort_by: "hot"), :class => "btn btn-xs btn-info" %>
@@ -115,7 +173,7 @@
                         </div>
   
  <div class="row2mob"> 
-   <div class="gup"
+   <div class="gup">
  <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
                             <span class="glyphicon glyphicon-chevron-up"></span>
                           <% end %>

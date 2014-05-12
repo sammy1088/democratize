@@ -12,7 +12,6 @@ group :production do
 end
 
 gem 'devise'
-gem 'jquery-turbolinks'
 
 gem 'rails_autolink'
 

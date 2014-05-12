@@ -36,28 +36,29 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :username %> <em>(only lowercase characters will be recorded)</em><br />
+  <div><b><%= f.label :username %></b> <em>(only lowercase characters will be recorded)</em><br />
   <%= f.text_field :username, :autofocus => true %></div>
 
    <div id ="bio">
-     <%= f.label :bio %><b>/Quote</b><em> (optional, minimum characters: 5, maximum characters: 45)</em><br /> 
+     <b><%= f.label :bio %>/Quote</b><em> (optional, minimum characters: 5, maximum characters: 45)</em><br /> 
      <%= f.text_field :bio, :autofocus => true, :maxlength => "45" %>
   </div>
 
    <div>
-     <%= f.label :avatar %> <em>(optional)</em><br />
+     <b><%= f.label :profile_Picture %></b> <em>(optional)</em><br />
    <div id="fileup">
      <%= f.file_field :avatar %>
      </div>
 </div>
 
-  <div><%= f.label :password %><br />
+  <div><b><%= f.label :password %></b><br />
   <%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div><b><%= f.label :password_confirmation %></b><br />
   <%= f.password_field :password_confirmation %></div>
 <br>
-  <div><%= f.submit "Sign up" %></div>
+ <div><%= f.submit "Sign up" %></div>
+
 <% end %>
 
 <%= render "devise/shared/links" %>
