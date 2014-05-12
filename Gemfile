@@ -13,6 +13,8 @@ end
 
 gem 'devise'
 
+gem 'jquery-turbolinks'
+
 gem 'rails_autolink'
 
 gem "paperclip", "~> 3.0"
