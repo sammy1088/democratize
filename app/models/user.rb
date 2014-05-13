@@ -37,7 +37,6 @@ validates :username,
   }
 
 
-validates :bio, :length => { :minimum => 5, :maximum => 70 }
 
 
 has_attached_file :avatar, :styles => { :main => "200x200#" },
