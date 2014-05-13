@@ -29,6 +29,20 @@ class BillsController < ApplicationController
       end
     end
   end
+  def edit
+
+    @bill = Bill.find(params[:id])
+end
+  def update
+
+    @bill = Bill.find(params[:id])
+ 
+    if @bill.update(params[:bill].permit(:title, :date, :description))
+      redirect_to [@bill]
+  else
+    render 'edit'
+  end
+end
   
   def index
     if params[:state_id] or params[:city_id] or params[:country_id]
