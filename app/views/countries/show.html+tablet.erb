@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Democratize! <%= @state.title %> News, Politics, Discussion, Events</title>
+  <title>Democratize! <%= @country.title %> News, Politics, Discussion, Events</title>
   <%= stylesheet_link_tag    "mob/mob", "data-turbolinks-track" => true %>
 
   <%= javascript_include_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -9,7 +9,7 @@
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Democratize! <%= @state.title %> is a site for user-generated local news, politics, and opinion sharing in <%= @state.title %>.">
+  <meta name="description" content="Democratize! <%= @country.title %> is a site for user-generated local news, politics, and opinion sharing in <%= @country.title %>.">
   <meta property="og:image" content='http://i59.tinypic.com/2e4ew5d.jpg'/>
 </head>
 <body>
@@ -34,18 +34,18 @@
                 <% end %></li>
     <li class="divider"></li>
 
-    <li><%= @state.title %> Groups</li>
+    <li><%= @country.title %> Groups</li>
     <% @groups.each do |group| %>
-    <li><%= link_to group.title, [@state, group] %></li>
+    <li><%= link_to group.title, [@country, group] %></li>
     <% end %>
-    <li><%= @state.title %> News Sources</li>
+    <li><%= @country.title %> News Sources</li>
     <% @resources.each do |resource| %>
     <li><%= link_to resource.title, "http://#{resource.url}", target: '_blank' %></li>
     <% end %>
     
     <li class="divider"></li>
-    <li><%= link_to "State Jobs", state_jobs_path(@state) %></li>
-    <li><%= link_to "State Events", state_events_path(@state) %></li>
+  <li><%= link_to "Nationwide Jobs", country_jobs_path(@country) %></li>
+  <li><%= link_to "Nationwide Events", country_events_path(@country) %></li>
   </ul>
 </div>
 
@@ -59,7 +59,7 @@
   
   <center>
     <div id="navtitle">
-    <%= @state.title %> News and Politics
+    <%= @country.title %> News and Politics
     </div>
   <div class="btn-group">
                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -80,7 +80,7 @@
    <div class="container">
     <div class="row">
           
-          <b><%= link_to "upcoming votes", state_bills_path(@state) %></b><br>
+          <b><%= link_to "upcoming votes", country_bills_path(@country) %></b><br>
         </div>
      
         <% @bills.order('date ASC').each do |bill| %>
@@ -112,7 +112,7 @@
                             (<b><%= bill.comments.count %> </b> responses)
                             <% end %>
                           
-                            <b><%= link_to "Link", [@state, bill] %></b>
+                            <b><%= link_to "Link", [@country, bill] %></b>
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>
@@ -138,13 +138,13 @@
      <br>
      <div class="row">
             <div id="filtersmob">
-                <%= link_to "hot", state_path(@state, sort_by: "hot"), :class => "btn btn-xs btn-info" %>
+                <%= link_to "hot", country_path(@country, sort_by: "hot"), :class => "btn btn-xs btn-info" %>
                 |
-                <%= link_to "new", state_path(@state, sort_by: "new"), :class => "btn btn-xs btn-info" %>
+                <%= link_to "new", country_path(@country, sort_by: "new"), :class => "btn btn-xs btn-info" %>
               <div id="addlink">
                     <p>
                       <% if user_signed_in? %>
-                      <%= link_to "Post", new_state_link_path(params[:id]), :class => "btn btn-xs btn-primary" %>
+                      <%= link_to "Post", new_country_link_path(params[:id]), :class => "btn btn-xs btn-primary" %>
                       <% end %>
                     </p>
               </div>
@@ -190,7 +190,7 @@
                             <% else %>
                             (<b><%= link.comments.count %> </b> responses)
                             <% end %>
-     <%= link_to "Link", [@state, link], class: 'btn btn-xs btn-info' %>
+                      <%= link_to "Link", [@country, link], class: 'btn btn-xs btn-info' %>
     
                       <div class="linkpad">
                       </div>

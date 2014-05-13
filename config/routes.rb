@@ -43,7 +43,7 @@ Sawit::Application.routes.draw do
 
   
 
-  root :to => "states#show", :id => '2'
+  root :to => "countries#show", :id => '1'
 
   resources :states   do
     resources :links

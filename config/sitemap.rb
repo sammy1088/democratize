@@ -3,9 +3,10 @@ SitemapGenerator::Sitemap.default_host = "http://www.democratize.io"
 
 SitemapGenerator::Sitemap.create do
   
-  add '/cities/1'
-  add '/cities/2'
-  add '/states/2'
+  add '/cities/1-tulsa'
+  add '/cities/2-oklahomacity'
+  add '/states/2-oklahoma'
+  add '/'
   
 
   # Put links creation logic here.
