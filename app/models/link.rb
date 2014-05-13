@@ -5,6 +5,7 @@ class Link < ActiveRecord::Base
   belongs_to :event
   belongs_to :state
   belongs_to :city
+  belongs_to :country
   belongs_to :district
   belongs_to :rep
   belongs_to :group

@@ -75,7 +75,7 @@ class StatesController < ApplicationController
   end
   def find_parent
     if params[:state_id]
-      @parent = City.find(params[:state_id])
+      @parent = State.find(params[:state_id])
   end
 end
 end

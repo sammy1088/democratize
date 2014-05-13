@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503195457) do
+ActiveRecord::Schema.define(version: 20140512224405) do
 
   create_table "ads", force: true do |t|
     t.string   "title"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20140503195457) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "country_id"
+    t.integer  "state_id"
   end
 
   create_table "bills", force: true do |t|
@@ -33,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140503195457) do
     t.datetime "updated_at"
     t.integer  "city_id"
     t.integer  "state_id"
+    t.integer  "country_id"
   end
 
   create_table "cities", force: true do |t|
@@ -75,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140503195457) do
     t.datetime "updated_at"
     t.integer  "city_id"
     t.integer  "state_id"
+    t.integer  "country_id"
   end
 
   create_table "follow_groups", force: true do |t|
@@ -93,6 +97,7 @@ ActiveRecord::Schema.define(version: 20140503195457) do
     t.datetime "updated_at"
     t.integer  "city_id"
     t.integer  "state_id"
+    t.integer  "country_id"
   end
 
   create_table "jobs", force: true do |t|
@@ -106,6 +111,7 @@ ActiveRecord::Schema.define(version: 20140503195457) do
     t.string   "username"
     t.integer  "user_id"
     t.integer  "state_id"
+    t.integer  "country_id"
   end
 
   create_table "links", force: true do |t|
@@ -142,6 +148,7 @@ ActiveRecord::Schema.define(version: 20140503195457) do
     t.integer  "city_id"
     t.string   "title"
     t.integer  "state_id"
+    t.integer  "country_id"
   end
 
   create_table "states", force: true do |t|

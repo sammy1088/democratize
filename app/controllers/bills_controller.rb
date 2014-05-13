@@ -31,7 +31,7 @@ class BillsController < ApplicationController
   end
   
   def index
- if params[:state_id] or params[:city_id]
+    if params[:state_id] or params[:city_id] or params[:country_id]
        find_parent
     end
     @groups = @parent.groups  
@@ -53,6 +53,8 @@ class BillsController < ApplicationController
       @parent = City.find(params[:city_id])
       elsif params[:state_id]
       @parent = State.find(params[:state_id])
+            elsif params[:country_id]
+      @parent = Country.find(params[:country_id])
   end
 end
 end

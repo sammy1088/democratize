@@ -58,6 +58,13 @@ Sawit::Application.routes.draw do
 
   resources :countries do
     resources :links
+    resources :groups do
+    resources :links
+  end
+    resources :jobs 
+    resources :resources
+    resources :events
+    resources :bills
   end
 
   resources :reps do
