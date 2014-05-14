@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 class BillsController < ApplicationController
   before_filter :find_parent, only: [:new, :create]
-  http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", only: [:new, :create]
+  http_basic_authenticate_with name: "sammy1088", password: "Ce66$rio", only: [:new, :create, :edit]
   
   def new
     @bill = @parent.bills.new
