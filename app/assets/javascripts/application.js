@@ -25,7 +25,21 @@ $(".reply-link").click(function(e){
     $('[data-toggle=offcanvas]').click(function() {
     $('.row-offcanvas').toggleClass('active');
   });
-});
+$('.trigger').on('click', function(){
+  $(this).html('<div class="glyphup"><span class="glyphicon glyphicon-chevron-up"></span></div>');
+  $(this).parent().next().html('<em>+1</em>');
+})
+  
+$('.trigger-').on('click', function(){
+  $(this).html('<div class="glyphdown"><span class="glyphicon glyphicon-chevron-down"></span></div>');
+  $(this).parents('.votes').find("#votesS").html('<em>-1</em>');
+})
 
+$('.actions').click(function(){
+  $(this).html('<b>comment successfully submited!</b>');
+  $(this).submit();
+})
+  
+ }); 
 $(document).ready(ready);
 $(document).on('page:load', ready);

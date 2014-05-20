@@ -99,7 +99,7 @@ h2 {
 }
 
 
-#votesup {
+.votesup {
 padding-left:1px;
 }
 
@@ -225,6 +225,10 @@ font-size:17px;
 
 .glyphup {
   padding-bottom:7px;
+}
+
+#glyphupP {
+  padding-bottom:12px;
 }
 
 .glyphdown {
@@ -380,6 +384,17 @@ font-size:15px;
   margin-bottom:20px;
 }
 
-.linkdesc {
- 
+.selected {
+  	word-wrap:break-word;
+	font-weight:bold;
+	font-size:20px;
+  padding-left:10px;
+  color:#009933;
+}
+
+.trigger- {
+}
+
+.trigger {
+padding-bottom:3px;
 }

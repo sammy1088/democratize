@@ -23,12 +23,12 @@
     
                         <%= link_to "Reply", '#', class: 'reply-link', id: 'reply-link' %>
                   <div class="reply-container", id='reply-container'>
-                  <%= form_for(Comment.new, url: comment_comments_path(comment)) do |f| %> 
+                    <%= form_for(Comment.new, url: comment_comments_path(comment), :remote => true) do |f| %> 
               
                   <%= f.text_area :message, :class => "form-control", :placeholder =>"Add a comment" %>
-                   
+                   <div class="actions">
                       <%= f.submit :class => "btn btn-primary" %>
-              
+              </div>
                   <% end %>
                                                
      </div>

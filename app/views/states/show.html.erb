@@ -141,7 +141,7 @@
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>
-                                <%= form_for([bill, Comment.new]) do |f| %> 
+                    <%= form_for([bill, Comment.new], :remote => true) do |f| %> 
                               <div class="field">
                                 <%= f.text_area :message, class: "form-control", :placeholder =>"Comments must be at least 5 characters long..." %>
                               </div>
@@ -182,37 +182,47 @@
                 <li>
                   <div class="row">
                     <div class="col-xs-1">
-                      <div class="votes">
+                                           <div class="votes">
                         <div id="votesup">
-                           <% if current_user.present? %>
+                               <% if current_user.present? %>
        <% if current_user.id == 23 %>
-                      <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
-                            <span class="glyphicon glyphicon-chevron-up"></span>
+                          <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
+                            
+                       <span class="glyphicon glyphicon-chevron-up"></span>
                           <% end %>
                           <% end %>
                           <% end %>
                           <% if current_user && current_user.votes.where(:votable_id => link.id, :up => true).present? %>
-                          <div class="glyphup">
+                          <div id="glyphupP">
                           <span class="glyphicon glyphicon-chevron-up"></span>
                           </div>
                             <% else %>
-                          <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
+                          <div class="trigger">
+                          <%= link_to link_votes_path(link, :vote => {:up => true}), :remote => true, :method => :post, class: "btn btn-small" do %>
+                        
                             <span class="glyphicon glyphicon-chevron-up"></span>
+                        
                           <% end %>
+                            </div>
                           <% end %>
                         </div>
+                         
                         <div id="votesS">
                           <%= link.score %> 
                         </div>
-                        <div id="votesdown">  
+                         <div id="votesdown">
                             <% if current_user && current_user.votes.where(:votable_id => link.id, :up => false).present? %>
                                 <div class="glyphdown">
                                   <span class="glyphicon glyphicon-chevron-down"></span>
                                 </div>  
                             <% else %>
-                          <%= link_to link_votes_path(link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
+                          <div class="trigger-">
+                            <%= link_to link_votes_path(link, :vote => {:up => false}), :remote => true, :method => :post, class: "btn btn-small" do %>
+                         
                             <span class="glyphicon glyphicon-chevron-down"></span>
+                            
                           <% end %>
+                            </div>
                           <% end %>
                         </div>  
                       </div>
@@ -255,7 +265,7 @@
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>
-                                <%= form_for([link, Comment.new]) do |f| %> 
+                    <%= form_for([link, Comment.new], :remote => true) do |f| %> 
                               <div class="field">
                                 <%= f.text_area :message, class: "form-control", :placeholder =>"Comments must be at least 5 characters long..." %>
                               </div>
