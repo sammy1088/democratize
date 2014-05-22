@@ -107,11 +107,10 @@
                       </div>    
                     </div> 
                           
-               
-          
-
+             
                           <div class="row">
-                            <% if current_user.present? %>
+                            <div class="billrow">
+                                                        <% if current_user.present? %>
        <% if current_user.id == 23 %>
                      <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %></b>
                           <% end %>
@@ -121,27 +120,43 @@
                      <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %></b>
                           <% end %>
                           <% end %>
-                           <% if current_user && current_user.votes.where(:votable_id => bill.id, :up => true).present? %>
+                              <div class="trm">
+<% if current_user && current_user.votes.where(:votable_id => bill.id, :up => true).present? %>
                             <b>Supported!</b>
                             <% else %>
-                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %></b><% end %> (<b><%= bill.votes.where(:up => true).count %></b>)
+                                </div>
+                        <div class="sdf">
+                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :remote => true, :method => :post, :class => "btn btn-xs btn-default" %></b>
+                              <% end %>
+                          </div>
+                              <div class="sad">
+                              (<b><%= bill.votes.where(:up => true).count %></b>)
+                                </div>
+                              <div class="tre">
                              <% if current_user && current_user.votes.where(:votable_id => bill.id, :up => false).present? %>
                             <b>Opposed!</b>
+                                
                             <% else %>
-                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %></b><% end %> (<b><%= bill.votes.where(:up => false).count %></b>)
-
-                       <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
+                                </div>
+                              <div class="sfd">
+                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :remote => true, :method => :post, :class => "btn btn-xs btn-danger" %></b><% end %>
+                                </div>
+                              <div class="sado">
+                                (<b><%= bill.votes.where(:up => false).count %></b>)
+                            </div>
+                     <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
                           <% if bill.comments.count == 1 %>
                       (<b><%= bill.comments.count %> </b> response)
                             <% else %>
                             (<b><%= bill.comments.count %> </b> responses)
                             <% end %>
+
                           
                             <b><%= link_to "Link", [@country, bill] %></b>
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>
-                                <%= form_for([bill, Comment.new], :remote => true) do |f| %> 
+                    <%= form_for([bill, Comment.new], :remote => true) do |f| %> 
                               <div class="field">
                                 <%= f.text_area :message, class: "form-control", :placeholder =>"Comments must be at least 5 characters long..." %>
                               </div>
@@ -154,12 +169,13 @@
                          <%= render partial: "commentsL", locals: { bill: bill, comments: @comments } %> 
                   </div>
                       
-
+                              </div>
           
           
         </div>
-
+        
         <% end %>
+
         <div class="row">
             <div id="filters">
                 <b><%= link_to "hot", country_path(@country, sort_by: "hot") %>
@@ -178,11 +194,11 @@
           <div class="row">
             <% @links.each do |link| %> 
             <ul>                     
-            <div id="links">
+ <div id="links">
                 <li>
                   <div class="row">
                     <div class="col-xs-1">
-                                            <div class="votes">
+                      <div class="votes">
                         <div id="votesup">
                                <% if current_user.present? %>
        <% if current_user.id == 23 %>

@@ -5,18 +5,33 @@
      
 <div class='message_group'>
    <div class="row">
-      <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => true}), :method => :comment, class: "btn btn-small" do %>
+          <% if current_user && current_user.votes.where(:votable_id => comment.id, :up => true).present? %>
+                          <div class="ctriggerPL">
+                          <span class="glyphicon glyphicon-chevron-up"></span>
+                         </div>
+                            <% else %>
+     <div class="ctrigger">
+      <%= link_to comment_votes_path(comment, :vote => {:up => true}), :remote => true, :method => :post, class: "btn btn-small" do %>
       <span class="glyphicon glyphicon-chevron-up"></span>
        <% end %>
-     <b><%= comment.user.username %></b>
-  <%= comment.score %> points 
+       </div>
+     <% end %>
+       <%= comment.user.username %>
+  <b><%= comment.score %></b> points 
           </div> 
      <div class="row">
-       <%= link_to comment_votes_path(comment, :vote => {:comment_id => comment.id, :up => false}), :method => :comment, class: "btn btn-small" do %>
+       <% if current_user && current_user.votes.where(:votable_id => comment.id, :up => false).present? %>
+                               <div class="ctriggerPLE">
+                                  <span class="glyphicon glyphicon-chevron-down"></span>
+                                </div>  
+                            <% else %>
+       <div class="ctrigger-">
+       <%= link_to comment_votes_path(comment, :vote => {:up => false}), :remote => true, :method => :post, class: "btn btn-small" do %>
         <span class="glyphicon glyphicon-chevron-down"></span>
         <% end %>
-
-       <%= auto_link(comment.message, :all, :target => "_blank").html_safe %>
+         </div>
+       <% end %>
+       <b><%= auto_link(comment.message, :all, :target => "_blank").html_safe %></b>
       
                         
        </div>
@@ -28,7 +43,7 @@
                   <%= f.text_area :message, :class => "form-control", :placeholder =>"Add a comment" %>
                    <div class="actions">
                       <%= f.submit :class => "btn btn-primary" %>
-               </div>
+                 </div>              
                   <% end %>
                                                
      </div>
@@ -40,4 +55,5 @@
 </ul>
 
 <% end %>
+     
      <div id="commpadB"></div>
