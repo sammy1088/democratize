@@ -81,11 +81,13 @@
 </center>
 
    <div class="container">
+     <div class="col-xs-12">
        <div class="row">
-          
+          <% if @city.bills.where(['date >= ?', DateTime.now.to_date]).present? %>
           <b><%= link_to "upcoming votes", city_bills_path(@city) %></b><br>
+         <% end %>  
         </div>
-     
+       
         <% @bills.order('date ASC').each do |bill| %>
 
         
@@ -105,21 +107,38 @@
           
 
                           <div class="row">
-                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %></b> (<b><%= bill.votes.where(:up => true).count %></b>)
-                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %></b> (<b><%= bill.votes.where(:up => false).count %></b>)
+                            <div class="trm">
+<% if current_user && current_user.votes.where(:votable_id => bill.id, :up => true).present? %>
+                            <b>Supported!</b>
+                            <% else %>
+                                </div>
+                        <div class="sdf">
+                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :remote => true, :method => :post, :class => "btn btn-xs btn-default" %></b>
+                              <% end %>
+                          </div>
+                              <div class="sad">
+                              (<b><%= bill.votes.where(:up => true).count %></b>)
+                                </div>
+                              <div class="tre">
+                             <% if current_user && current_user.votes.where(:votable_id => bill.id, :up => false).present? %>
+                            <b>Opposed!</b>
+                                
+                            <% else %>
+                                </div>
+                              <div class="sfd">
+                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :remote => true, :method => :post, :class => "btn btn-xs btn-danger" %></b><% end %>
+                                </div>
+                              <div class="sado">
+                                (<b><%= bill.votes.where(:up => false).count %></b>)
+                            </div>
 
                        <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
-                          <% if bill.comments.count == 1 %>
-                      (<b><%= bill.comments.count %> </b> response)
-                            <% else %>
-                            (<b><%= bill.comments.count %> </b> responses)
-                            <% end %>
                           
-                            <b><%= link_to "Link", [@city, bill] %></b>
+                            <b><%= link_to "Link", [@city, bill], :class => "btn btn-xs btn-info" %></b>
                       <div class="linkpad">
                       </div>
                   <div class="reply-container", id='reply-container'>
-                                <%= form_for([bill, Comment.new]) do |f| %> 
+                    <%= form_for([bill, Comment.new], :remote => true) do |f| %> 
                               <div class="field">
                                 <%= f.text_area :message, class: "form-control", :placeholder =>"Comments must be at least 5 characters long..." %>
                               </div>
@@ -133,7 +152,7 @@
                   </div>
                       
 
-          
+        </div>  
           
         </div>
 
@@ -141,9 +160,9 @@
      <br>
      <div class="row">
             <div id="filtersmob">
-                <%= link_to "hot", city_path(@city, sort_by: "hot"), :class => "btn btn-xs btn-info" %>
+              <%= link_to "hot", city_path(@city, sort_by: "hot"), :class => "btn btn-xs btn-default" %>
                 |
-                <%= link_to "new", city_path(@city, sort_by: "new"), :class => "btn btn-xs btn-info" %>
+              <%= link_to "new", city_path(@city, sort_by: "new"), :class => "btn btn-xs btn-default" %>
               <div id="addlink">
                     <p>
                       <% if user_signed_in? %>
@@ -163,29 +182,50 @@
         
     <%= link.title %>
                          
-                          <%= link_to "+", '#', class: 'btn btn-xs btn-success reply-link', id: 'reply-link' %>
-                          
-                  <div class="reply-container", id='reply-container'>
+           <br>
+<div class="linkdescm">
                     <%= auto_link(link.text, :all, :target => "_blank").html_safe %>
+   </div>
                           <div id="linkauthmob">
-                            posted <b><%= time_ago_in_words(link.created_at) %></b> ago
+                            posted <b><%= time_ago_in_words(link.created_at) %></b> ago<br>
                               by
                               <% if link.user.avatar? %><%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %><% end %> 
-                             <b><%= link.username %></b> <% if link.user.bio? %><em>"<%= link.user.bio %>"</em><% end %>
+                             <b><%= link.username %></b>
                           </div>
-                       </div>
+                 
                           
                         </div>
   
  <div class="row2mob"> 
    <div class="gup">
- <%= link_to link_votes_path(link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
+                               <% if current_user && current_user.votes.where(:votable_id => link.id, :up => true).present? %>
+                          <div class="sdf">
+                          <span class="glyphicon glyphicon-chevron-up"></span>
+                            </div>
+                            <% else %>
+   
+                          <div class="trigger">
+                            <%= link_to link_votes_path(link, :vote => {:up => true}), :remote => true, :method => :post, class: "btn btn-small" do %>
+                            
                             <span class="glyphicon glyphicon-chevron-up"></span>
+                            
                           <% end %>
- 
+   </div>
+ <% end %>
+                            
+                            <% if current_user && current_user.votes.where(:votable_id => link.id, :up => false).present? %>
+                              <div class="sdfe">
+                                  <span class="glyphicon glyphicon-chevron-down"></span>
+     </div>                
+                            <% else %>
+                              
+                          <div class="trigger-">
 <%= link_to link_votes_path(link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
                             <span class="glyphicon glyphicon-chevron-down"></span>
                           <% end %>
+                            </div>
+                            <% end %>
+                                
      <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
      
                       <% if link.comments.count == 1 %>
@@ -223,3 +263,5 @@
 
 </div>
 </div>
+</body>
+</html>

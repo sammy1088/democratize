@@ -88,8 +88,9 @@
         </div> 
         </div>
          <div class="row">
-          
+           <% if @country.bills.where(['date >= ?', DateTime.now.to_date]).present? %>
           <b><%= link_to "upcoming votes", country_bills_path(@country) %></b><br>
+           <% end %>
         </div>
      
         <% @bills.order('date ASC').each do |bill| %>

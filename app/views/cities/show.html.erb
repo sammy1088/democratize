@@ -89,14 +89,16 @@
         
          <div class="row">
         <div id="citytitle">
-          <h1><%= @city.title %> News and Politics</h1>
           
+          <h1><%= @city.title %> News and Politics</h1>
+           
         </div> 
         </div>
         
          <div class="row">
-          
+          <% if @city.bills.where(['date >= ?', DateTime.now.to_date]).present? %>
           <b><%= link_to "upcoming votes", city_bills_path(@city) %></b><br>
+           <% end %>
         </div>
 
         <% @bills.order('date ASC').each do |bill| %>
