@@ -10,182 +10,50 @@
   <meta name="description" content="Democratize! <%= @city.title %> is a user-generated 'virtual town hall' for local news, politics, events, jobs, and debate.">
   <meta property="og:image" content='http://i59.tinypic.com/2e4ew5d.jpg'/>
 </head>
+
 <body>
-
-    <div class="row">  
-      <div class="col-xs-2">
-        <div id="logo">
-          <center><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
-            <br><em><div id="tag">"a virtual town hall"</div></em></center>
-        </div>
-        <div id="sidebar">
-              
-              <div id="sideprof">
-                <%# user is logged in, show log out link %>
-                <br>
-                <% if current_user.present? %>
-
-                <% if current_user.avatar? %>
-                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %>
-                <br>
-                <% end %>
-                <b><%= current_user.username %></b><br>
-                  <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-                  
-                  <%# user is not logged in, show signup and login links %>
-                <% else %>
-                
-                  <li><%= link_to 'Sign In', new_user_session_path %></li>
-                  <li><%= link_to 'Register Now!', new_user_registration_path %></li>
-                
-                <% end %>
-                
-               <%# if user_signed_in? %>
-
-                <%# end %>
-              </div>
-                <div class="btn-group">
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                          Change Location
-                        <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><b><%= link_to "United States", "/" %></a></b></li>
-                            <li class="divider"></li>
-                          <li><b><%= link_to "Oklahoma", "/states/2-oklahoma" %></a></b></li>
-                          <li><%= link_to "Oklahoma City", "/cities/2-oklahomacity" %></a></li>
-                          <li><%= link_to "Tulsa", "/cities/1-tulsa" %></a></li>
-                        </ul>
-                        </div>
-                        
-              <div id="sidenav">
-                    
-                <ul class="nav nav-pills nav-stacked">
-                        
-                      <br>
-                      <li><center><b><%= @city.title %> Districts</b></center>
-                        <% @districts.each do |district| %>
-                      <%= link_to district.title, [@city, district], class: "list-group-item" %>
-                       <% end %>
-                    <br>
-                    <center><b><%= @city.title %> Groups</b></center>
-                    <% @groups.each do |group| %>
-                    <%= link_to group.title, [@city, group], class: "list-group-item" %>
-                      <% end %>
-                      <br>
-                      <center><b><%= @city.title %> News Sources</b></center>
-                      <% @resources.each do |resource| %>
-                    <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
-                      <% end %>
-                    
-                      </li>
-                    </ul>
-              </div>
-        </div>
-      </div>
-
-
-      <div class="col-xs-8">
-        
-         <div class="row">
-        <div id="citytitle">
-          
-          <h1><%= @city.title %> News and Politics</h1>
-           
-        </div> 
-        </div>
-        
-         <div class="row">
-          <% if @city.bills.where(['date >= ?', DateTime.now.to_date]).present? %>
-          <b><%= link_to "upcoming votes", city_bills_path(@city) %></b><br>
-           <% end %>
-        </div>
-
-        <% @bills.order('date ASC').each do |bill| %>
-
-        
-        
-<div class="row">
-             
-          
-              <b><%= bill.date.strftime("%m/%d") %></b>: <div class="billtitle"><%= bill.title %> </div>
-               </div> 
-          <div class="row">
-<div class="billdesc">
-                   <%= auto_link(bill.description, :all, :target => "_blank").html_safe %>
-                      </div>    
-                    </div> 
-                          
-               
-          
-
-                          <div class="row">
-                            <div class="billrow">
-                                                        <% if current_user.present? %>
-       <% if current_user.id == 23 %>
-                     <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :method => :link, :class => "btn btn-xs btn-default" %></b>
-                          <% end %>
-                          <% end %>
-                             <% if current_user.present? %>
-       <% if current_user.id == 23 %>
-                     <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :method => :link, :class => "btn btn-xs btn-danger" %></b>
-                          <% end %>
-                          <% end %>
-                              <div class="trm">
-<% if current_user && current_user.votes.where(:votable_id => bill.id, :up => true).present? %>
-                            <b>Supported!</b>
-                            <% else %>
-                                </div>
-                        <div class="sdf">
-                            <b><%= link_to "Support", bill_votes_path(bill, :vote => {:up => true}), :remote => true, :method => :post, :class => "btn btn-xs btn-default" %></b>
-                              <% end %>
-                          </div>
-                              <div class="sad">
-                              (<b><%= bill.votes.where(:up => true).count %></b>)
-                                </div>
-                              <div class="tre">
-                             <% if current_user && current_user.votes.where(:votable_id => bill.id, :up => false).present? %>
-                            <b>Opposed!</b>
-                                
-                            <% else %>
-                                </div>
-                              <div class="sfd">
-                            <b><%= link_to "Oppose", bill_votes_path(bill, :vote => {:up => false}), :remote => true, :method => :post, :class => "btn btn-xs btn-danger" %></b><% end %>
-                                </div>
-                              <div class="sado">
-                                (<b><%= bill.votes.where(:up => false).count %></b>)
-                            </div>
-                     <%= link_to "Debate!", '#', class: 'btn btn-xs btn-primary reply-link', id: 'reply-link' %>
-                          <% if bill.comments.count == 1 %>
-                      (<b><%= bill.comments.count %> </b> response)
-                            <% else %>
-                            (<b><%= bill.comments.count %> </b> responses)
-                            <% end %>
-
-                          
-                            <b><%= link_to "Link", [@city, bill] %></b>
-                      <div class="linkpad">
-                      </div>
-                  <div class="reply-container", id='reply-container'>
-                    <%= form_for([bill, Comment.new], :remote => true) do |f| %> 
-                              <div class="field">
-                                <%= f.text_area :message, class: "form-control", :placeholder =>"Comments must be at least 5 characters long..." %>
-                              </div>
-                              <div class="actions">
-                                <%= f.submit :class => "btn btn-primary" %>
-                              </div>
-                                <% end %>
-                            
-                        
-                         <%= render partial: "commentsL", locals: { bill: bill, comments: @comments } %> 
-                  </div>
-                      
-                              </div>
-          
-          
-        </div>
-        
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+ 
+<div class="padtop">
+      <div class="logo">
+       <%= link_to root_path do %>
+        <i class="fa fa-bullhorn"></i> Democratize! <%= @city.title %> 
         <% end %>
+    </div>  
+    <div class="profnav">   
+<% if current_user.present? %>
+                <% if current_user.avatar? %>
+                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>                
+                <% end %>
+                <b><%= current_user.username %></b>
+        <div class="btn-group">
+  
+         
+           <span class="caret dropdown-toggle" data-toggle="dropdown"></span>
+
+    <ul class="dropdown-menu">
+      <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+   
+    </ul>
+  </div>
+        <% else %>
+                <div class="altnav">
+                  <%= link_to 'Sign In', new_user_session_path %> | 
+                  <%= link_to 'Register!', new_user_registration_path %>
+      </div>
+                
+                <% end %>
+
+
+
+</div>
+    </div>
+    
+  
+</nav>
+<div class="container">
+    <div class="row">  
+      <div class="col-xs-9">
 
         <div class="row">
             <div id="filters">
@@ -195,13 +63,15 @@
               <div id="addlink">
                     <p>
                       <% if user_signed_in? %>
-                      <%= link_to "Post", new_city_link_path(params[:id]), :class => "btn btn-xs btn-primary" %>
+                     <%= link_to "Post", new_state_link_path(params[:id]), :class => "btn btn-xs btn-primary" %>
+                    
                       <% end %>
                     </p>
               </div>
             </div> 
         </div>
-                <div class="row">
+        
+          
           <div class="row">
             <% @links.each do |link| %> 
             <ul>                     
@@ -317,7 +187,7 @@
           </div>
           <div class="row">
             <div id="paginate">
-            <%= will_paginate @links %> 
+            <%= will_paginate @links, renderer: BootstrapPagination::Rails %>
             </div>
             <br>
             <div id="footabout">
@@ -340,40 +210,64 @@
           </div>
         
 </div>
-          </div>
-
-     
-
-<!-- beg of right -->
-       <div class="col-xs-2"> 
+          
+       <div class="col-xs-3"> 
+                    
                 <div id="meetups">
   <h2><%= @city.title %> Events</h2>
                     <% @events.order('date ASC').each do |event| %>
 
  
-          <p><%= link_to event.title, city_events_path(@city) %><br><b>on</b> <%= event.date.strftime("%m/%d/%Y") %></p>
+          <%= link_to event.title, city_events_path(@city) %><b>: <%= event.date.strftime("%m/%d/%Y") %></b>
               
     
                       <% end %>
-          <%= link_to "+more events", city_events_path(@city), class: 'btn btn-xs btn-success' %>
-      </div>
-
-        <div id="policy">
-          <h2><%= @city.title %> Jobs</h2>
           
-                      <% @jobs.order('created_at DESC').each do |job| %>
-          <p><%= link_to job.title, city_jobs_path(@city) %></p>
+                   <ul class="nav nav-pills nav-stacked">
+                      <br>  
+                    
+                      <li>
+                    <h2><%= @city.title %> Groups</h2>
+                    <% @groups.each do |group| %>
+                    <%= link_to group.title, [@city, group], class: "list-group-item" %>
                       <% end %>
-          <%= link_to "+more jobs", city_jobs_path(@city), class: 'btn btn-xs btn-success' %>
-          <br>
+                   
+                    
+                      </li>
+                    </ul>
+                   
+             <br>
+                  
+                  <h2><%= @city.title %> News Sources</h2>
+                      <% @resources.each do |resource| %>
+                    <%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
+                      <% end %>
+                  
+                        
+      </div>
+<br>
+        <div id="policy">
 
           <h2>Policy</h2>
           <p>All posts must be civil. Anything hateful, sexist, racist, abusive, threatening, etc. will be removed.</p>
-     <%= link_to "Advertise!", "/pages/ads", class: 'btn btn-xs btn-primary' %>
         </div>
         
     </div>
-
+        <center>
+                <div class="btn-group">
+                        <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                          Change Location
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><b><%= link_to "United States", "/" %></a></b></li>
+                            <li class="divider"></li>
+                          <li><b><%= link_to "Oklahoma", "/states/2-oklahoma" %></a></b></li>
+                          <li><%= link_to "Oklahoma City", "/cities/2-oklahomacity" %></a></li>
+                          <li><%= link_to "Tulsa", "/cities/1-tulsa" %></a></li>
+                        </ul>
+</div>
+</center>
 
         </div>
 </div>

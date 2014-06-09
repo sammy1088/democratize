@@ -25,6 +25,8 @@ $(".reply-link").click(function(e){
     $('[data-toggle=offcanvas]').click(function() {
     $('.row-offcanvas').toggleClass('active');
   });
+
+  
 $('.sdf').on('click', function(){
   $(this).html('<b>Supported!</b>');
   $(this).next().html('<em>+1</em>');
