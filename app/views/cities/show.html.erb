@@ -16,7 +16,7 @@
  
 <div class="padtop">
       <div class="logo">
-       <%= link_to root_path do %>
+       <%= link_to city_path do %>
         <i class="fa fa-bullhorn"></i> Democratize! <%= @city.title %> 
         <% end %>
     </div>  
@@ -212,7 +212,7 @@
 </div>
           
        <div class="col-xs-3"> 
-                    
+         <% if @city.events.present? %>
                 <div id="meetups">
   <h2><%= @city.title %> Events</h2>
                     <% @events.order('date ASC').each do |event| %>
@@ -222,7 +222,8 @@
               
     
                       <% end %>
-          
+          <% end %>
+                  <% if @city.groups.present? %>
                    <ul class="nav nav-pills nav-stacked">
                       <br>  
                     
@@ -236,13 +237,15 @@
                       </li>
                     </ul>
                    
-             <br>
-                  
+             
+                  <% end %>
+                  <% if @city.resources.present? %>
+                  <br>
                   <h2><%= @city.title %> News Sources</h2>
                       <% @resources.each do |resource| %>
                     <%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
                       <% end %>
-                  
+                  <% end %>
                         
       </div>
 <br>
@@ -252,7 +255,7 @@
           <p>All posts must be civil. Anything hateful, sexist, racist, abusive, threatening, etc. will be removed.</p>
         </div>
         
-    </div>
+    
         <center>
                 <div class="btn-group">
                         <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -268,6 +271,7 @@
                         </ul>
 </div>
 </center>
+</div>
 
         </div>
 </div>

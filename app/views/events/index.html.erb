@@ -1,96 +1,62 @@
-<html>
+
 <head>
-  <title>Democratize! News, Politics, Discussion, Events</title>
-  
+  <title>Democratize! <%= @parent.title %> News, Politics, Discussion, Jobs, Events</title>
+
    <%= stylesheet_link_tag    "normal/application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
-  <meta name="description" content="Democratize! <%= @parent.title %> is a user generated hub for local news, politics, and opinion sharing in Tulsa, OK.">
+  <meta name="description" content="Democratize! <%= @parent.title %> is a user-generated 'virtual town hall' for local news, politics, events, jobs, and debate.">
   <meta property="og:image" content='http://i59.tinypic.com/2e4ew5d.jpg'/>
 </head>
-<body>
-  <div class="bod">
-    <div class="row">  
-      <div class="col-xs-2">
-        <div id="logo">
-          <center><i class="fa fa-bullhorn"></i> <%= link_to "Democratize!", root_path %>
-            <br><em><div id="tag">"a virtual town hall"</div></em></center>
-        </div>
-      </div>  
-      <div class="col-xs-8">
-        
-        <div id="citytitle">
-          <h1><%= link_to @parent.title, [@parent] %> Events</h1>
-        </div>  
-      </div>  
-       <div class="col-xs-2"> 
-            
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">
-        <div id="sidebar">
-              
-              <div id="sideprof">
-                <%# user is logged in, show log out link %>
-                <br><% if current_user.present? %>
-                <% if current_user.avatar? %>
-                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %>
-                <br>
-                <% end %>
-                <b><%= current_user.username %></b><br>
-                  <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-                  
-                  <%# user is not logged in, show signup and login links %>
-                <% else %>
-                
-                  <li><%= link_to 'Sign In', new_user_session_path %></li>
-                  <li><%= link_to 'Register Now!', new_user_registration_path %></li>
-                
-                <% end %>
-                
-               <%# if user_signed_in? %>
 
-                <%# end %>
-              </div>
-                <div class="btn-group">
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                          Change Location
-                        <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><b><%= link_to "United States", "/" %></a></b></li>
-                            <li class="divider"></li>
-                          <li><b><%= link_to "Oklahoma", "/states/2-oklahoma" %></a></b></li>
-                          <li><%= link_to "Oklahoma City", "/cities/2-oklahomacity" %></a></li>
-                          <li><%= link_to "Tulsa", "/cities/1-tulsa" %></a></li>
-                        </ul>
-                        </div>
-                        
-              <div id="sidenav">
-                    
-                <ul class="nav nav-pills nav-stacked">
-                        
-                      <br>
-                      <li>
-                    <center><b><%= @parent.title %> Groups</b></center>
-                    <% @groups.each do |group| %>
-                    <%= link_to group.title, [@parent, group], class: "list-group-item" %>
-                      <% end %>
-                      <br>
-                      <center><b><%= @parent.title %> News Sources</b></center>
-                      <% @resources.each do |resource| %>
-                    <%= link_to resource.title, "http://#{resource.url}", class: "list-group-item", target: '_blank' %>
-                      <% end %>
-                    
-                      </li>
-                    </ul>
-              </div>
-        </div>
+<body>
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+ 
+<div class="padtop">
+      <div class="logo">
+        
+        <i class="fa fa-bullhorn"></i> Democratize! <%= @parent.title %> 
+        
+    </div>  
+    <div class="profnav">   
+<% if current_user.present? %>
+                <% if current_user.avatar? %>
+                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>                
+                <% end %>
+                <b><%= current_user.username %></b>
+        <div class="btn-group">
+  
+         
+           <span class="caret dropdown-toggle" data-toggle="dropdown"></span>
+
+    <ul class="dropdown-menu">
+      <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+   
+    </ul>
+  </div>
+        <% else %>
+                <div class="altnav">
+                  <%= link_to 'Sign In', new_user_session_path %> | 
+                  <%= link_to 'Register!', new_user_registration_path %>
       </div>
-<div class="col-xs-8">
+                
+                <% end %>
+
+
+
+</div>
+    </div>
+    
+  
+</nav>
+<div class="container">
+    <div class="row">  
+      <div class="col-xs-9">
+
+        
+
         <div class="row">
          
               <div id="addlink">
@@ -114,14 +80,14 @@
                     <div class="col-xs-10">
                       <div class="row">
                         <div class="linkbodyE">
-                          <%= event.date.strftime("%m/%d") %>: <b><%= event.title %></b>
-                          <%= link_to "+read more", '#', class: 'btn btn-xs btn-default reply-link', id: 'reply-link' %>
+                          <b><%= event.date.strftime("%m/%d") %>:</b> <%= event.title %><br>
+                         
                           
-                  <div class="reply-container", id='reply-container'>
+                 
                     <%= auto_link(event.description, :all, :target => "_blank").html_safe %><br>
-                    <b>on</b> <%= event.date.strftime("%m/%d/%Y") %><br>
+                    
           <b>at</b> <%= event.location %>
-                       </div>
+                       
                         
                         </div>
                       </div>
@@ -187,23 +153,14 @@
           </div>
         </div>     
       </div> 
-      <div class="col-xs-2"> 
-        <div id="meetups">
-         
-      </div>
-        <div id="policy">
-         <h2><%= @parent.title %> Jobs</h2>
-          
-                      <% @jobs.order('created_at DESC').each do |job| %>
-          <p><%= link_to job.title, [@parent, :jobs] %></p>
-                      <% end %>
-          <%= link_to "+more jobs", [@parent, :jobs], class: 'btn btn-xs btn-success' %>
-        </div>
-<div id="ads">
-              
-          </div>          
-    </div>  
+      
     </div>
   </div>
 </div>
+
 </body>
+
+
+
+
+  
