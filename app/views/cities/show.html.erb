@@ -212,17 +212,7 @@
 </div>
           
        <div class="col-xs-3"> 
-         <% if @city.events.present? %>
-                <div id="meetups">
-  <h2><%= @city.title %> Events</h2>
-                    <% @events.order('date ASC').each do |event| %>
-
- 
-          <%= link_to event.title, city_events_path(@city) %><b>: <%= event.date.strftime("%m/%d/%Y") %></b>
-              
-    
-                      <% end %>
-          <% end %>
+        
                   <% if @city.groups.present? %>
                    <ul class="nav nav-pills nav-stacked">
                       <br>  
