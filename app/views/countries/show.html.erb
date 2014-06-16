@@ -211,38 +211,30 @@
         
 </div>
           
-       <div class="col-xs-3"> 
-                    
-                <div id="meetups">
-  <h2><%= @country.title %> Events</h2>
-                    <% @events.order('date ASC').each do |event| %>
+ <div class="col-xs-3"> 
 
- 
-          <%= link_to event.title, country_events_path(@country) %><b>: <%= event.date.strftime("%m/%d/%Y") %></b>
-              
-    
-                      <% end %>
-          
+                  <% if @country.groups.present? %>
                    <ul class="nav nav-pills nav-stacked">
                       <br>  
                     
                       <li>
-                    <h2><%= @country.title %> Groups</h2>
+                        <h2><%= @country.title %> Groups</h2>
                     <% @groups.each do |group| %>
-                    <%= link_to group.title, [@country, group], class: "list-group-item" %>
+                        <%= link_to group.title, [@country, group], class: "list-group-item" %>
                       <% end %>
                    
                     
                       </li>
                     </ul>
                    
-             <br>
-                  
+             
+                  <% end %>
+         <% if @country.resources.present? %>
                   <h2><%= @country.title %> News Sources</h2>
                       <% @resources.each do |resource| %>
                     <%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
                       <% end %>
-                  
+                  <% end %>
                         
       </div>
 <br>

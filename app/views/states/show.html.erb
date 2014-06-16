@@ -212,17 +212,8 @@
 </div>
           
        <div class="col-xs-3"> 
-                    
-                <div id="meetups">
-                  <h2><%= @state.title %> Events</h2>
-                    <% @events.order('date ASC').each do |event| %>
 
- 
-                  <%= link_to event.title, state_events_path(@state) %><b>: <%= event.date.strftime("%m/%d/%Y") %></b>
-              
-    
-                      <% end %>
-          
+                  <% if @state.groups.present? %>
                    <ul class="nav nav-pills nav-stacked">
                       <br>  
                     
@@ -236,13 +227,14 @@
                       </li>
                     </ul>
                    
-             <br>
-                  
+             
+                  <% end %>
+         <% if @state.resources.present? %>
                   <h2><%= @state.title %> News Sources</h2>
                       <% @resources.each do |resource| %>
                     <%= link_to resource.title, "http://#{resource.url}", target: '_blank' %>
                       <% end %>
-                  
+                  <% end %>
                         
       </div>
 <br>
