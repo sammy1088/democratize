@@ -33,8 +33,6 @@ class CitiesController < ApplicationController
   end
 
   def show
- @link = Link.find(params[:id])
-    @comments = @link.comments
 
     ##n@district = District.find(params[:id])
     @city = City.find(params[:id])

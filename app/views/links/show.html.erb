@@ -57,36 +57,7 @@
         </div>
       </div>
   <div class="row"> 
-    <div class="col-xs-8">
-      <div class="col-votes">
-                      <div class="votes">
-                        <div id="votesup">
-                          <% if current_user && current_user.votes.where(:votable_id => @link.id, :up => true).present? %>
-                          <div class="glyphup">
-                          <span class="glyphicon glyphicon-chevron-up"></span>
-                          </div>
-                            <% else %>
-                          <%= link_to link_votes_path(@link, :vote => {:up => true}), :method => :link, class: "btn btn-small" do %>
-                            <span class="glyphicon glyphicon-chevron-up"></span>
-                          <% end %>
-                          <% end %>
-                        </div>
-                        <div id="votesS">
-                          <%= @link.score %> 
-                        </div>
-                        <div id="votesdown">  
-                            <% if current_user && current_user.votes.where(:votable_id => @link.id, :up => false).present? %>
-                                <div class="glyphdown">
-                                  <span class="glyphicon glyphicon-chevron-down"></span>
-                                </div>  
-                            <% else %>
-                          <%= link_to link_votes_path(@link, :vote => {:up => false}), :method => :link, class: "btn btn-small" do %>
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                          <% end %>
-                          <% end %>
-                        </div>  
-                      </div>
-                    </div> 
+
       <div class="col-bod">
         
     <div id="linktitleS">
@@ -109,8 +80,7 @@
           
     </div>
 </div>
-      </div>
-      
+   
  
     <div id="linkcomment">
         <%= form_for([@link, Comment.new]) do |f| %> 

@@ -22,9 +22,7 @@
     </div>  
     <div class="profnav">   
 <% if current_user.present? %>
-                <% if current_user.avatar? %>
-                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %>                
-                <% end %>
+              
                 <b><%= current_user.username %></b>
         <div class="btn-group">
   
@@ -63,7 +61,7 @@
               <div id="addlink">
                     <p>
                       <% if user_signed_in? %>
-                     <%= link_to "Post", new_city_link_path(params[:id]), :class => "btn btn-xs btn-primary" %>
+                     <%= link_to "Post", new_city_link_path(params[:id]), :class => "btn btn-xs btn-info" %>
                     
                       <% end %>
                     </p>
@@ -210,17 +208,35 @@
           </div>
         
 </div>
-          
+       
        <div class="col-xs-3"> 
-        
+        <div class="container">   
                   <% if @city.groups.present? %>
                    <ul class="nav nav-pills nav-stacked">
                       <br>  
                     
                       <li>
+                    <h2><%= @city.title %> Representatives</h2>
+                        <% @districts.each do |district| %>
+                        <%= link_to district.title, [@city, district], class: "list-group-item text-center" %>
+                      <% end %>
+                   
+                    
+                      </li><br>
+                     
+                           <li>
+                    <h2><%= @city.title %> Events</h2>
+                             <% @events.each do |event| %>
+                             <%= link_to event.title, [@city, event], class: "list-group-item text-center" %>
+                      <% end %>
+                   
+                    
+                      </li><br>
+                     
+                                <li>
                     <h2><%= @city.title %> Groups</h2>
                     <% @groups.each do |group| %>
-                    <%= link_to group.title, [@city, group], class: "list-group-item" %>
+                        <%= link_to group.title, [@city, group], class: "list-group-item text-center" %>
                       <% end %>
                    
                     
@@ -239,28 +255,14 @@
                         
       </div>
 <br>
-        <div id="policy">
+  
+        
+<br>
+      <div id="policy">
 
           <h2>Policy</h2>
-          <p>All posts must be civil. Anything hateful, sexist, racist, abusive, threatening, etc. will be removed.</p>
+          <p><i>All posts must be civil. Anything hateful, sexist, racist, abusive, threatening, etc. will be removed.</i></p>
         </div>
-        
-    
-        <center>
-                <div class="btn-group">
-                        <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                          Change Location
-                        <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><b><%= link_to "United States", "/" %></a></b></li>
-                            <li class="divider"></li>
-                          <li><b><%= link_to "Oklahoma", "/states/2-oklahoma" %></a></b></li>
-                          <li><%= link_to "Oklahoma City", "/cities/2-oklahomacity" %></a></li>
-                          <li><%= link_to "Tulsa", "/cities/1-tulsa" %></a></li>
-                        </ul>
-</div>
-</center>
 </div>
 
         </div>
