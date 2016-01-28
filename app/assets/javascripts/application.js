@@ -60,10 +60,10 @@ $('.trigger-').on('click', function(){
   $(this).parents('.votes').find("#votesS").html('<em>-1</em>');
 })
 
-$('.actions').click(function(){
-  $(this).html('<b>comment submited!</b>');
-  $(this).submit();
-})
+##$('.actions').click(function(){
+#  $(this).html('<b>comment submited!</b>');
+#  $(this).submit();
+#})
   
  }); 
 $(document).ready(ready);
