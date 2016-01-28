@@ -137,7 +137,7 @@
                           <div id="linkauth">
                             posted <b><%= time_ago_in_words(link.created_at) %></b> ago
                               by
-                            <% if link.user.avatar? %><%= image_tag link.user.avatar.url(:main), :class => "img-rounded", :size => "25x25" %><% end %> 
+                           
                              
                             <b><%= link.username %></b> <% if link.user.bio? %><em><%= link.user.bio %></em><% end %>                           
 </div>
