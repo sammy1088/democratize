@@ -21,7 +21,7 @@
                 <%# user is logged in, show log out link %>
                 <% if current_user.present? %>
                 
-                <%= image_tag current_user.avatar.url(:main), :class => "img-rounded", :size => "100x100" %><br>
+                
                   <%= link_to current_user.username, current_user %><br>
                   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
                   
